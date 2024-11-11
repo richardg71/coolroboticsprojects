@@ -1,108 +1,154 @@
-/* Tags */
-
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #B0C4DE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 40px; /* Adds padding at the bottom */
+    background-color: #ffffff;
 }
+
 header {
-    background-color: #2c3e50;
+    width: 100%;
+    background-color: #007bff; /* Blue background color */
     color: #fff;
-    padding: 20px;
+    padding: 1rem 0;
     text-align: center;
 }
 
-div {
-    color: #2c3e50;
-}
-img {
-    border-radius: 14%;
-}
-footer {
-    background-color: #2c3e50;
-    color: #a2b6d4;
-    padding: 10px;
-    margin-bottom: -50px;
-    text-align: center;
-    bottom: 0;
-    height: 100%;
-}
-/* Wrapping the div in an a tag changed the size of the box. Switch the defaults */
-a {
-    display: block;
-    text-decoration: none;
-    text-decoration-color: #2c3e50;
-    color: #2c3e50;
-}
-a:visited {
-    color: #2c3e50;
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
 }
 
-
-/* Classes */
-
-.projects{
-    margin: 10%;
-    padding: 10%;
-    background-color: #ffefd5;
-    border: #2c3e50;
-    border-width: 3px;
-    border-style: solid;
-    border-radius: 10%;
-    color: #2c3e50;
-    text-decoration: none;
-}
-.project_images{
-    width: 95%;
-    height: auto;
-}
-.projects:hover img{
-    box-shadow: 0 0 10px 2px #2c3e50;
-    
-}
-
-
-/* IDs */
-
-#menu {
-    background-color: #444;
-    color: #a2b6d4;
-    padding: 10px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-#menu a {
-    color: #a2b6d4;
+header nav a {
+    color: #fff;
     text-decoration: none;
     margin: 0 10px;
 }
-#intro{
-    display: flex;
-}
-#profile{
-    width: 30%;
-    height: 30%;
-    padding: 3%;
-}
-#bio{
-    padding-right: 3%;
-    padding-top: 3%;
-}
-#grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;    
-}
-#title{
-    text-align: center;
-    padding: 3%;
-    background-color: #a2b6d4;
-    border-bottom: #2c3e50;
-    color: #2c3e50;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
+
+header nav a:hover {
+    text-decoration: underline;
 }
 
+.intro {
+    width: 80%;
+    margin: 1rem auto;
+    text-align: left;
+}
+
+.intro h2 {
+    font-size: 1.8rem;
+}
+
+.intro iframe {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 0.5rem;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three items per row */
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px; /* Set a max width to prevent stretching on large screens */
+    margin: 0 auto; /* Center the grid */
+}
+
+/* Project Card */
+.project-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card img {
+    width: 100%;
+    height: 150px; /* Adjusted height for images */
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0.5rem 0;
+    height: 40px; /* Set a fixed height for descriptions */
+    overflow: hidden; /* Hide overflow if description is too long */
+    text-overflow: ellipsis; /* Add ellipsis to indicate hidden text */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Transcript */
+.transcript {
+    display: none; /* Hidden by default */
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.transcript-toggle {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.transcript-toggle:hover {
+    background-color: #0056b3;
+}
+
+.intro iframe {
+    width: 100%;
+    max-width: 600px; /* Set a maximum width for videos */
+    min-width: 300px; /* Optional: set a minimum width to prevent shrinking */
+    height: 250px; /* Adjusted height for taller videos */
+    margin-top: 0.5rem;
+}
+
+
+/* Content Container */
+.content-container {
+    width: 600px; /* Fixed width to prevent resizing */
+    max-width: 100%; /* Ensures responsiveness on smaller screens */
+    margin: 0 auto; /* Center align the container */
+    text-align: left;
+}

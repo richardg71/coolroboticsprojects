@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Robotics Projects</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Remote Control Car</h1>
+        <nav>
+            <a href="../index.html">Beginner Guide</a> |
+            <a href="../projects.html">Projects</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="what-is-a-shield" class="intro">
+            <h2>What is a Shield?</h2>
+            <p>An Arduino shield is a piece of hardware that can expand the uses of an Arduino board. It's designed to be 
+            placed directly on top of the Arduino Uno. It can focus the Arduino’s capabilities to perform cooler and better tasks. They are designed to be placed on 
+            top of an Arduino and connect directly to its pins. There are many different types of shields from display 
+            shields to wireless shields to motor shields. This project uses a motor shield to connect two DC motors to an Arduino.</p>
+        </section>
+        <section id="what-is-ir" class="intro">
+            <h2>What is an IR Remote and Receiver?</h2>
+            <p>An IR remote is a type of remote control that uses Infrared (IR) light to send signals to a receiver. The remote encodes different button presses as unique signals, which are transmitted via IR light. The receiver decodes these signals to perform specific actions.</p>
+            <p>In this project, the IR remote allows you to control the car wirelessly. The Arduino processes the signals from the IR receiver and translates them into commands for the motor shield, enabling movements like forward, reverse, left, or right.</p>
+        </section>        
+        <section id="materials-needed" class="intro">
+            <h2>Materials Needed</h2>
+            <ul>
+                <li>Car kit (two DC motors, battery pack, three wheels, base) *I use the ____</li>
+                <li>Arduino Uno</li>
+                <li>Battery</li>
+                <li>Battery connector</li>
+                <li>HW-130 Motor Shield</li>
+                <li>Wires</li>
+                <li>IR receiver and remote</li>
+            </ul>
+        </section>
+        
+        <section id="assembly-instructions" class="intro">
+            <h2>Assembly Instructions</h2>
+            <p>These are the connections needed to assemble your remote control car:</p>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Connection to Motor Shield</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DC Motor 1 (Right Wheel)</td>
+                        <td>Port 3 (M3)</td>
+                    </tr>
+                    <tr>
+                        <td>DC Motor 2 (Left Wheel)</td>
+                        <td>Port 4 (M4)</td>
+                    </tr>
+                    <tr>
+                        <td>IR power (R)</td>
+                        <td>Power pin (+5)</td>
+                    </tr>
+                    <tr>
+                        <td>IR ground (G)</td>
+                        <td>Gnd</td>
+                    </tr>
+                    <tr>
+                        <td>IR signal (Y)</td>
+                        <td>Digital pin 2</td>
+                    </tr>
+                    <tr>
+                        <td>Battery +</td>
+                        <td>Power input (+M)</td>
+                    </tr>
+                    <tr>
+                        <td>Battery -</td>
+                        <td>GND</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="motorshield-picture">
+            <img src="../images/motor_shield_connections.jpeg" alt="Motor Shield Connections" style="max-width: 100%; height: auto;">
+        </section>
+        <section id="irremote-picture">
+            <img src="../images/IR_pin_names.jpeg" alt="IR Receiver Connections" style="max-width: 100%; height: auto;">
+        </section>
+
+        <section id="arduino-code" class="intro">
+            <h2>Arduino Uno Code</h2>
+            <p>Below is the code to program your Arduino Uno for controlling the remote control car:</p>
+            <div class="code-container">
+                <button id="copy-button" onclick="copyCode()">Copy Code</button>
+                <pre id="code-block" class="c-code">
+
+        #include &lt;AFMotor.h&gt;
+        #include &lt;IRremote.h&gt;
+        
+        AF_DCMotor motor(3);
+        AF_DCMotor motor1(4);
+        
+        int IRpin = 2;
+        IRrecv irrecv(IRpin);
+        decode_results results;
+        unsigned long repeat = 0;
+        
+        void TurnRight() {
+          motor1.setSpeed(200);
+          motor1.run(FORWARD);
+          delay(1000);
+          motor1.run(RELEASE);
+        }
+        
+        void TurnLeft() {
+          motor.setSpeed(200);
+          motor.run(FORWARD);
+          delay(1000);
+          motor.run(RELEASE);
+        }
+        
+        void GoForward() {
+          motor.setSpeed(200);
+          motor1.setSpeed(200);
+          motor.run(FORWARD);
+          motor1.run(FORWARD);
+          delay(1000);
+          motor.run(RELEASE);
+          motor1.run(RELEASE);
+        }
+        
+        void GoBackward() {
+          motor.setSpeed(200);
+          motor1.setSpeed(200);
+          motor.run(BACKWARD);
+          motor1.run(BACKWARD);
+          delay(1000);
+          motor.run(RELEASE);
+          motor1.run(RELEASE);
+        }
+        
+        void setup() {
+          Serial.begin(9600);
+          irrecv.enableIRIn();
+        }
+        
+        void loop() {
+          if (irrecv.decode(&results)) {
+            if (results.value == 0xFFFFFFFF) {
+              results.value = repeat;
+            }
+            switch(results.value)
+            {
+              case 0xFFC23D:
+                TurnRight();
+                break;
+              
+              case 0xFF22DD:
+                TurnLeft();
+                break;
+        
+              case 0xFF629D:
+                GoForward();
+                break;
+              
+              case 0xFFA857:
+                GoBackward();
+                break;
+        
+              default:
+                break;
+            }
+            repeat = results.value;
+            irrecv.resume();
+          }
+        }
+                </pre>
+            </div>
+        </section>
+        
+        <script>
+        function copyCode() {
+            const copyButton = document.getElementById('copy-button');
+            const codeBlock = document.getElementById('code-block');
+        
+            navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+                copyButton.innerText = 'Copied!';
+                copyButton.style.backgroundColor = '#28a745'; // Change color to green
+                setTimeout(() => {
+                    copyButton.innerText = 'Copy Code';
+                    copyButton.style.backgroundColor = '#007BFF'; // Reset to original color
+                }, 2000); // Reset after 2 seconds
+            }).catch(err => {
+                alert('Failed to copy code: ' + err);
+            });
+        }
+        </script>
+        
+        <section id="libraries" class="intro">
+            <h2>Required Libraries</h2>
+            <p>You will need to install two libraries for this project:</p>
+            <ul>
+                <li>
+                    <strong>Adafruit Motor Shield Library</strong>: This library allows you to use the motor shield with the Arduino. 
+                    You can install it via the Arduino Library Manager or download it from the <a href="https://github.com/adafruit/Adafruit-Motor-Shield-library" target="_blank">official repository</a>.
+                </li>
+                <li>
+                    <strong>IRremote by shirriff</strong>: This library is required to decode the signals sent by the IR remote. 
+                    It is available through the Arduino Library Manager or from the <a href="https://github.com/z3t0/Arduino-IRremote" target="_blank">GitHub repository</a>.
+                </li>
+            </ul>
+        </section>
+                
+    </main>

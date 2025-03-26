@@ -2,70 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Arduino Project Tutorials">
+    <meta name="keywords" content="Arduino, Projects, Robots, Robitics">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Robotics Projects - Beginner Guide</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Cool Robotics Projects - Home</title>
+    <link rel="stylesheet" href="/styles/re-styles.css">
+    <script src="#" defer></script>
 </head>
 <body>
-    
     <header>
+        <a href="/Website Revamp/re-index.html"><img class="logo" src="#" alt=""></a>
         <h1>Cool Robotics Projects</h1>
-        <nav>
-            <a href="index.html">Beginner Guide</a> | 
-            <a href="projects.html">Projects</a>
-        </nav>
     </header>
-    
     <main>
-        <!-- Arduino Basics Section -->
-        <section class="intro">
-            <h2>Arduino Basics</h2>
-            <div class="content-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/EcMP4QA-n-0" 
-                        title="Arduino Basics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
-                <button class="transcript-toggle" onclick="toggleTranscript('transcript1')">View Transcript</button>
-                <div id="transcript1" class="transcript">
-                    <p>Hey everyone, today we're diving into the basics of Arduino Uno, one of the most popular microcontroller board out there.</p>
-                    <p>Whether you're new to electronics or an experienced maker, Arduino is a great tool to bring your ideas to life.</p>
-                    <p>It comes with 14 additional input and output pins, 6 analog inputs, a USB connection for programming, a reset button, power pins, and a power jack.</p>
-                    <p>You can easily connect sensors, motors, LED, and more, making it perfect for building all kinds of projects. With a simple coder's sketch you can control devices, read sensor data, and create interactive systems. It's a fantastic way to get hands on with electronics and programming.</p>
-                    <p>Thank you.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Breadboard Basics Section -->
-        <section class="intro">
-            <h2>Breadboard Basics</h2>
-            <div class="content-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ePb5-EtNb1M" 
-                        title="Breadboard Basics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
-                <button class="transcript-toggle" onclick="toggleTranscript('transcript2')">View Transcript</button>
-                <div id="transcript2" class="transcript">
-                    <p>Hey everyone, today we are talking about something super exciting: the breadboard. Specifically, how it works with Arduino Uno.</p>
-                    <p>A breadboard is a simple tool that lets you build circuits without soldering. It has two main section power rails</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- IDE Basics Section -->
-        <section class="intro">
-            <h2>IDE Basics</h2>
-            <div class="content-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/oDUAvaXsK1g?si=EPmxIH_qPeSr7AYF" 
-                        title="Wiring Basics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                </iframe>
-                <button class="transcript-toggle" onclick="toggleTranscript('transcript3')">View Transcript</button>
-                <div id="transcript3" class="transcript">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proper wiring techniques ensure stable connections...</p>
-                </div>
-            </div>
-        </section>
+        <div id="hero">
+            <img src="#" alt=""> <!--Image of robot, arduino, or group-->
+        </div>
+        <nav>
+            <h2>Guides</h2>
+            <ul>
+                <li><a href="beginner.html">Arduino Basics</a></li>
+                <li><a href="beginner.html">Bread Board Basics</a></li>
+                <li><a href="beginner.html">IDE Basics</a></li>
+            </ul>
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="#">Beginner</a></li>
+                <li><a href="#">Intermediate</a></li>
+                <li><a href="#">Advanced</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <section id="intro-section">
+                <h2>Welcome to Cool Robotics Projects!</h2>
+                <p>We are here to help you live out your robotic dreams and build super cool projects with Arduino!</p>
+                <h3>Our Goal:</h3>
+                <p>We want to help people all over the world learn how to build and create projects using basic hardware, the Arduino. Our hope is to show people the endless possibilities with technology and give them a solid foundation into this simple hardware so they will have the knowledge and abilities to take it further and create their own projects!</p>
+            </section>
+            <section id="about-arduino">
+                <h2>But What Is Arduino?</h2>
+                <p>[About Arduino and why it is cool] - Learn more on the <a href="https://www.arduino.cc/" target="_blank">Official Arduino Website</a></p>
+            </section>
+        </div>
+            <section id="new-or-adv">
+                <h3>New to Arduino?</h3>
+                <p class="na-p1">Check out our guides on the <a href="beginner.html">basics</a>!</p>
+                <h3>Expirienced with Arduino?</h3>
+                <p class="na-p2">Check out our <a href="projects.html">advanced projects</a>!</p>
+            </section>
+        <div class="content">
+            <section id="about">
+                <h3>About Us:</h3>
+                <p>This entire project was put together by BYU-Idaho students under the supervision of one of it's amazing professors, Richard Grimmett!</p>
+                <p>How can we do better? Ideas for us?</p>
+                <p>Send us a message!</p>
+            </section>
+        </div>
     </main>
-
-    <script src="scripts/script.js"></script>
-
+    <footer>
+        <div>
+            <section id="contributors">
+                <h1>Contributors</h1>
+                <ul>
+                    <li>Richard Grimmet</li>
+                    <li>Angelina Orwin</li>
+                    <li>Chase Whittaker</li>
+                    <li>Daniel Cross</li>
+                    <li>Emily Gunn</li>
+                    <li>Ethan Schoening</li>
+                    <li>Hannah Buckley</li>
+                    <li>Jalen Anderson</li>
+                    <li>Kelly Manheimer</li>
+                    <li>Kiera Anderson</li>
+                    <li>Lidya Langana</li>
+                </ul>
+            </section>
+            <section id="contact">
+                <h1>Contact Us</h1>
+            </section>
+        </div>
+        <p id="copyright">Cool Robotics Projects - Copyright 2025</p>
+    </footer>
 </body>
 </html>

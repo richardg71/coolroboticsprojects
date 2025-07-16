@@ -2,85 +2,161 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Arduino Project Tutorials">
-    <meta name="keywords" content="Arduino, Projects, Robots, Robitics">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Robotics Projects - Home</title>
-    <link rel="stylesheet" href="/styles/re-styles.css">
-    <script src="#" defer></script>
+    <title>Cool Robotics Projects</title>
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
-    <header>
-        <a href="index.html"><img class="logo" src="#" alt=""></a>
-        <h1>Cool Robotics Projects</h1>
-    </header>
-    <main>
-        <img id="hero" src="images/images_hero_ex.webp" alt="An assortment of Arduino projects."> <!--Image of robot, arduino, or group-->
-        <nav>
-            <h2>Guides</h2>
-            <ul>
-                <li><a href="beginner.html">Arduino Basics</a></li>
-                <li><a href="beginner.html">Bread Board Basics</a></li>
-                <li><a href="beginner.html">IDE Basics</a></li>
-            </ul>
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="#">Beginner</a></li>
-                <li><a href="#">Intermediate</a></li>
-                <li><a href="#">Advanced</a></li>
-            </ul>
+    <header class="header loading">
+        <div class="logo-section">
+            <div class="logo"></div>
+            <div class="logo-text">Cool<br>Robotics<br>Projects</div>
+        </div>
+        <nav class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="creators.html">Creators</a>
         </nav>
-        <div class="content">
-            <section id="intro-section">
-                <h2>Welcome to Cool Robotics Projects!</h2>
-                <p>We are here to help you live out your robotic dreams and build super cool projects with Arduino!</p>
-                <h3>Our Goal:</h3>
-                <p>We want to help people all over the world learn how to build and create projects using basic hardware, the Arduino. Our hope is to show people the endless possibilities with technology and give them a solid foundation into this simple hardware so they will have the knowledge and abilities to take it further and create their own projects!</p>
-            </section>
-            <section id="about-arduino">
-                <h2>But What Is Arduino?</h2>
-                <p>[About Arduino and why it is cool] - Learn more on the <a href="https://www.arduino.cc/" target="_blank">Official Arduino Website</a></p>
-            </section>
+    </header>
+
+    <section class="welcome-section loading">
+        <h1 class="welcome-title">Welcome to Cool Robotics Projects!</h1>
+        <p class="welcome-text">
+            We want to help people all over the world learn how to build and create projects using basic hardware and 
+            software, the Arduino. Our hope is to show you the endless possibilities with technology and give you a solid 
+            foundation into this simple hardware so you will have the knowledge and abilities to take it further and create 
+            your own projects!
+        </p>
+    </section>
+
+    <section class="arduino-section loading">
+        <h2 class="arduino-title">Build with Arduino!</h2>
+        <p class="arduino-subtitle">Below are just a few of the projects we have for you!</p>
+    </section>
+
+    <section class="projects-section loading">
+        <div class="difficulty-header">Beginner</div>
+        <div class="projects-container">
+            <div class="project-card beginner">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">LED Blink Circuit</h3>
+                    <p class="project-description">
+                        Learn the basics of Arduino programming by creating a simple LED blinking circuit. Perfect for beginners 
+                        to understand digital output and basic programming concepts.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card beginner">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Temperature Sensor</h3>
+                    <p class="project-description">
+                        Build a temperature monitoring system using Arduino and a temperature sensor. Display readings on 
+                        an LCD screen and learn about analog input processing.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card beginner">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Push Button Counter</h3>
+                    <p class="project-description">
+                        Create a simple counting device using push buttons and a 7-segment display. Learn about digital 
+                        input, debouncing, and display control.
+                    </p>
+                </div>
+            </div>
         </div>
-            <section id="new-or-adv">
-                <h3>New to Arduino?</h3>
-                <p class="na-p1">Check out our guides on the <a href="beginner.html">basics</a>!</p>
-                <h3>Expirienced with Arduino?</h3>
-                <p class="na-p2">Check out our <a href="projects.html">advanced projects</a>!</p>
-            </section>
-        <div class="content">
-            <section id="about">
-                <h3>About Us:</h3>
-                <p>This entire project was put together by BYU-Idaho students under the supervision of one of it's amazing professors, Richard Grimmett!</p>
-                <p>How can we do better? Ideas for us?</p>
-                <p>Send us a message!</p>
-            </section>
+    </section>
+
+    <section class="projects-section loading">
+        <div class="difficulty-header">Intermediate</div>
+        <div class="projects-container">
+            <div class="project-card intermediate">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Smart Home Controller</h3>
+                    <p class="project-description">
+                        Build a home automation system that controls lights, temperature, and security features. Learn about 
+                        sensor integration, wireless communication, and user interface design.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card intermediate">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Robot Car</h3>
+                    <p class="project-description">
+                        Construct a remote-controlled robot car with obstacle avoidance capabilities. Explore motor control, 
+                        ultrasonic sensors, and wireless communication protocols.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card intermediate">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Weather Station</h3>
+                    <p class="project-description">
+                        Create a comprehensive weather monitoring station with multiple sensors. Learn data logging, 
+                        web connectivity, and creating professional dashboards.
+                    </p>
+                </div>
+            </div>
         </div>
-    </main>
-    <footer>
-        <div>
-            <section id="contributors">
-                <h1><a id="creators-link" href="creatorspage/index.html">Contributors</a></h1>
-                <ul>
-                    <li>Richard Grimmet</li>
-                    <li>Angelina Orwin</li>
-                    <li>Chase Whittaker</li>
-                    <li>Daniel Cross</li>
-                    <li>Emily Gunn</li>
-                    <li>Ethan Schoening</li>
-                    <li>Hannah Buckley</li>
-                    <li>Jalen Anderson</li>
-                    <li>Kelly Manheimer</li>
-                    <li>Kiera Anderson</li>
-                    <li>Lidya Langana</li>
-                    <li>Markalanna Crank</li>
-                </ul>
-            </section>
-            <section id="contact">
-                <h1>Contact Us</h1>
-            </section>
+    </section>
+
+    <section class="projects-section loading">
+        <div class="difficulty-header">Advanced</div>
+        <div class="projects-container">
+            <div class="project-card advanced">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">AI Vision System</h3>
+                    <p class="project-description">
+                        Develop an advanced computer vision system using Arduino and AI processing. Implement object 
+                        recognition, tracking, and automated response systems for complex applications.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card advanced">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">Drone Controller</h3>
+                    <p class="project-description">
+                        Build a sophisticated drone flight controller with stabilization, GPS navigation, and autonomous 
+                        flight capabilities. Master advanced sensor fusion and control algorithms.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="project-card advanced">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3 class="project-name">IoT Network Hub</h3>
+                    <p class="project-description">
+                        Create a comprehensive IoT network management system with multiple connected devices, cloud 
+                        integration, and advanced analytics capabilities.
+                    </p>
+                </div>
+            </div>
         </div>
-        <p id="copyright">Cool Robotics Projects - Copyright 2025</p>
+    </section>
+
+    <footer class="footer loading">
+        <div class="footer-logo-section">
+            <div class="footer-logo"></div>
+            <div class="footer-text">Cool<br>Robotics<br>Projects</div>
+        </div>
+        <div style="font-size: 14px; opacity: 0.8;">© 2024 BYU-Idaho Robotics Team</div>
+        <nav class="footer-nav">
+            <a href="#projects">Projects</a>
+            <a href="#creators">Creators</a>
+        </nav>
     </footer>
 </body>
 </html>

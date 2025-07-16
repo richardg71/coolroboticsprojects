@@ -119,6 +119,11 @@ footer {
     }
 }
 
+#creators-link {
+    text-decoration: none;
+    color: white;
+}
+
 @media screen and (max-width: 900px) {
     
 }

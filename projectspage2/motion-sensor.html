@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Motion Sensor Project</title>
+    <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+<main class="project-page">
+
+    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+
+    <section class="project-header">
+        <h1>Motion Sensor Project</h1>
+        <p>
+            In this project, you will use the HC-SR501 PIR sensor to detect motion.
+            This sensor can sense movement nearby, which makes it useful for alarms,
+            automatic lights, and security projects.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>What You Will Learn</h2>
+        <ul>
+            <li>How a PIR motion sensor works</li>
+            <li>How to read HIGH and LOW signals from a sensor</li>
+            <li>How to turn on an LED when motion is detected</li>
+            <li>How to display motion status on a screen</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Hardware Needed</h2>
+        <ul>
+            <li>HC-SR501 PIR sensor</li>
+            <li>Arduino or ESP32 development board</li>
+            <li>LED</li>
+            <li>Jumper wires</li>
+            <li>Optional: ST7789 display screen</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Wiring</h2>
+        <p>
+            The PIR sensor only needs three wires: GND, VCC, and signal.
+            Connect the signal wire to pin 13. The LED can be connected to pin 6.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>Arduino Code</h2>
+
+<pre class="code-box"><code>const int pirPin = 13;
+const int ledPin = 6;
+
+void setup() {
+    pinMode(pirPin, INPUT);
+    pinMode(ledPin, OUTPUT);
+
+    Serial.begin(115200);
+    Serial.println("Warming up sensor...");
+
+    delay(30000);
+
+    Serial.println("Sensor Active");
+}
+
+void loop() {
+    int motionState = digitalRead(pirPin);
+
+    if (motionState == HIGH) {
+        digitalWrite(ledPin, HIGH);
+        Serial.println("Motion Detected!");
+    } else {
+        digitalWrite(ledPin, LOW);
+        Serial.println("Scanning...");
+    }
+
+    delay(500);
+}</code></pre>
+    </section>
+
+    <section class="project-section">
+        <h2>Important Sensor Notes</h2>
+        <ul>
+            <li><strong>Sensitivity:</strong> controls detection distance.</li>
+            <li><strong>Time Delay:</strong> controls how long the signal stays HIGH after motion.</li>
+            <li><strong>Jumper:</strong> controls single trigger or repeatable trigger mode.</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Next Steps</h2>
+        <ul>
+            <li>Add a display that says “Motion Detected” or “No Motion”</li>
+            <li>Connect the PIR sensor to a relay</li>
+            <li>Use it to control a light, fan, or alarm</li>
+            <li>Create a webpage that shows motion status remotely</li>
+        </ul>
+    </section>
+
+</main>
+
+</body>
+</html>

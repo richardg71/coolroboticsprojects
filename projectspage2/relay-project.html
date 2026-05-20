@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Automation with Relays</title>
+    <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+<main class="project-page">
+
+    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+
+    <section class="project-header">
+        <h1>Home Automation with Relays</h1>
+        <p>
+            In this project, you will learn how to use a relay to control higher voltage
+            or higher current devices. Microcontrollers are good at controlling small signals,
+            but relays allow them to switch bigger loads like lights or appliances.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>What You Will Learn</h2>
+        <ul>
+            <li>What a relay does</li>
+            <li>The difference between COM, NO, and NC terminals</li>
+            <li>How to control a relay with a microcontroller pin</li>
+            <li>How relays can be used in home automation</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Hardware Needed</h2>
+        <ul>
+            <li>2-channel relay board</li>
+            <li>ESP32 or Arduino development board</li>
+            <li>Jumper wires</li>
+            <li>Optional: small DC load such as an LED, fan, or motor</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Relay Connections</h2>
+        <ul>
+            <li><strong>COM:</strong> common connection from the power source</li>
+            <li><strong>NO:</strong> normally open connection</li>
+            <li><strong>NC:</strong> normally closed connection</li>
+            <li><strong>VCC:</strong> power from the controller</li>
+            <li><strong>GND:</strong> ground from the controller</li>
+            <li><strong>IN1 / IN2:</strong> control pins for the two relays</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Safety Warning</h2>
+        <div class="warning">
+            Be extremely careful with wall power or 120V AC. Contact with line voltage can be deadly.
+            For learning, it is safer to test the relay with low-voltage DC loads first.
+        </div>
+    </section>
+
+    <section class="project-section">
+        <h2>Arduino Code</h2>
+
+<pre class="code-box"><code>#define RelayPin 13
+
+void setup() {
+    pinMode(RelayPin, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(RelayPin, LOW);
+    delay(3000);
+
+    digitalWrite(RelayPin, HIGH);
+    delay(3000);
+}</code></pre>
+    </section>
+
+    <section class="project-section">
+        <h2>How It Works</h2>
+        <p>
+            Controlling the relay is similar to controlling an LED. The microcontroller sends
+            a HIGH or LOW signal to the relay input pin. Depending on the wiring, the relay
+            can turn a circuit on or off.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>Next Steps</h2>
+        <ul>
+            <li>Add webpage control to turn the relay on and off remotely</li>
+            <li>Use a phone app to control the relay</li>
+            <li>Connect the relay to a small fan, motor, or light</li>
+            <li>Combine this project with the PIR motion sensor</li>
+        </ul>
+    </section>
+
+</main>
+
+</body>
+</html>

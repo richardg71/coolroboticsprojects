@@ -1,0 +1,47 @@
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+    margin: 0;
+    padding: 40px;
+}
+
+.project-page {
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 40px;
+    color: #38bdf8;
+}
+
+p, li {
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+pre {
+    background: #111827;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.back-btn {
+    color: #38bdf8;
+    text-decoration: none;
+    font-size: 18px;
+}

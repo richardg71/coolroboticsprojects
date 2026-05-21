@@ -4,20 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Robotics Projects - Creators</title>
-    <link rel="stylesheet" href="creators.js">
     <link rel="stylesheet" href="creators.css">
+    <link rel="stylesheet" href="styles/chat.css">
+    <link rel="stylesheet" href="styles/theme.css">
 </head>
 <body>
     <header class="header loading">
-        <div class="logo-section">
+
+        <a href="homepage.html" class="logo-section">
             <div class="logo"></div>
-            <div class="logo-text">Cool<br>Robotics<br>Projects</div>
-        </div>
+    
+            <div class="logo-text">
+                Cool<br>Robotics<br>Projects
+            </div>
+        </a>
+    
         <nav class="nav-links">
             <a href="projects.html">Projects</a>
             <a href="creators.html">Creators</a>
+    
+            <button class="theme-toggle" aria-label="Toggle Theme">
+                🌙 <span>Dark Mode</span>
+            </button>
         </nav>
+    
     </header>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
 
     <section class="about-section loading">
         <div class="about-title">ABOUT US</div>
@@ -110,15 +124,51 @@
     </section>
 
     <footer class="footer loading">
-        <div class="footer-logo-section">
+
+        <a href="homepage.html" class="footer-logo-section">
             <div class="footer-logo">🤖</div>
-            <div class="footer-text">Cool<br>Robotics<br>Projects</div>
+    
+            <div class="footer-text">
+                Cool<br>Robotics<br>Projects
+            </div>
+        </a>
+    
+        <div style="font-size: 14px; opacity: 0.8;">
+            © 2024 BYU-Idaho Robotics Team
         </div>
-        <div style="font-size: 14px; opacity: 0.8;">© 2024 BYU-Idaho Robotics Team</div>
+    
         <nav class="footer-nav">
-            <a href="#projects">Projects</a>
-            <a href="#creators">Creators</a>
+            <a href="projects.html">Projects</a>
+            <a href="creators.html">Creators</a>
         </nav>
+    
     </footer>
+
+    <!-- AI Chat Box -->
+    <div class="chat-container">
+        <button class="chat-toggle" aria-label="Open Chat">💬</button>
+        <div class="chat-window">
+            <div class="chat-header">
+                <h3>🤖 Robotics Assistant</h3>
+                <button class="chat-close" aria-label="Close Chat">×</button>
+            </div>
+            <div class="chat-messages"></div>
+            <div class="typing-indicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="quick-replies"></div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" placeholder="Ask about Arduino..." />
+                <button class="chat-send" aria-label="Send">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/chat.js"></script>
+    <script src="scripts/theme.js"></script>
 </body>
 </html>

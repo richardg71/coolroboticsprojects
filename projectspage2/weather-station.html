@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Station Project</title>
+    <link rel="stylesheet" href="project-page.css">
+</head>
+<body>
+
+<main class="project-page">
+
+    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+
+    <section class="project-header">
+        <h1>Weather Station Project</h1>
+        <p>
+            In this project, you will use the DHT11 sensor to measure temperature and humidity.
+            This is a simple but useful project because it teaches you how sensors collect
+            real-world data and send that information to the Arduino or ESP32.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>What You Will Learn</h2>
+        <ul>
+            <li>How to connect a DHT11 temperature and humidity sensor</li>
+            <li>How to read sensor data using Arduino code</li>
+            <li>How to view data in the Serial Monitor</li>
+            <li>How to display temperature on a screen</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Hardware Needed</h2>
+        <ul>
+            <li>DHT11 sensor</li>
+            <li>Arduino or ESP32 development board</li>
+            <li>Jumper wires</li>
+            <li>Optional: ST7789 display screen</li>
+        </ul>
+    </section>
+
+    <section class="project-section">
+        <h2>Wiring</h2>
+        <p>
+            The DHT11 has three main connections: ground, voltage, and signal.
+            Connect GND to ground, VCC to 3.3V or 5V, and the signal pin to pin 13.
+        </p>
+    </section>
+
+    <section class="project-section">
+        <h2>Simple Arduino Code</h2>
+
+<pre class="code-box"><code>#include "DHT.h"
+
+#define DHTPIN 13
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+    Serial.begin(115200);
+    Serial.println(F("DHT11 Test"));
+    dht.begin();
+}
+
+void loop() {
+    delay(2000);
+
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
+
+    if (isnan(h) || isnan(t)) {
+        Serial.println(F("Failed to read from DHT sensor!"));
+        return;
+    }
+
+    Serial.print(F("Humidity: "));
+    Serial.print(h);
+    Serial.print(F("% Temperature: "));
+    Serial.print(t);
+    Serial.println(F("°C"));
+}</code></pre>
+    </section>
+
+    <section class="project-section">
+        <h2>Troubleshooting</h2>
+        <div class="note">
+            If the code gives an error for <strong>DHT.h</strong>, install the DHT sensor library in the Arduino IDE.
+            Also check that the Serial Monitor baud rate is set to <strong>115200</strong>.
+        </div>
+    </section>
+
+    <section class="project-section">
+        <h2>Next Steps</h2>
+        <ul>
+            <li>Add humidity to the display</li>
+            <li>Create temperature and humidity graphs</li>
+            <li>Use the ESP32 as a hotspot to share the weather data on a webpage</li>
+        </ul>
+    </section>
+
+</main>
+
+</body>
+</html>

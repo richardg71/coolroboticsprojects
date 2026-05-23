@@ -140,9 +140,6 @@ body::before {
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.logo::before {
-    content: '🤖';
-}
 
 @keyframes pulse {
     0% { transform: scale(1); }
@@ -436,9 +433,6 @@ body::before {
     animation: pulse 2s ease-in-out infinite;
 }
 
-.footer-logo::before {
-    content: '🤖';
-}
 
 .footer-text {
     font-size: 16px;
@@ -612,4 +606,131 @@ body::before {
     font-size: 16px;
     line-height: 1.6;
     opacity: 0.85;
+}
+
+
+
+.arduino-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    padding: 50px;
+
+    background: rgba(15, 23, 42, 0.88);
+
+    border-radius: 32px;
+
+    margin: 40px 20px;
+
+    overflow: hidden;
+}
+
+.arduino-text {
+    flex: 1;
+}
+
+.arduino-image-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arduino-image {
+    width: 100%;
+    max-width: 420px;
+
+    filter:
+        drop-shadow(0 0 30px rgba(96,165,250,0.5))
+        drop-shadow(0 0 60px rgba(59,130,246,0.3));
+
+    animation: floatRobot 4s ease-in-out infinite;
+}
+
+@keyframes floatRobot {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .arduino-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .arduino-image {
+        max-width: 300px;
+    }
+}
+
+
+
+.logo img,
+.footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+}
+
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+.logo,
+.footer-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.45),
+        0 0 20px rgba(59,130,246,0.25);
+
+    border: 2px solid rgba(255,255,255,0.08);
+}
+
+
+
+/* Keep project image visible */
+.project-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Make card layout cleaner */
+.project-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-content {
+    padding: 20px;
 }

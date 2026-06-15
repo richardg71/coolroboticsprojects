@@ -2,106 +2,834 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Motion Sensor Project</title>
-    <link rel="stylesheet" href="project-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Sensor Project – Cool Robotics Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --sky: #38bdf8;
+            --sky-dark: #0ea5e9;
+            --sky-glow: rgba(56,189,248,0.12);
+            --navy: #0f172a;
+            --navy-mid: #1e293b;
+            --navy-light: #263347;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --green: #4ade80;
+            --amber: #fbbf24;
+            --red: #f87171;
+            --card-border: rgba(56,189,248,0.15);
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .topbar a.back {
+            color: var(--sky);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .topbar a.back:hover { opacity: 1; }
+        .topbar .sep { color: var(--text-muted); font-size: 13px; }
+        .topbar .crumb { color: var(--text-muted); font-size: 14px; }
+        .topbar .title-crumb { color: var(--text); font-size: 14px; font-weight: 500; }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 80px 40px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(248,113,113,0.1);
+            border: 1px solid rgba(248,113,113,0.25);
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 60%, #f87171);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .stat-pill strong { color: var(--text); }
+
+        .hero-image-box {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--navy-mid);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+        .steps {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px;
+            height: 2px;
+            background: var(--navy-light);
+            z-index: 0;
+        }
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .step-dot {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: var(--navy-mid);
+            border: 2px solid var(--navy-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+        .step.active .step-dot { background: var(--red); border-color: var(--red); color: #fff; }
+        .step.done .step-dot { background: var(--navy-mid); border-color: var(--red); color: var(--red); }
+        .step-label { font-size: 11px; color: var(--text-muted); text-align: center; max-width: 80px; line-height: 1.3; }
+        .step.active .step-label { color: var(--red); }
+
+        /* ── CONTENT ── */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        .section { margin-bottom: 64px; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .section-num {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: rgba(248,113,113,0.1);
+            border: 1px solid rgba(248,113,113,0.25);
+            color: var(--red);
+            font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        h2 { font-size: 26px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+
+        /* ── CARDS ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+        .card {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+        .card-icon { font-size: 22px; margin-bottom: 10px; }
+        .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── WIRING TABLE ── */
+        .wiring-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        .wiring-table th {
+            text-align: left; padding: 10px 16px;
+            font-size: 11px; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--card-border);
+        }
+        .wiring-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(56,189,248,0.07);
+            vertical-align: middle;
+        }
+        .wiring-table tr:last-child td { border-bottom: none; }
+        .pin-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px; font-weight: 600;
+            background: var(--navy-light);
+        }
+        .pin-badge.gnd { background: #1e293b; color: #94a3b8; }
+        .pin-badge.vcc { background: rgba(251,191,36,0.15); color: var(--amber); }
+        .pin-badge.sig { background: rgba(56,189,248,0.15); color: var(--sky); }
+        .pin-badge.led { background: rgba(74,222,128,0.12); color: var(--green); }
+
+        /* ── SPLIT ── */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        .img-box {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--navy-mid);
+            /* aspect-ratio: 4/3; */
+            display: flex; align-items: center; justify-content: center;
+        }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ── CODE ── */
+        .code-wrap {
+            background: #0d1520;
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--card-border);
+            background: var(--navy-mid);
+        }
+        .code-header .lang {
+            font-size: 12px; color: var(--text-muted);
+            font-family: monospace;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+        .copy-btn {
+            font-size: 12px; color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { color: var(--sky); border-color: var(--sky); }
+        pre {
+            margin: 0; padding: 20px;
+            overflow-x: auto;
+            font-size: 13.5px; line-height: 1.7;
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+        }
+        .kw  { color: #c792ea; }
+        .fn  { color: #82aaff; }
+        .str { color: #c3e88d; }
+        .cmt { color: #546e7a; font-style: italic; }
+        .num { color: var(--amber); }
+        .pp  { color: var(--sky); }
+
+        /* ── NOTE ── */
+        .note {
+            display: flex;
+            gap: 14px;
+            background: rgba(56,189,248,0.07);
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--sky);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 18px;
+            font-size: 15px; line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .note.warn {
+            background: rgba(251,191,36,0.07);
+            border-left-color: var(--amber);
+        }
+        .note strong { color: var(--text); }
+        .note .note-icon { font-size: 18px; flex-shrink: 0; padding-top: 1px; }
+
+        /* ── SENSOR DIAL CARDS ── */
+        .dial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 8px;
+        }
+        .dial-card {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .dial-card .dial-label {
+            display: inline-block;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--amber);
+            background: rgba(251,191,36,0.1);
+            border: 1px solid rgba(251,191,36,0.2);
+            padding: 3px 10px; border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .dial-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .dial-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── LEARN LIST ── */
+        .learn-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .learn-list li {
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 16px; color: var(--text-muted);
+        }
+        .learn-list li .check {
+            margin-top: 3px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: rgba(74,222,128,0.12);
+            border: 1px solid rgba(74,222,128,0.3);
+            color: var(--green); font-size: 11px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ── NEXT STEPS ── */
+        .next-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+        .next-card {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .next-card:hover { border-color: rgba(248,113,113,0.4); transform: translateY(-2px); }
+        .next-card .step-icon { font-size: 24px; margin-bottom: 12px; }
+        .next-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .next-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .topbar, .hero, .progress-bar, .content { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 34px; }
+            .hero-grid, .split { grid-template-columns: 1fr; }
+            .hero-image-box { aspect-ratio: 16/9; }
+        }
+
+        .img-placeholder {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 10px;
+            color: var(--text-muted); font-size: 14px;
+        }
+        .img-placeholder svg { opacity: 0.3; }
+        .img-placeholder .label { opacity: 0.5; font-size: 12px; letter-spacing: 0.05em; }
+    </style>
 </head>
 <body>
 
-<main class="project-page">
+<!-- TOPBAR -->
+<nav class="topbar">
+    <a class="back" href="../projects.html">← Back</a>
+    <span class="sep">/</span>
+    <span class="crumb">Projects</span>
+    <span class="sep"> - </span>
+    <span class="title-crumb">Motion Sensor</span>
+</nav>
 
-    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-grid">
+        <div>
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Sensor Project · Beginner
+            </div>
+            <h1>Motion Sensor</h1>
+            <p class="hero-desc">
+                Use the HC-SR501 PIR sensor to detect movement in the room.
+                Learn how proximity sensors work, trigger an LED on motion,
+                display status on a screen, and eventually control real devices like fans or lights.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-pill">
+                    <span>🕐</span>
+                    <span><strong>45 min</strong> build time</span>
+                </div>
+                <div class="stat-pill">
+                    <span>👁️</span>
+                    <span><strong>1 PIR sensor</strong> required</span>
+                </div>
+                <div class="stat-pill">
+                    <span>📡</span>
+                    <span><strong>ESP32</strong> or Arduino</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-box">
+            <img src="images/pirsensor.png" alt="HC-SR501 PIR sensor on development board">
+            <!-- <div class="img-placeholder">
+                <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                <span>Drop your hero photo here</span>
+                <span class="label">images/pir-hero.jpg</span>
+            </div> -->
+        </div>
+    </div>
+</section>
 
-    <section class="project-header">
-        <h1>Motion Sensor Project</h1>
-        <p>
-            In this project, you will use the HC-SR501 PIR sensor to detect motion.
-            This sensor can sense movement nearby, which makes it useful for alarms,
-            automatic lights, and security projects.
-        </p>
-    </section>
+<!-- STEP PROGRESS -->
+<div class="progress-bar">
+    <div class="steps">
+        <div class="step active"><div class="step-dot">1</div><div class="step-label">What you'll learn</div></div>
+        <div class="step"><div class="step-dot">2</div><div class="step-label">Hardware &amp; wiring</div></div>
+        <div class="step"><div class="step-dot">3</div><div class="step-label">Basic sketch</div></div>
+        <div class="step"><div class="step-dot">4</div><div class="step-label">Sensor settings</div></div>
+        <div class="step"><div class="step-dot">5</div><div class="step-label">Display output</div></div>
+        <div class="step"><div class="step-dot">6</div><div class="step-label">Next steps</div></div>
+    </div>
+</div>
 
-    <section class="project-section">
-        <h2>What You Will Learn</h2>
-        <ul>
-            <li>How a PIR motion sensor works</li>
-            <li>How to read HIGH and LOW signals from a sensor</li>
-            <li>How to turn on an LED when motion is detected</li>
-            <li>How to display motion status on a screen</li>
+<!-- CONTENT -->
+<main class="content">
+
+    <!-- LEARN -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">1</div>
+            <h2>What you'll learn</h2>
+        </div>
+        <ul class="learn-list">
+            <li><span class="check">✓</span> How a PIR motion sensor detects objects and movement nearby</li>
+            <li><span class="check">✓</span> How to read HIGH and LOW digital signals from a sensor</li>
+            <li><span class="check">✓</span> How to turn on an LED automatically when motion is detected</li>
+            <li><span class="check">✓</span> How to show motion status live on the ST7789 display</li>
         </ul>
     </section>
 
-    <section class="project-section">
-        <h2>Hardware Needed</h2>
-        <ul>
-            <li>HC-SR501 PIR sensor</li>
-            <li>Arduino or ESP32 development board</li>
-            <li>LED</li>
-            <li>Jumper wires</li>
-            <li>Optional: ST7789 display screen</li>
-        </ul>
+    <!-- HARDWARE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Hardware needed</h2>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">👁️</div>
+                <h3>HC-SR501 PIR Sensor</h3>
+                <p>Detects infrared heat from people and objects. One is in your kit.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🖥️</div>
+                <h3>ESP32 or Arduino</h3>
+                <p>Your main development board. Pin numbers may vary between models.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>LED</h3>
+                <p>Lights up when motion is detected. Use the built-in LED or an external one.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔌</div>
+                <h3>Jumper wires</h3>
+                <p>Three wires for the PIR (GND, VCC, signal) plus one for the LED.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>ST7789 Screen</h3>
+                <p>Optional — display motion status text instead of just an LED flash.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="project-section">
-        <h2>Wiring</h2>
-        <p>
-            The PIR sensor only needs three wires: GND, VCC, and signal.
-            Connect the signal wire to pin 13. The LED can be connected to pin 6.
+    <!-- WIRING -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Wiring the HC-SR501</h2>
+        </div>
+        <div class="split" style="margin-bottom: 28px;">
+            <div>
+                <p style="color:var(--text-muted); margin-bottom: 20px;">
+                    The PIR sensor only needs three wires. Connect GND and VCC to the power
+                    header on your board, and the signal wire to pin 13. The LED connects
+                    to pin 6.
+                </p>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <table class="wiring-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Pin</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PIR <span class="pin-badge gnd">GND</span></td>
+                                <td>Ground</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Power header</td>
+                            </tr>
+                            <tr>
+                                <td>PIR <span class="pin-badge vcc">VCC</span></td>
+                                <td>3.3V or 5V</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Either voltage works</td>
+                            </tr>
+                            <tr>
+                                <td>PIR <span class="pin-badge sig">DATA</span></td>
+                                <td>Pin 13</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Signal / GPIO input</td>
+                            </tr>
+                            <tr>
+                                <td>LED <span class="pin-badge led">+</span></td>
+                                <td>Pin 6</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Or use built-in LED</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="img-box">
+                <img src="images/pirwiring.png" alt="PIR sensor wiring to development board">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+                    <span>Wiring photo</span>
+                    <span class="label">images/pir-wiring.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- BASIC SKETCH -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">3</div>
+            <h2>Basic Arduino sketch</h2>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom: 20px;">
+            This sketch reads the PIR output every 500ms. When motion is detected the LED
+            turns on and the Serial Monitor prints <strong style="color:var(--text);">"Motion Detected!"</strong>.
+            When it's clear, the LED turns off and it prints <strong style="color:var(--text);">"Scanning..."</strong>.
         </p>
-    </section>
 
-    <section class="project-section">
-        <h2>Arduino Code</h2>
+        <div class="note warn" style="margin-bottom: 20px;">
+            <span class="note-icon">⏱️</span>
+            <span>The HC-SR501 needs <strong>30–60 seconds to calibrate</strong> when it first powers on. It's learning the ambient infrared signature of the room. The sketch waits 30 seconds automatically — don't expect it to react right away.</span>
+        </div>
 
-<pre class="code-box"><code>const int pirPin = 13;
-const int ledPin = 6;
+        <div class="code-wrap">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">Copy</button>
+            </div>
+<pre id="code1"><span class="cmt">// Define pins</span>
+<span class="kw">const int</span> pirPin = <span class="num">13</span>;   <span class="cmt">// PIR sensor output pin</span>
+<span class="kw">const int</span> ledPin = <span class="num">6</span>;    <span class="cmt">// LED pin</span>
 
-void setup() {
-    pinMode(pirPin, INPUT);
-    pinMode(ledPin, OUTPUT);
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    <span class="fn">pinMode</span>(pirPin, <span class="fn">INPUT</span>);   <span class="cmt">// Set PIR pin as input</span>
+    <span class="fn">pinMode</span>(ledPin, <span class="fn">OUTPUT</span>);  <span class="cmt">// Set LED pin as output</span>
 
-    Serial.begin(115200);
-    Serial.println("Warming up sensor...");
+    Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+    Serial.<span class="fn">println</span>(<span class="str">"Warming up sensor..."</span>);
 
-    delay(30000);
+    <span class="cmt">// HC-SR501 needs ~30s to settle and learn the room</span>
+    <span class="fn">delay</span>(<span class="num">30000</span>);
 
-    Serial.println("Sensor Active");
+    Serial.<span class="fn">println</span>(<span class="str">"Sensor Active"</span>);
 }
 
-void loop() {
-    int motionState = digitalRead(pirPin);
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    <span class="kw">int</span> motionState = <span class="fn">digitalRead</span>(pirPin);
 
-    if (motionState == HIGH) {
-        digitalWrite(ledPin, HIGH);
-        Serial.println("Motion Detected!");
-    } else {
-        digitalWrite(ledPin, LOW);
-        Serial.println("Scanning...");
+    <span class="kw">if</span> (motionState == <span class="fn">HIGH</span>) {
+        <span class="fn">digitalWrite</span>(ledPin, <span class="fn">HIGH</span>);
+        Serial.<span class="fn">println</span>(<span class="str">"Motion Detected!"</span>);
+    } <span class="kw">else</span> {
+        <span class="fn">digitalWrite</span>(ledPin, <span class="fn">LOW</span>);
+        Serial.<span class="fn">println</span>(<span class="str">"Scanning..."</span>);
     }
 
-    delay(500);
-}</code></pre>
+    <span class="fn">delay</span>(<span class="num">500</span>); <span class="cmt">// Avoid flooding the Serial Monitor</span>
+}</pre>
+        </div>
+
+        <div class="split" style="margin-top: 28px;">
+            <div>
+                <p style="color:var(--text-muted);">
+                    Upload the sketch, wait for calibration, then walk in front of
+                    the sensor. The LED should light up and the Serial Monitor will
+                    show the detection events in real time.
+                </p>
+            </div>
+            <div class="img-box">
+                <img src="images/pirmonitor.png" alt="Serial monitor showing motion detection output">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+                    <span>Serial Monitor screenshot</span>
+                    <span class="label">images/pir-serial-monitor.jpg</span>
+                </div> -->
+            </div>
+        </div>
     </section>
 
-    <section class="project-section">
-        <h2>Important Sensor Notes</h2>
-        <ul>
-            <li><strong>Sensitivity:</strong> controls detection distance.</li>
-            <li><strong>Time Delay:</strong> controls how long the signal stays HIGH after motion.</li>
-            <li><strong>Jumper:</strong> controls single trigger or repeatable trigger mode.</li>
-        </ul>
+    <!-- SENSOR SETTINGS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">4</div>
+            <h2>Sensor settings &amp; adjustments</h2>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom: 20px;">
+            If the sensor isn't behaving as expected, check the two orange potentiometers
+            and the yellow jumper on the back of the board.
+        </p>
+
+        <div class="split" style="margin-bottom: 28px;">
+            <div class="img-box">
+                <img src="images/pirback.jpg" alt="Back of HC-SR501 showing potentiometers and jumper">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <span>Back of PIR sensor</span>
+                    <span class="label">images/pir-back.jpg</span>
+                </div> -->
+            </div>
+            <div class="dial-grid" style="align-self: stretch;">
+                <div class="dial-card">
+                    <div class="dial-label">Potentiometer</div>
+                    <h3>Sensitivity (SENS)</h3>
+                    <p>Adjusts detection distance — usually 3 to 7 metres. Turn clockwise to increase range.</p>
+                </div>
+                <div class="dial-card">
+                    <div class="dial-label">Potentiometer</div>
+                    <h3>Time Delay (TIME)</h3>
+                    <p>Controls how long the output stays HIGH after motion stops — usually 3 seconds to 5 minutes.</p>
+                </div>
+                <div class="dial-card" style="grid-column: 1 / -1;">
+                    <div class="dial-label">Jumper</div>
+                    <h3>Trigger mode</h3>
+                    <p><strong style="color:var(--text);">L — Single trigger:</strong> resets after each detection; won't fire again until the time delay ends.<br>
+                    <strong style="color:var(--text);">H — Repeatable trigger:</strong> the timer restarts on every new motion, keeping HIGH as long as movement continues.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="project-section">
-        <h2>Next Steps</h2>
-        <ul>
-            <li>Add a display that says “Motion Detected” or “No Motion”</li>
-            <li>Connect the PIR sensor to a relay</li>
-            <li>Use it to control a light, fan, or alarm</li>
-            <li>Create a webpage that shows motion status remotely</li>
-        </ul>
+    <!-- DISPLAY SECTION -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">5</div>
+            <h2>Adding the ST7789 display</h2>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom: 24px;">
+            A single LED is fine, but you can also use the screen to show
+            <strong style="color:var(--text);">"Motion Detected!"</strong> or
+            <strong style="color:var(--text);">"No Motion Detected."</strong> directly
+            on the display. This sketch handles both the sensor and the screen together.
+        </p>
+
+        <div class="note" style="margin-bottom: 20px;">
+            <span class="note-icon">💡</span>
+            <span>The screen shows <strong>"Calibrating Sensor"</strong> during the 30-second warm-up period, so users know to wait rather than thinking the sketch crashed.</span>
+        </div>
+
+        <div class="code-wrap" style="margin-bottom: 28px;">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code2')">Copy</button>
+            </div>
+<pre id="code2"><span class="pp">#include</span> &lt;<span class="fn">Adafruit_GFX.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">Adafruit_ST7789.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">SPI.h</span>&gt;
+
+<span class="cmt">// Display pins for ESP32-S3 (adjust if using different board)</span>
+<span class="pp">#define</span> TFT_CS    <span class="num">0</span>
+<span class="pp">#define</span> TFT_RST   <span class="num">1</span>
+<span class="pp">#define</span> TFT_DC   <span class="num">45</span>
+<span class="pp">#define</span> TFT_MOSI  <span class="num">3</span>
+<span class="pp">#define</span> TFT_SCLK <span class="num">46</span>
+<span class="pp">#define</span> TFT_MISO <span class="num">10</span>
+<span class="pp">#define</span> PIR_PIN  <span class="num">13</span>
+
+<span class="fn">Adafruit_ST7789</span> tft = <span class="fn">Adafruit_ST7789</span>(TFT_CS, TFT_DC, TFT_RST);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    <span class="fn">pinMode</span>(PIR_PIN, <span class="fn">INPUT</span>);
+    SPI.<span class="fn">begin</span>(TFT_SCLK, TFT_MISO, TFT_MOSI);
+    tft.<span class="fn">init</span>(<span class="num">240</span>, <span class="num">320</span>);
+    Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+    tft.<span class="fn">setRotation</span>(<span class="num">1</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+    tft.<span class="fn">println</span>(<span class="str">"Calibrating Sensor"</span>);
+    <span class="fn">delay</span>(<span class="num">30000</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    <span class="kw">int</span> motionState = <span class="fn">digitalRead</span>(PIR_PIN);
+
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+
+    <span class="kw">if</span> (motionState) {
+        tft.<span class="fn">println</span>(<span class="str">"Motion Detected!"</span>);
+    } <span class="kw">else</span> {
+        tft.<span class="fn">println</span>(<span class="str">"No Motion Detected."</span>);
+    }
+
+    <span class="fn">delay</span>(<span class="num">500</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+}</pre>
+        </div>
+
+        <div class="split">
+            <div>
+                <p style="color:var(--text-muted);">
+                    Once uploaded and calibrated, walk in front of the sensor and you'll see
+                    the status update on the screen every half second.
+                </p>
+            </div>
+            <div class="img-box">
+                <!-- <img src="images/pir-display.jpg" alt="ST7789 screen showing Motion Detected"> -->
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+                    <span>Display output photo</span>
+                    <span class="label">images/pir-display.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">6</div>
+            <h2>Take it further</h2>
+        </div>
+        <div class="next-grid">
+            <div class="next-card">
+                <div class="step-icon">⚡</div>
+                <h3>Relay control</h3>
+                <p>Wire a relay to pin 6 and use motion to switch a real light, fan, or buzzer on and off.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">🌐</div>
+                <h3>Remote monitoring</h3>
+                <p>Use the ESP32 to host a webpage that shows live motion status from any device on the network.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">🔔</div>
+                <h3>Motion alarm</h3>
+                <p>Add a buzzer or speaker that triggers when the PIR fires — build your own intruder alert.</p>
+            </div>
+        </div>
     </section>
 
 </main>
+
+<script>
+function copyCode(btn, id) {
+    const pre = document.getElementById(id);
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+}
+
+const steps = document.querySelectorAll('.step');
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const idx = Array.from(sections).indexOf(e.target);
+            steps.forEach((s, i) => {
+                s.classList.toggle('active', i === idx);
+                s.classList.toggle('done', i < idx);
+            });
+        }
+    });
+}, { threshold: 0.4 });
+sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>

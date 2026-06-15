@@ -2,102 +2,554 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Automation with Relays</title>
-    <link rel="stylesheet" href="project-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Automation with Relays – Cool Robotics Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent: #fbbf24;
+            --accent-glow: rgba(251,191,36,0.12);
+            --navy: #0f172a;
+            --navy-mid: #1e293b;
+            --navy-light: #263347;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --green: #4ade80;
+            --sky: #38bdf8;
+            --red: #f87171;
+            --card-border: rgba(251,191,36,0.15);
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0 40px;
+            display: flex; align-items: center; gap: 16px;
+            height: 56px;
+        }
+        .topbar a.back { color: var(--accent); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px; opacity: 0.85; transition: opacity 0.2s; }
+        .topbar a.back:hover { opacity: 1; }
+        .topbar .sep { color: var(--text-muted); font-size: 13px; }
+        .topbar .crumb { color: var(--text-muted); font-size: 14px; }
+        .topbar .title-crumb { color: var(--text); font-size: 14px; font-weight: 500; }
+
+        /* ── HERO ── */
+        .hero { padding: 80px 40px 60px; max-width: 1100px; margin: 0 auto; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-glow);
+            border: 1px solid var(--card-border);
+            color: var(--accent);
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 999px; margin-bottom: 20px;
+        }
+        .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        h1 {
+            font-size: 48px; font-weight: 700; line-height: 1.1;
+            letter-spacing: -0.02em; margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 60%, #fbbf24);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-desc { color: var(--text-muted); font-size: 17px; line-height: 1.8; margin-bottom: 28px; }
+        .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+        .stat-pill { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+        .stat-pill strong { color: var(--text); }
+
+        .hero-image-box {
+            border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--navy-mid);
+            aspect-ratio: 4/3;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ── PROGRESS ── */
+        .progress-bar { max-width: 1100px; margin: 0 auto; padding: 0 40px 40px; }
+        .steps { display: flex; align-items: flex-start; position: relative; }
+        .steps::before { content: ''; position: absolute; top: 15px; left: 15px; right: 15px; height: 2px; background: var(--navy-light); z-index: 0; }
+        .step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; z-index: 1; }
+        .step-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--navy-mid); border: 2px solid var(--navy-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--text-muted); transition: all 0.3s; }
+        .step.active .step-dot { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+        .step.done .step-dot { background: var(--navy-mid); border-color: var(--accent); color: var(--accent); }
+        .step-label { font-size: 11px; color: var(--text-muted); text-align: center; max-width: 80px; line-height: 1.3; }
+        .step.active .step-label { color: var(--accent); }
+
+        /* ── CONTENT ── */
+        .content { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+        .section { margin-bottom: 64px; }
+        .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+        .section-num { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-glow); border: 1px solid var(--card-border); color: var(--accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        h2 { font-size: 26px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+        h3 { font-size: 17px; font-weight: 600; }
+
+        /* ── CARDS ── */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+        .card { background: var(--navy-mid); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px 20px; }
+        .card-icon { font-size: 22px; margin-bottom: 10px; }
+        .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── RELAY DIAGRAM ── */
+        .relay-terminals {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .terminal-group {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .terminal-group .group-label {
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--card-border);
+            padding: 3px 10px; border-radius: 6px;
+            display: inline-block; margin-bottom: 14px;
+        }
+        .terminal-group.control .group-label { color: var(--sky); background: rgba(56,189,248,0.08); border-color: rgba(56,189,248,0.2); }
+        .terminal-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+        .terminal-row:last-child { margin-bottom: 0; }
+        .t-badge {
+            display: inline-block; min-width: 44px;
+            padding: 3px 8px; border-radius: 6px;
+            font-size: 12px; font-weight: 700;
+            text-align: center; flex-shrink: 0;
+            font-family: monospace;
+        }
+        .t-badge.com { background: rgba(251,191,36,0.15); color: var(--accent); }
+        .t-badge.no  { background: rgba(74,222,128,0.12); color: var(--green); }
+        .t-badge.nc  { background: rgba(248,113,113,0.12); color: var(--red); }
+        .t-badge.vcc { background: rgba(251,191,36,0.1); color: var(--accent); }
+        .t-badge.gnd { background: #1e293b; color: var(--text-muted); }
+        .t-badge.in  { background: rgba(56,189,248,0.12); color: var(--sky); }
+        .t-badge.jd  { background: rgba(139,92,246,0.12); color: #a78bfa; }
+        .terminal-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+        .terminal-desc strong { color: var(--text); }
+
+        /* ── WIRING TABLE ── */
+        .wiring-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        .wiring-table th { text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--card-border); }
+        .wiring-table td { padding: 12px 16px; border-bottom: 1px solid rgba(251,191,36,0.07); vertical-align: middle; }
+        .wiring-table tr:last-child td { border-bottom: none; }
+        .wire-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+        /* ── SPLIT ── */
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+        .img-box { border-radius: 14px; overflow: hidden; border: 1px solid var(--card-border); background: var(--navy-mid);  display: flex; align-items: center; justify-content: center; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--text-muted); font-size: 14px; }
+        .img-placeholder svg { opacity: 0.3; }
+        .img-placeholder .label { opacity: 0.5; font-size: 12px; letter-spacing: 0.05em; }
+
+        /* ── CODE ── */
+        .code-wrap { background: #0d1520; border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; }
+        .code-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--card-border); background: var(--navy-mid); }
+        .code-header .lang { font-size: 12px; color: var(--text-muted); font-family: monospace; display: flex; align-items: center; gap: 8px; }
+        .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+        .copy-btn { font-size: 12px; color: var(--text-muted); background: none; border: 1px solid var(--card-border); border-radius: 6px; padding: 4px 10px; cursor: pointer; transition: all 0.2s; }
+        .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+        pre { margin: 0; padding: 20px; overflow-x: auto; font-size: 13.5px; line-height: 1.7; font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; }
+        .kw  { color: #c792ea; }
+        .fn  { color: #82aaff; }
+        .str { color: #c3e88d; }
+        .cmt { color: #546e7a; font-style: italic; }
+        .num { color: var(--amber, #fbbf24); }
+        .pp  { color: var(--sky); }
+
+        /* ── NOTES ── */
+        .note { display: flex; gap: 14px; background: rgba(56,189,248,0.07); border: 1px solid rgba(56,189,248,0.2); border-left: 3px solid var(--sky); border-radius: 0 10px 10px 0; padding: 16px 18px; font-size: 15px; line-height: 1.65; color: var(--text-muted); margin-bottom: 16px; }
+        .note.danger { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.3); border-left-color: var(--red); }
+        .note.warn { background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.25); border-left-color: var(--accent); }
+        .note strong { color: var(--text); }
+        .note .note-icon { font-size: 20px; flex-shrink: 0; padding-top: 1px; }
+
+        /* ── LEARN LIST ── */
+        .learn-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .learn-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted); }
+        .learn-list li .check { margin-top: 3px; width: 18px; height: 18px; border-radius: 50%; background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); color: var(--green); font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* ── JD-VCC CARDS ── */
+        .jd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .jd-card { background: var(--navy-mid); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; }
+        .jd-card .jd-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+        .jd-card.on .jd-label { background: rgba(74,222,128,0.12); color: var(--green); }
+        .jd-card.off .jd-label { background: rgba(139,92,246,0.12); color: #a78bfa; }
+        .jd-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .jd-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── NEXT ── */
+        .next-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+        .next-card { background: var(--navy-mid); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+        .next-card:hover { border-color: rgba(251,191,36,0.4); transform: translateY(-2px); }
+        .next-card .step-icon { font-size: 24px; margin-bottom: 12px; }
+        .next-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .next-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        @media (max-width: 768px) {
+            .topbar, .hero, .progress-bar, .content { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 34px; }
+            .hero-grid, .split, .relay-terminals, .jd-grid { grid-template-columns: 1fr; }
+            .hero-image-box { aspect-ratio: 16/9; }
+        }
+    </style>
 </head>
 <body>
 
-<main class="project-page">
+<nav class="topbar">
+    <a class="back" href="../projects.html">← Back</a>
+    <span class="sep">/</span>
+    <span class="crumb">Projects</span>
+    <span class="sep"> - </span>
+    <span class="title-crumb">Home Automation with Relays</span>
+</nav>
 
-    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+<section class="hero">
+    <div class="hero-grid">
+        <div>
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Control Project · Intermediate
+            </div>
+            <h1>Home Automation with Relays</h1>
+            <p class="hero-desc">
+                Microcontrollers are great at controlling small signals, but what about
+                real-world loads like lights, fans, and appliances? Relays bridge that gap —
+                letting a tiny 3.3V pin switch circuits carrying 120V AC or battery-powered DC loads.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-pill"><span>🕐</span><span><strong>45 min</strong> build time</span></div>
+                <div class="stat-pill"><span>⚡</span><span><strong>2-channel relay</strong> board</span></div>
+                <div class="stat-pill"><span>📡</span><span><strong>ESP32</strong> or Arduino</span></div>
+            </div>
+        </div>
+        <div class="hero-image-box">
+            <img src="images/relayhero.jpg" alt="2-channel relay board">
+            <!-- <div class="img-placeholder">
+                <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                <span>Drop your hero photo here</span>
+                <span class="label">images/relay-hero.jpg</span>
+            </div> -->
+        </div>
+    </div>
+</section>
 
-    <section class="project-header">
-        <h1>Home Automation with Relays</h1>
-        <p>
-            In this project, you will learn how to use a relay to control higher voltage
-            or higher current devices. Microcontrollers are good at controlling small signals,
-            but relays allow them to switch bigger loads like lights or appliances.
-        </p>
-    </section>
+<div class="progress-bar">
+    <div class="steps">
+        <div class="step active"><div class="step-dot">1</div><div class="step-label">What you'll learn</div></div>
+        <div class="step"><div class="step-dot">2</div><div class="step-label">Hardware</div></div>
+        <div class="step"><div class="step-dot">3</div><div class="step-label">Terminals &amp; pins</div></div>
+        <div class="step"><div class="step-dot">4</div><div class="step-label">Wiring</div></div>
+        <div class="step"><div class="step-dot">5</div><div class="step-label">Sketch</div></div>
+        <div class="step"><div class="step-dot">6</div><div class="step-label">Next steps</div></div>
+    </div>
+</div>
 
-    <section class="project-section">
-        <h2>What You Will Learn</h2>
-        <ul>
-            <li>What a relay does</li>
-            <li>The difference between COM, NO, and NC terminals</li>
-            <li>How to control a relay with a microcontroller pin</li>
-            <li>How relays can be used in home automation</li>
+<main class="content">
+
+    <!-- LEARN -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">1</div><h2>What you'll learn</h2></div>
+        <ul class="learn-list">
+            <li><span class="check">✓</span> What a relay is and how it works inside</li>
+            <li><span class="check">✓</span> The difference between COM, NO, and NC terminals</li>
+            <li><span class="check">✓</span> How to control a relay with a single microcontroller pin</li>
+            <li><span class="check">✓</span> How relays can be used in real home automation and device control</li>
         </ul>
     </section>
 
-    <section class="project-section">
-        <h2>Hardware Needed</h2>
-        <ul>
-            <li>2-channel relay board</li>
-            <li>ESP32 or Arduino development board</li>
-            <li>Jumper wires</li>
-            <li>Optional: small DC load such as an LED, fan, or motor</li>
-        </ul>
-    </section>
-
-    <section class="project-section">
-        <h2>Relay Connections</h2>
-        <ul>
-            <li><strong>COM:</strong> common connection from the power source</li>
-            <li><strong>NO:</strong> normally open connection</li>
-            <li><strong>NC:</strong> normally closed connection</li>
-            <li><strong>VCC:</strong> power from the controller</li>
-            <li><strong>GND:</strong> ground from the controller</li>
-            <li><strong>IN1 / IN2:</strong> control pins for the two relays</li>
-        </ul>
-    </section>
-
-    <section class="project-section">
-        <h2>Safety Warning</h2>
-        <div class="warning">
-            Be extremely careful with wall power or 120V AC. Contact with line voltage can be deadly.
-            For learning, it is safer to test the relay with low-voltage DC loads first.
+    <!-- HARDWARE -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">2</div><h2>Hardware needed</h2></div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🔌</div>
+                <h3>2-channel relay board</h3>
+                <p>Included in your kit. Controls two independent circuits from a single board.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🖥️</div>
+                <h3>ESP32 or Arduino</h3>
+                <p>Your development board provides the 3.3V or 5V control signal.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔗</div>
+                <h3>Jumper wires</h3>
+                <p>GND, VCC, and one signal wire per relay channel you want to use.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>Small DC load</h3>
+                <p>Optional — an LED, small fan, or motor makes it easy to see the relay switching.</p>
+            </div>
         </div>
     </section>
 
-    <section class="project-section">
-        <h2>Arduino Code</h2>
+    <!-- TERMINALS -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">3</div><h2>Relay terminals explained</h2></div>
+        <p style="color:var(--text-muted); margin-bottom: 24px;">
+            The relay board has two sets of connections — the high-voltage/current side
+            that switches your load, and the low-voltage control side that plugs into your board.
+        </p>
 
-<pre class="code-box"><code>#define RelayPin 13
+        <div class="relay-terminals" style="margin-bottom: 28px;">
+            <div class="terminal-group">
+                <div class="group-label">⚡ Load side</div>
+                <div class="terminal-row">
+                    <span class="t-badge com">COM</span>
+                    <span class="terminal-desc"><strong>Common.</strong> Connect your power source here — this is the shared connection point.</span>
+                </div>
+                <div class="terminal-row">
+                    <span class="t-badge no">NO</span>
+                    <span class="terminal-desc"><strong>Normally Open.</strong> Circuit is open (off) by default. Closes when control pin is set LOW.</span>
+                </div>
+                <div class="terminal-row">
+                    <span class="t-badge nc">NC</span>
+                    <span class="terminal-desc"><strong>Normally Closed.</strong> Circuit is closed (on) by default. Opens when control pin is set HIGH.</span>
+                </div>
+            </div>
+            <div class="terminal-group control">
+                <div class="group-label">🎛️ Control side</div>
+                <div class="terminal-row">
+                    <span class="t-badge vcc">VCC</span>
+                    <span class="terminal-desc"><strong>Power for the board.</strong> Accepts 3.3V or 5V from your development board.</span>
+                </div>
+                <div class="terminal-row">
+                    <span class="t-badge gnd">GND</span>
+                    <span class="terminal-desc"><strong>Ground.</strong> Connect to GND on your development board.</span>
+                </div>
+                <div class="terminal-row">
+                    <span class="t-badge in">IN1/IN2</span>
+                    <span class="terminal-desc"><strong>Control signals.</strong> One pin per relay channel — connect to a GPIO pin on your board.</span>
+                </div>
+                <div class="terminal-row">
+                    <span class="t-badge jd">JD-VCC</span>
+                    <span class="terminal-desc"><strong>Coil power.</strong> Normally jumpered to VCC. Remove jumper to use an isolated external supply for the relay coils.</span>
+                </div>
+            </div>
+        </div>
 
-void setup() {
-    pinMode(RelayPin, OUTPUT);
+        <h3 style="margin-bottom: 14px; color: var(--text-muted); font-size: 15px; font-weight: 500;">Understanding the JD-VCC jumper</h3>
+        <div class="jd-grid">
+            <div class="jd-card on">
+                <div class="jd-label">✔ Jumper on (default)</div>
+                <h3>Shared power supply</h3>
+                <p>JD-VCC is connected to VCC. The relay coils and the control logic share the same 5V supply. Fine for most small DC loads and learning projects.</p>
+            </div>
+            <div class="jd-card off">
+                <div class="jd-label">✦ Jumper removed</div>
+                <h3>Isolated power supply</h3>
+                <p>Connect an external supply (e.g. 12V) directly to JD-VCC. Better electrical isolation protects the microcontroller from the high-voltage load side. Use this for AC or larger loads.</p>
+            </div>
+        </div>
+        <div class="note warn" style="margin-top: 16px;">
+            <span class="note-icon">🔊</span>
+            <span>If you hear buzzing or notice erratic relay behavior, your board's 5V supply may not be strong enough to drive the coils. Remove the jumper and power JD-VCC from a separate supply.</span>
+        </div>
+    </section>
+
+    <!-- WIRING -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">4</div><h2>Wiring &amp; safety</h2></div>
+
+        <div class="note danger" style="margin-bottom: 24px;">
+            <span class="note-icon">⚠️</span>
+            <span><strong>Safety first.</strong> If connecting to a wall power receptacle or any 120V AC circuit, always make all other connections first and unplug the power last. Contact with line voltage can be <strong>deadly</strong>. For learning, start with a small DC load like an LED or battery-powered motor.</span>
+        </div>
+
+        <div class="split" style="margin-bottom: 32px;">
+            <div>
+                <p style="color:var(--text-muted); margin-bottom: 20px;">
+                    For a basic test with your development board, connect three wires from
+                    the relay's control side:
+                </p>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <table class="wiring-table">
+                        <thead>
+                            <tr><th>Wire</th><th>From relay</th><th>To board</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="wire-dot" style="background:#22c55e;"></span>Signal</td>
+                                <td><span class="t-badge in" style="font-size:11px;">IN1</span></td>
+                                <td>Pin 13</td>
+                            </tr>
+                            <tr>
+                                <td><span class="wire-dot" style="background:#ef4444;"></span>Power</td>
+                                <td><span class="t-badge vcc" style="font-size:11px;">VCC</span></td>
+                                <td>5V (or 3.3V)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="wire-dot" style="background:#475569;"></span>Ground</td>
+                                <td><span class="t-badge gnd" style="font-size:11px;">GND</span></td>
+                                <td>GND</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="img-box">
+                <img src="images/relaywiring.png" alt="Relay board wired to ESP32 development board">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+                    <span>Wiring photo</span>
+                    <span class="label">images/relay-wiring.jpg</span>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="split">
+            <div>
+                <h3 style="margin-bottom: 12px;">AC load wiring</h3>
+                <p style="color:var(--text-muted); margin-bottom: 14px;">
+                    When switching an AC device (like a lamp) the line wire from the
+                    receptacle passes through the relay. Use the isolated JD-VCC
+                    configuration for better protection.
+                </p>
+                <div class="note" style="margin-bottom: 0;">
+                    <span class="note-icon">💡</span>
+                    <span>Use the <strong>NO</strong> terminal if you want the device OFF by default and ON when triggered. Use <strong>NC</strong> if you want it ON by default and OFF when triggered.</span>
+                </div>
+            </div>
+            <div class="img-box">
+                <img src="images/relayac.png" alt="Relay wired to AC power receptacle">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <span>AC wiring diagram</span>
+                    <span class="label">images/relay-ac-wiring.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SKETCH -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">5</div><h2>Arduino sketch</h2></div>
+        <p style="color:var(--text-muted); margin-bottom: 20px;">
+            Controlling a relay is as simple as toggling a pin. This sketch alternates
+            the relay on and off every 3 seconds — you'll hear a click each time it switches.
+        </p>
+
+        <div class="note" style="margin-bottom: 20px;">
+            <span class="note-icon">💬</span>
+            <span>Whether the circuit is active on LOW or HIGH depends on which terminal you used. <strong>NC</strong> is active when the pin is LOW; <strong>NO</strong> is active when the pin is HIGH. Choose based on your wiring.</span>
+        </div>
+
+        <div class="code-wrap">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">Copy</button>
+            </div>
+<pre id="code1"><span class="pp">#define</span> RelayPin <span class="num">13</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    <span class="cmt">// Set RelayPin as an output pin</span>
+    <span class="fn">pinMode</span>(RelayPin, <span class="fn">OUTPUT</span>);
 }
 
-void loop() {
-    digitalWrite(RelayPin, LOW);
-    delay(3000);
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    <span class="cmt">// Turn ON the relay (NC terminal active)</span>
+    <span class="fn">digitalWrite</span>(RelayPin, <span class="fn">LOW</span>);
+    <span class="fn">delay</span>(<span class="num">3000</span>);
 
-    digitalWrite(RelayPin, HIGH);
-    delay(3000);
-}</code></pre>
+    <span class="cmt">// Turn OFF the relay</span>
+    <span class="fn">digitalWrite</span>(RelayPin, <span class="fn">HIGH</span>);
+    <span class="fn">delay</span>(<span class="num">3000</span>);
+}</pre>
+        </div>
+
+        <div class="split" style="margin-top: 28px;">
+            <div>
+                <p style="color:var(--text-muted);">
+                    Upload the sketch and you should hear the relay clicking on and off every
+                    3 seconds. If you have a small load connected, it will switch on and off
+                    with the relay.
+                </p>
+            </div>
+            <div class="img-box">
+                <!-- <img src="images/relay-running.jpg" alt="Relay board switching a load"> -->
+                <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+                    <span>Relay switching in action</span>
+                    <span class="label">images/relay-running.jpg</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="project-section">
-        <h2>How It Works</h2>
-        <p>
-            Controlling the relay is similar to controlling an LED. The microcontroller sends
-            a HIGH or LOW signal to the relay input pin. Depending on the wiring, the relay
-            can turn a circuit on or off.
-        </p>
-    </section>
-
-    <section class="project-section">
-        <h2>Next Steps</h2>
-        <ul>
-            <li>Add webpage control to turn the relay on and off remotely</li>
-            <li>Use a phone app to control the relay</li>
-            <li>Connect the relay to a small fan, motor, or light</li>
-            <li>Combine this project with the PIR motion sensor</li>
-        </ul>
+    <!-- NEXT STEPS -->
+    <section class="section">
+        <div class="section-header"><div class="section-num">6</div><h2>Take it further</h2></div>
+        <div class="next-grid">
+            <div class="next-card">
+                <div class="step-icon">🌐</div>
+                <h3>Web page control</h3>
+                <p>Add WiFi capability to your sketch so you can turn the relay on and off from any browser.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">📱</div>
+                <h3>Phone app control</h3>
+                <p>Use a remote Arduino control app to switch the relay from your phone — truly wireless.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">👁️</div>
+                <h3>PIR motion trigger</h3>
+                <p>Combine this with the PIR motion sensor project to automatically switch a light or fan when someone enters the room.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">🔧</div>
+                <h3>Real device control</h3>
+                <p>Wire up a small fan, motor, or lamp and control it safely through the relay's isolated switching.</p>
+            </div>
+        </div>
     </section>
 
 </main>
+
+<script>
+function copyCode(btn, id) {
+    const pre = document.getElementById(id);
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+}
+const steps = document.querySelectorAll('.step');
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const idx = Array.from(sections).indexOf(e.target);
+            steps.forEach((s, i) => {
+                s.classList.toggle('active', i === idx);
+                s.classList.toggle('done', i < idx);
+            });
+        }
+    });
+}, { threshold: 0.4 });
+sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>

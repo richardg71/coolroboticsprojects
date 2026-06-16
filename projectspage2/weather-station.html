@@ -2,105 +2,889 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Station Project</title>
-    <link rel="stylesheet" href="project-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Station Project – Cool Robotics Project</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --sky: #38bdf8;
+            --sky-dark: #0ea5e9;
+            --sky-glow: rgba(56,189,248,0.12);
+            --navy: #0f172a;
+            --navy-mid: #1e293b;
+            --navy-light: #263347;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --green: #4ade80;
+            --amber: #fbbf24;
+            --card-border: rgba(56,189,248,0.15);
+        }
+
+        body {
+            background: var(--navy);
+            color: var(--text);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* ── NAV BAR ── */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15,23,42,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 56px;
+        }
+        .topbar a.back {
+            color: var(--sky);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .topbar a.back:hover { opacity: 1; }
+        .topbar .sep { color: var(--text-muted); font-size: 13px; }
+        .topbar .crumb { color: var(--text-muted); font-size: 14px; }
+        .topbar .title-crumb { color: var(--text); font-size: 14px; font-weight: 500; }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            padding: 80px 40px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sky-glow);
+            border: 1px solid var(--card-border);
+            color: var(--sky);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sky); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 60%, var(--sky));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .stat-pill .icon { font-size: 15px; }
+        .stat-pill strong { color: var(--text); }
+
+        .hero-image-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--navy-mid);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-image-box img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .img-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .img-placeholder svg { opacity: 0.3; }
+        .img-placeholder .label { opacity: 0.5; font-size: 12px; letter-spacing: 0.05em; }
+
+        /* ── PROGRESS / STEP BAR ── */
+        .progress-bar {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+        .steps {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            height: 2px;
+            background: var(--navy-light);
+            z-index: 0;
+        }
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .step-dot {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: var(--navy-mid);
+            border: 2px solid var(--navy-light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+        .step.active .step-dot {
+            background: var(--sky);
+            border-color: var(--sky);
+            color: var(--navy);
+        }
+        .step.done .step-dot {
+            background: var(--navy-mid);
+            border-color: var(--sky);
+            color: var(--sky);
+        }
+        .step-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 80px;
+            line-height: 1.3;
+        }
+        .step.active .step-label { color: var(--sky); }
+
+        /* ── MAIN CONTENT ── */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* ── SECTION ── */
+        .section {
+            margin-bottom: 64px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .section-num {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: var(--sky-glow);
+            border: 1px solid var(--card-border);
+            color: var(--sky);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        /* ── CARDS GRID ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+        .card {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+        .card-icon {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── WIRING TABLE ── */
+        .wiring-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+        .wiring-table th {
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--card-border);
+        }
+        .wiring-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(56,189,248,0.07);
+            vertical-align: middle;
+        }
+        .wiring-table tr:last-child td { border-bottom: none; }
+        .pin-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--navy-light);
+        }
+        .pin-badge.gnd { background: #1e293b; color: #94a3b8; }
+        .pin-badge.vcc { background: rgba(251,191,36,0.15); color: var(--amber); }
+        .pin-badge.sig { background: rgba(56,189,248,0.15); color: var(--sky); }
+
+        /* ── IMAGE + TEXT SPLIT ── */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        .split.flip { direction: rtl; }
+        .split.flip > * { direction: ltr; }
+        .img-box {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--navy-mid);
+            /* aspect-ratio: 4/3; */
+            display: flex; align-items: center; justify-content: center;
+        }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* ── CODE BLOCK ── */
+        .code-wrap {
+            background: #0d1520;
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--card-border);
+            background: var(--navy-mid);
+        }
+        .code-header .lang {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lang-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--sky);
+        }
+        .copy-btn {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { color: var(--sky); border-color: var(--sky); }
+        pre {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+            font-size: 13.5px;
+            line-height: 1.7;
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+        }
+        /* syntax highlight colours */
+        .kw  { color: #c792ea; }
+        .fn  { color: #82aaff; }
+        .str { color: #c3e88d; }
+        .cmt { color: #546e7a; font-style: italic; }
+        .num { color: var(--amber); }
+        .pp  { color: var(--sky); }
+
+        /* ── NOTE / WARNING ── */
+        .note {
+            display: flex;
+            gap: 14px;
+            background: rgba(56,189,248,0.07);
+            border: 1px solid var(--card-border);
+            border-left: 3px solid var(--sky);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 18px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .note strong { color: var(--text); }
+        .note .note-icon { font-size: 18px; flex-shrink: 0; padding-top: 1px; }
+
+        /* ── LEARN LIST ── */
+        .learn-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .learn-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+        .learn-list li .check {
+            margin-top: 3px;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(74,222,128,0.12);
+            border: 1px solid rgba(74,222,128,0.3);
+            color: var(--green);
+            font-size: 11px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ── NEXT STEPS ── */
+        .next-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+        .next-card {
+            background: var(--navy-mid);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: default;
+        }
+        .next-card:hover {
+            border-color: rgba(56,189,248,0.4);
+            transform: translateY(-2px);
+        }
+        .next-card .arrow {
+            position: absolute;
+            top: 18px; right: 18px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        .next-card .step-icon { font-size: 24px; margin-bottom: 12px; }
+        .next-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .next-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            .topbar, .hero, .progress-bar, .content { padding-left: 20px; padding-right: 20px; }
+            h1 { font-size: 34px; }
+            .hero-grid, .split { grid-template-columns: 1fr; }
+            .split.flip { direction: ltr; }
+            .hero-image-box { aspect-ratio: 16/9; }
+        }
+    </style>
 </head>
 <body>
 
-<main class="project-page">
+<!-- ── TOPBAR ── -->
+<nav class="topbar">
+    <a class="back" href="../projects.html">← Back</a>
+    <span class="sep">/</span>
+    <span class="crumb">Projects</span>
+    <span class="sep"> - </span>
+    <span class="title-crumb">Weather Station</span>
+</nav>
 
-    <a href="../projects.html" class="back-btn">← Back to Projects</a>
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-grid">
+        <div>
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Sensor Project · Beginner
+            </div>
+            <h1>Weather Station</h1>
+            <p class="hero-desc">
+                Use the DHT11 sensor to measure temperature and humidity in real time.
+                Learn how sensors collect real-world data, display it on a screen,
+                and stream it over WiFi — all from a single chip.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-pill">
+                    <span class="icon">🕐</span>
+                    <span><strong>45 min</strong> build time</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="icon">🔧</span>
+                    <span><strong>1 sensor</strong> required</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="icon">📡</span>
+                    <span><strong>ESP32</strong> or Arduino</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-box">
+            <img src="images/top.png" alt="Completed weather station setup">
+            <!-- <div class="img-placeholder">
+                <svg width="" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                <span>Drop your hero photo here</span>
+                <span class="label">images/weather-station-hero.jpg</span>
+            </div> -->
+        </div>
+    </div>
+</section>
 
-    <section class="project-header">
-        <h1>Weather Station Project</h1>
-        <p>
-            In this project, you will use the DHT11 sensor to measure temperature and humidity.
-            This is a simple but useful project because it teaches you how sensors collect
-            real-world data and send that information to the Arduino or ESP32.
-        </p>
-    </section>
+<!-- ── STEP PROGRESS ── -->
+<div class="progress-bar">
+    <div class="steps">
+        <div class="step active"><div class="step-dot">1</div><div class="step-label">What you'll learn</div></div>
+        <div class="step"><div class="step-dot">2</div><div class="step-label">Hardware &amp; wiring</div></div>
+        <div class="step"><div class="step-dot">3</div><div class="step-label">Serial monitor</div></div>
+        <div class="step"><div class="step-dot">4</div><div class="step-label">Display output</div></div>
+        <div class="step"><div class="step-dot">5</div><div class="step-label">Next steps</div></div>
+    </div>
+</div>
 
-    <section class="project-section">
-        <h2>What You Will Learn</h2>
-        <ul>
-            <li>How to connect a DHT11 temperature and humidity sensor</li>
-            <li>How to read sensor data using Arduino code</li>
-            <li>How to view data in the Serial Monitor</li>
-            <li>How to display temperature on a screen</li>
+<!-- ── CONTENT ── -->
+<main class="content">
+
+    <!-- WHAT YOU'LL LEARN -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">1</div>
+            <h2>What you'll learn</h2>
+        </div>
+        <ul class="learn-list">
+            <li><span class="check">✓</span> How to wire a DHT11 temperature and humidity sensor to your board</li>
+            <li><span class="check">✓</span> How to read and interpret sensor data using Arduino code</li>
+            <li><span class="check">✓</span> How to view live readings in the Serial Monitor</li>
+            <li><span class="check">✓</span> How to push those readings onto the ST7789 display screen</li>
         </ul>
     </section>
 
-    <section class="project-section">
-        <h2>Hardware Needed</h2>
-        <ul>
-            <li>DHT11 sensor</li>
-            <li>Arduino or ESP32 development board</li>
-            <li>Jumper wires</li>
-            <li>Optional: ST7789 display screen</li>
-        </ul>
-    </section>
-
-    <section class="project-section">
-        <h2>Wiring</h2>
-        <p>
-            The DHT11 has three main connections: ground, voltage, and signal.
-            Connect GND to ground, VCC to 3.3V or 5V, and the signal pin to pin 13.
-        </p>
-    </section>
-
-    <section class="project-section">
-        <h2>Simple Arduino Code</h2>
-
-<pre class="code-box"><code>#include "DHT.h"
-
-#define DHTPIN 13
-#define DHTTYPE DHT11
-
-DHT dht(DHTPIN, DHTTYPE);
-
-void setup() {
-    Serial.begin(115200);
-    Serial.println(F("DHT11 Test"));
-    dht.begin();
-}
-
-void loop() {
-    delay(2000);
-
-    float h = dht.readHumidity();
-    float t = dht.readTemperature();
-
-    if (isnan(h) || isnan(t)) {
-        Serial.println(F("Failed to read from DHT sensor!"));
-        return;
-    }
-
-    Serial.print(F("Humidity: "));
-    Serial.print(h);
-    Serial.print(F("% Temperature: "));
-    Serial.print(t);
-    Serial.println(F("°C"));
-}</code></pre>
-    </section>
-
-    <section class="project-section">
-        <h2>Troubleshooting</h2>
-        <div class="note">
-            If the code gives an error for <strong>DHT.h</strong>, install the DHT sensor library in the Arduino IDE.
-            Also check that the Serial Monitor baud rate is set to <strong>115200</strong>.
+    <!-- HARDWARE -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Hardware needed</h2>
+        </div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">🌡️</div>
+                <h3>DHT11 Sensor</h3>
+                <p>Measures both temperature and humidity. One is included in your kit.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🖥️</div>
+                <h3>ESP32 or Arduino</h3>
+                <p>Your main development board. Either works; pin numbers may vary.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔌</div>
+                <h3>Jumper wires</h3>
+                <p>Three wires: GND, power, and signal. That's all the DHT11 needs.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📺</div>
+                <h3>ST7789 Screen</h3>
+                <p>Optional — for displaying readings without opening the Serial Monitor.</p>
+            </div>
         </div>
     </section>
 
-    <section class="project-section">
-        <h2>Next Steps</h2>
-        <ul>
-            <li>Add humidity to the display</li>
-            <li>Create temperature and humidity graphs</li>
-            <li>Use the ESP32 as a hotspot to share the weather data on a webpage</li>
-        </ul>
+    <!-- WIRING -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">2</div>
+            <h2>Wiring the DHT11</h2>
+        </div>
+        <div class="split" style="margin-bottom: 28px;">
+            <div>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    The DHT11 is very easy to connect. It only needs three connections —
+                    connect GND and 3.3V to the Power section of the header pins on your
+                    development board, and the signal pin to pin 13.
+                </p>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <table class="wiring-table">
+                        <thead>
+                            <tr>
+                                <th>DHT11 pin</th>
+                                <th>Board pin</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="pin-badge gnd">GND</span></td>
+                                <td>Ground</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Power section of header</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pin-badge vcc">VCC</span></td>
+                                <td>3.3V or 5V</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Either voltage works</td>
+                            </tr>
+                            <tr>
+                                <td><span class="pin-badge sig">DATA</span></td>
+                                <td>Pin 13</td>
+                                <td style="color:var(--text-muted);font-size:13px;">Signal / GPIO</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="img-box">
+                <img src="images/board.png" alt="DHT11 wiring diagram">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+                    <span>Wiring photo</span>
+                    <span class="label">images/dht11-wiring.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMPLE SKETCH -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">3</div>
+            <h2>Simple Arduino sketch</h2>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom: 20px;">
+            This sketch reads humidity and temperature every 2 seconds and prints
+            them to the Serial Monitor. Copy it in, upload, and open the monitor
+            at <strong style="color:var(--text);">115200 baud</strong>.
+        </p>
+        <div class="code-wrap">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">Copy</button>
+            </div>
+<pre id="code1"><span class="pp">#include "DHT.h"</span>
+
+<span class="cmt">// Define GPIO pin connected to the DHT sensor</span>
+<span class="pp">#define</span> <span class="fn">DHTPIN</span>  <span class="num">13</span>
+<span class="pp">#define</span> <span class="fn">DHTTYPE</span> <span class="fn">DHT11</span>
+
+<span class="fn">DHT</span> dht(<span class="fn">DHTPIN</span>, <span class="fn">DHTTYPE</span>);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+    Serial.<span class="fn">println</span>(<span class="fn">F</span>(<span class="str">"DHT11 Test"</span>));
+    dht.<span class="fn">begin</span>();
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    <span class="cmt">// Wait 2 seconds between measurements</span>
+    <span class="fn">delay</span>(<span class="num">2000</span>);
+
+    <span class="kw">float</span> h = dht.<span class="fn">readHumidity</span>();
+    <span class="kw">float</span> t = dht.<span class="fn">readTemperature</span>();
+
+    <span class="kw">if</span> (<span class="fn">isnan</span>(h) || <span class="fn">isnan</span>(t)) {
+        Serial.<span class="fn">println</span>(<span class="fn">F</span>(<span class="str">"Failed to read from DHT sensor!"</span>));
+        <span class="kw">return</span>;
+    }
+
+    Serial.<span class="fn">print</span>(<span class="fn">F</span>(<span class="str">"Humidity: "</span>));
+    Serial.<span class="fn">print</span>(h);
+    Serial.<span class="fn">print</span>(<span class="fn">F</span>(<span class="str">"%  Temperature: "</span>));
+    Serial.<span class="fn">print</span>(t);
+    Serial.<span class="fn">println</span>(<span class="fn">F</span>(<span class="str">"°C"</span>));
+}</pre>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <div class="note">
+                <span class="note-icon">📦</span>
+                <span>If you get an error about <strong>DHT.h</strong>, you need to install the DHT sensor library. Click the library icon on the far left panel in the Arduino IDE, search for <strong>DHT sensor library</strong>, and install it. Then check that your Serial Monitor baud rate is set to <strong>115200</strong>.</span>
+            </div>
+        </div>
+
+        <div class="split" style="margin-top: 28px;">
+            <div>
+                <p style="color:var(--text-muted);">
+                    Once uploaded, open the Serial Monitor. You should see humidity and
+                    temperature readings appearing every two seconds.
+                </p>
+            </div>
+            <div class="img-box">
+                <img src="images/serial.png" alt="Serial monitor output showing readings">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg>
+                    <span>Serial Monitor screenshot</span>
+                    <span class="label">images/serial-monitor.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- DISPLAY SECTION -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">4</div>
+            <h2>Displaying data on the ST7789 screen</h2>
+        </div>
+        <p style="color:var(--text-muted); margin-bottom: 24px;">
+            You can push the temperature reading directly onto the screen built into your
+            development board. Start with this quick test to confirm the display is working,
+            then move to the full integrated sketch below.
+        </p>
+
+        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--text-muted);">Step 1 — Display test</h3>
+        <div class="code-wrap" style="margin-bottom: 28px;">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code2')">Copy</button>
+            </div>
+<pre id="code2"><span class="pp">#include</span> &lt;<span class="fn">Adafruit_GFX.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">Adafruit_ST7789.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">SPI.h</span>&gt;
+
+<span class="cmt">// Pin definitions for ESP32-S3 (adjust if using different pins)</span>
+<span class="pp">#define</span> TFT_CS    <span class="num">0</span>
+<span class="pp">#define</span> TFT_RST   <span class="num">1</span>
+<span class="pp">#define</span> TFT_DC   <span class="num">45</span>
+<span class="pp">#define</span> TFT_MOSI  <span class="num">3</span>
+<span class="pp">#define</span> TFT_SCLK <span class="num">46</span>
+<span class="pp">#define</span> TFT_MISO <span class="num">10</span>
+
+<span class="fn">Adafruit_ST7789</span> tft = <span class="fn">Adafruit_ST7789</span>(TFT_CS, TFT_DC, TFT_RST);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    SPI.<span class="fn">begin</span>(TFT_SCLK, TFT_MISO, TFT_MOSI);
+    tft.<span class="fn">init</span>(<span class="num">240</span>, <span class="num">320</span>);
+    Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+    tft.<span class="fn">setRotation</span>(<span class="num">1</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+    tft.<span class="fn">println</span>(<span class="str">"Setup"</span>);
+    <span class="fn">delay</span>(<span class="num">1000</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+    tft.<span class="fn">println</span>(<span class="str">"Loop"</span>);
+    <span class="fn">delay</span>(<span class="num">1000</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+}</pre>
+        </div>
+
+        <div class="note" style="margin-bottom: 28px;">
+            <span class="note-icon">💡</span>
+            <span>Upload this and you'll see <strong>"Setup"</strong> appear for one second, then <strong>"Loop"</strong> repeating. If the screen stays blank, double-check your pin numbers against the definitions above.</span>
+        </div>
+
+        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--text-muted);">Step 2 — Integrated DHT11 + display</h3>
+        <div class="code-wrap" style="margin-bottom: 28px;">
+            <div class="code-header">
+                <span class="lang"><span class="lang-dot"></span> Arduino C++</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code3')">Copy</button>
+            </div>
+<pre id="code3"><span class="pp">#include</span> &lt;<span class="fn">Adafruit_GFX.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">Adafruit_ST7789.h</span>&gt;
+<span class="pp">#include</span> &lt;<span class="fn">SPI.h</span>&gt;
+<span class="pp">#include</span> <span class="str">"DHT.h"</span>
+
+<span class="cmt">// Display pins for ESP32-S3</span>
+<span class="pp">#define</span> TFT_CS    <span class="num">0</span>
+<span class="pp">#define</span> TFT_RST   <span class="num">1</span>
+<span class="pp">#define</span> TFT_DC   <span class="num">45</span>
+<span class="pp">#define</span> TFT_MOSI  <span class="num">3</span>
+<span class="pp">#define</span> TFT_SCLK <span class="num">46</span>
+<span class="pp">#define</span> TFT_MISO <span class="num">10</span>
+<span class="cmt">// DHT sensor</span>
+<span class="pp">#define</span> DHTPIN   <span class="num">13</span>
+<span class="pp">#define</span> DHTTYPE  <span class="fn">DHT11</span>
+
+<span class="fn">Adafruit_ST7789</span> tft = <span class="fn">Adafruit_ST7789</span>(TFT_CS, TFT_DC, TFT_RST);
+<span class="fn">DHT</span> dht(<span class="fn">DHTPIN</span>, <span class="fn">DHTTYPE</span>);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+    SPI.<span class="fn">begin</span>(TFT_SCLK, TFT_MISO, TFT_MOSI);
+    dht.<span class="fn">begin</span>();
+    tft.<span class="fn">init</span>(<span class="num">240</span>, <span class="num">320</span>);
+    Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+    tft.<span class="fn">setRotation</span>(<span class="num">1</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+    tft.<span class="fn">println</span>(<span class="str">"Setup"</span>);
+    <span class="fn">delay</span>(<span class="num">1000</span>);
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+    tft.<span class="fn">fillScreen</span>(ST77XX_BLACK);
+    <span class="kw">float</span> t = dht.<span class="fn">readTemperature</span>();
+
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">100</span>);
+    tft.<span class="fn">setTextColor</span>(ST77XX_GREEN);
+    tft.<span class="fn">setTextSize</span>(<span class="num">3</span>);
+    tft.<span class="fn">println</span>(<span class="str">"Temperature"</span>);
+    tft.<span class="fn">setCursor</span>(<span class="num">60</span>, <span class="num">140</span>);
+
+    <span class="kw">if</span> (<span class="fn">isnan</span>(t)) {
+        tft.<span class="fn">println</span>(<span class="fn">F</span>(<span class="str">"Read Failed"</span>));
+        <span class="kw">return</span>;
+    } <span class="kw">else</span> {
+        tft.<span class="fn">println</span>(t);
+    }
+    <span class="fn">delay</span>(<span class="num">1000</span>);
+}</pre>
+        </div>
+
+        <div class="split">
+            <div>
+                <p style="color:var(--text-muted);">
+                    Upload this sketch and you should see the live temperature reading
+                    updating on the screen every second. If the read fails, the screen
+                    will show "Read Failed" instead of crashing.
+                </p>
+            </div>
+            <div class="img-box">
+                <img src="images/trouble.png" alt="ST7789 screen showing temperature reading">
+                <!-- <div class="img-placeholder">
+                    <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+                    <span>Display output photo</span>
+                    <span class="label">images/display-output.jpg</span>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section class="section">
+        <div class="section-header">
+            <div class="section-num">5</div>
+            <h2>Take it further</h2>
+        </div>
+        <div class="next-grid">
+            <div class="next-card">
+                <div class="step-icon">💧</div>
+                <h3>Add humidity to the display</h3>
+                <p>Read <code>dht.readHumidity()</code> and render it alongside temperature on the screen.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">📊</div>
+                <h3>Build live graphs</h3>
+                <p>Use the display pixels to draw a scrolling temperature and humidity graph over time.</p>
+            </div>
+            <div class="next-card">
+                <div class="step-icon">🌐</div>
+                <h3>Share over WiFi</h3>
+                <p>Use the ESP32 as a hotspot to host a webpage that shows live weather data from any browser.</p>
+            </div>
+        </div>
     </section>
 
 </main>
+
+<script>
+function copyCode(btn, id) {
+    const pre = document.getElementById(id);
+    const text = pre.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+}
+
+// Animate steps on scroll
+const steps = document.querySelectorAll('.step');
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const idx = Array.from(sections).indexOf(e.target);
+            steps.forEach((s, i) => {
+                s.classList.toggle('active', i === idx);
+                s.classList.toggle('done', i < idx);
+            });
+        }
+    });
+}, { threshold: 0.4 });
+sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>

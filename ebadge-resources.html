@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BYU-Idaho E-Badge Resources | Cool Robotics Projects</title>
+
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="styles/theme.css">
+
+    <style>
+        .resource-hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .resource-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .resource-hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            max-width: 750px;
+            margin: 0 auto 25px;
+        }
+
+        .resource-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 20px 25px 80px;
+        }
+
+        .resource-section {
+            margin-bottom: 70px;
+        }
+
+        .resource-section h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #32c5ff;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .resource-card {
+            background: var(--card-bg, #151d30);
+            border: 1px solid rgba(100, 180, 255, 0.18);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-color: #32c5ff;
+        }
+
+        .resource-number {
+            color: #32c5ff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .resource-card h3 {
+            font-size: 1.2rem;
+            margin: 0 0 12px;
+        }
+
+        .resource-card p {
+            line-height: 1.7;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            background: #168ac4;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: auto;
+            transition: background 0.2s ease;
+        }
+
+        .resource-link:hover {
+            background: #0873a9;
+        }
+
+        .resource-note {
+            background: rgba(50, 197, 255, 0.08);
+            border-left: 4px solid #32c5ff;
+            padding: 20px;
+            border-radius: 8px;
+            line-height: 1.8;
+            margin-top: 25px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #32c5ff;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .resource-hero {
+                padding: 50px 20px 30px;
+            }
+
+            .resource-container {
+                padding: 15px 18px 50px;
+            }
+
+            .resource-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="homepage.html" class="logo-section">
+            <div class="logo">
+                <img src="logo.png" alt="Cool Robotics Projects Logo">
+            </div>
+            <div class="logo-text">Cool<br>Robotics<br>Projects</div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="projects.html">Projects</a>
+            <a href="creators.html">Creators</a>
+            <button class="theme-toggle" aria-label="Toggle Theme">
+                🌙 <span>Dark Mode</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="resource-hero">
+        <a href="homepage.html" class="back-link">
+            ← Back to Home
+        </a>
+
+        <h1>BYU-Idaho E-Badge Resources</h1>
+
+        <p>
+            Explore example programs, learn how to use the features
+            of your e-badge, and build the skills you need for your
+            next robotics project.
+        </p>
+    </section>
+
+    <main class="resource-container">
+
+        <!-- SECTION 1: DEMO PROGRAMS -->
+        <section class="resource-section">
+            <h2>E-Badge Demo Programs</h2>
+
+            <p class="section-description">
+                Start with these small example programs to learn how
+                to control the different features of your BYU-Idaho
+                e-badge. Each example links directly to its Arduino
+                source code.
+            </p>
+
+            <div class="resource-grid">
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 01</span>
+                    <h3>Turn an LED On and Off</h3>
+                    <p>
+                        Learn how to control an LED using a simple
+                        Arduino program.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/blink_led/blink_led.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 02</span>
+                    <h3>Print Text to the LCD</h3>
+                    <p>
+                        Display text and messages on the e-badge's
+                        LCD screen.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/print_text/print_text.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 03</span>
+                    <h3>Control LCD Screen Pixels</h3>
+                    <p>
+                        Change colors and control specific pixels
+                        or regions of the LCD screen.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/screen_pixels/screen_pixels.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 04</span>
+                    <h3>Read Button Status</h3>
+                    <p>
+                        Learn how to detect button presses and
+                        read the status of the e-badge's buttons.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buttons/buttons.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 05</span>
+                    <h3>Change RGB LED Colors</h3>
+                    <p>
+                        Control the colors of the onboard RGB LED,
+                        also called LED1.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/rgb_led/rgb_led.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 06</span>
+                    <h3>Addressable LED Strip</h3>
+                    <p>
+                        Learn how to control the addressable LED
+                        strip on the board.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/addressable_leds/addressable_leds.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 07</span>
+                    <h3>Read the Joystick</h3>
+                    <p>
+                        Read the status and movement of the
+                        e-badge's joystick.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/joystick/joystick.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 08</span>
+                    <h3>Play Sounds with the Buzzer</h3>
+                    <p>
+                        Use the onboard buzzer to play sounds
+                        through your e-badge.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buzzer/buzzer.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 09</span>
+                    <h3>Serial Communication</h3>
+                    <p>
+                        Send and receive messages between your
+                        computer and the board over USB.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/serial/serial.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 10</span>
+                    <h3>Control a Servo Motor</h3>
+                    <p>
+                        Learn how to control a servo motor using
+                        an example program.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/servo/servo.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">DEMO 11</span>
+                    <h3>Use the Accelerometer</h3>
+                    <p>
+                        Explore how to use the onboard accelerometer
+                        to detect movement and orientation.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/accelerometer/accelerometer.ino">
+                        View Example Code ↗
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: LEARN C -->
+        <section class="resource-section">
+            <h2>Learn C Programming</h2>
+
+            <p class="section-description">
+                Build your programming foundation with these six
+                lessons. Each lesson provides an example program
+                to help you understand essential coding concepts.
+            </p>
+
+            <div class="resource-grid">
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 01</span>
+                    <h3>Variables and Types</h3>
+                    <p>
+                        Learn how to store data and work with
+                        different types of variables.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/01_variables_and_types/01_variables_and_types.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 02</span>
+                    <h3>Conditionals</h3>
+                    <p>
+                        Learn how programs make decisions based
+                        on conditions.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/02_conditionals/02_conditionals.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 03</span>
+                    <h3>If/Else Chains</h3>
+                    <p>
+                        Explore how to handle multiple conditions
+                        using if/else statements.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/03_if_else_chain/03_if_else_chain.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 04</span>
+                    <h3>Loops</h3>
+                    <p>
+                        Learn how to repeat instructions using
+                        loops in your programs.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/04_loops/04_loops.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 05</span>
+                    <h3>Functions</h3>
+                    <p>
+                        Organize your code into reusable functions
+                        to make programs easier to manage.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/05_functions/05_functions.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">LESSON 06</span>
+                    <h3>Arrays</h3>
+                    <p>
+                        Learn how to store and work with collections
+                        of data using arrays.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/06_arrays/06_arrays.ino">
+                        View Lesson Code ↗
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: DOCUMENTATION -->
+        <section class="resource-section">
+            <h2>Board Documentation</h2>
+
+            <p class="section-description">
+                Use these resources to understand the e-badge's
+                hardware and features. The Markdown file is
+                especially useful when asking an AI tool for help
+                writing code for additional devices.
+            </p>
+
+            <div class="resource-grid">
+
+                <article class="resource-card">
+                    <span class="resource-number">REFERENCE 01</span>
+                    <h3>Board Information (Markdown)</h3>
+                    <p>
+                        A Markdown reference containing information
+                        about the e-badge. Useful for sharing with
+                        AI tools when developing additional code.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.md">
+                        View Markdown File ↗
+                    </a>
+                </article>
+
+                <article class="resource-card">
+                    <span class="resource-number">REFERENCE 02</span>
+                    <h3>Board Information (HTML)</h3>
+                    <p>
+                        A browser-friendly version of the board
+                        documentation that you can open and read
+                        directly.
+                    </p>
+                    <a class="resource-link" target="_blank" rel="noopener noreferrer"
+                       href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.html">
+                        View HTML Documentation ↗
+                    </a>
+                </article>
+
+            </div>
+
+            <div class="resource-note">
+                <strong>Tip:</strong> When adding new sensors or
+                devices to your project, use the board documentation
+                to help an AI tool understand your e-badge and
+                generate more relevant example code.
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="homepage.html" class="footer-logo-section">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Cool Robotics Projects Logo">
+            </div>
+            <div class="footer-text">
+                Cool<br>Robotics<br>Projects
+            </div>
+        </a>
+
+        <div style="font-size: 14px; opacity: 0.8;">
+            © 2024 BYU-Idaho Robotics Team
+        </div>
+
+        <nav class="footer-nav">
+            <a href="projects.html">Projects</a>
+            <a href="creators.html">Creators</a>
+        </nav>
+    </footer>
+
+    <script src="scripts/theme.js"></script>
+
+</body>
+</html>

@@ -615,15 +615,12 @@ body::before {
     align-items: center;
     justify-content: space-between;
 
-    gap: 40px;
-
-    padding: 50px;
+    gap: 20px;
+    padding: 25px 35px;
 
     background: rgba(15, 23, 42, 0.88);
-
-    border-radius: 32px;
-
-    margin: 40px 20px;
+    border-radius: 24px;
+    margin: 25px 20px;
 
     overflow: hidden;
 }
@@ -633,7 +630,7 @@ body::before {
 }
 
 .arduino-image-container {
-    flex: 1;
+    flex: 0 0 35%;
 
     display: flex;
     justify-content: center;
@@ -642,11 +639,11 @@ body::before {
 
 .arduino-image {
     width: 100%;
-    max-width: 420px;
+    max-width: 250px;
 
     filter:
-        drop-shadow(0 0 30px rgba(96,165,250,0.5))
-        drop-shadow(0 0 60px rgba(59,130,246,0.3));
+        drop-shadow(0 0 20px rgba(96,165,250,0.4))
+        drop-shadow(0 0 35px rgba(59,130,246,0.2));
 
     animation: floatRobot 4s ease-in-out infinite;
 }
@@ -733,4 +730,45 @@ body::before {
 
 .project-card-content {
     padding: 20px;
+}
+
+
+/* E-Badge Resources Section */
+.ebadge-section {
+    position: relative;
+    padding: 80px 10%;
+    margin: 40px auto;
+    text-align: center;
+    background: linear-gradient(135deg, #101a35, #162d4d);
+    border-radius: 20px;
+    max-width: 1100px;
+}
+
+.ebadge-content {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.ebadge-title {
+    font-size: 2.5rem;
+    color: #32c5ff;
+    margin-bottom: 20px;
+}
+
+.ebadge-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e2e8f0;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .ebadge-section {
+        padding: 50px 20px;
+        margin: 30px 15px;
+    }
+
+    .ebadge-title {
+        font-size: 1.8rem;
+    }
 }

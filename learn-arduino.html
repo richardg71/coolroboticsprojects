@@ -1,0 +1,1745 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn Arduino electronics, sensors, programming, and logic gates with Cool Robotics Projects.">
+  <title>Learn Arduino | Cool Robotics Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Your existing website styles -->
+  <link rel="stylesheet" href="homepage.css">
+
+  <style>
+    /* ==========================================
+       LEARN ARDUINO — COMPLETE PAGE STYLES
+       ========================================== */
+
+    :root {
+      --lab-bg: #0b0719;
+      --lab-surface: #181126;
+      --lab-surface-2: #241a36;
+      --lab-text: #ffffff;
+      --lab-muted: #b9afcb;
+      --lab-border: rgba(194, 160, 255, 0.18);
+      --lab-pink: #e92bc5;
+      --lab-purple: #c49cff;
+      --lab-orange: #ff995b;
+      --lab-green: #65e0ac;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      background: var(--lab-bg);
+      color: var(--lab-text);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    html[data-theme="light"] {
+      --lab-bg: #f8f5fc;
+      --lab-surface: #ffffff;
+      --lab-surface-2: #f0eafa;
+      --lab-text: #251831;
+      --lab-muted: #675b78;
+      --lab-border: rgba(74, 44, 100, 0.17);
+    }
+
+    .lab-page {
+      background: var(--lab-bg);
+      color: var(--lab-text);
+      min-height: 100vh;
+    }
+
+    .lab-container {
+      width: min(1180px, 90%);
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    .lab-header {
+      position: relative;
+      overflow: hidden;
+      padding: 125px 0 105px;
+      background:
+        radial-gradient(circle at 77% 42%, rgba(228, 42, 195, .2), transparent 35%),
+        radial-gradient(circle at 20% 70%, rgba(112, 77, 216, .14), transparent 40%);
+      border-bottom: 1px solid var(--lab-border);
+    }
+
+    .lab-hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .lab-eyebrow {
+      color: var(--lab-pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.3px;
+      text-transform: uppercase;
+    }
+
+    .lab-header h1 {
+      margin: 23px 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(58px, 7.3vw, 105px);
+      line-height: 1.02;
+      letter-spacing: -5px;
+    }
+
+    .lab-header h1 em {
+      color: var(--lab-pink);
+      font-style: normal;
+    }
+
+    .lab-intro {
+      max-width: 550px;
+      color: var(--lab-muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .lab-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .lab-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 15px 23px;
+      border-radius: 12px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .25s;
+    }
+
+    .lab-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .lab-btn-primary {
+      color: white;
+      background: var(--lab-pink);
+    }
+
+    .lab-btn-outline {
+      color: var(--lab-text);
+      border: 1px solid var(--lab-border);
+    }
+
+    .lab-art {
+      display: grid;
+      place-items: center;
+      position: relative;
+      height: 350px;
+    }
+
+    .lab-orbit {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(196, 156, 255, .35);
+      border-radius: 50%;
+    }
+
+    .lab-orbit.second {
+      width: 245px;
+      height: 245px;
+      border-style: dashed;
+      transform: rotate(25deg);
+    }
+
+    .lab-chip {
+      display: grid;
+      place-items: center;
+      width: 160px;
+      height: 160px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #e92bc5, #9165d7, #38b7da);
+      box-shadow: 0 0 90px rgba(233, 43, 197, .2);
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 58px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    /* MAIN LESSON AREA */
+
+    .lab-lessons {
+      padding: 100px 0 110px;
+    }
+
+    .lab-section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 38px;
+    }
+
+    .lab-section-title h2 {
+      margin-top: 17px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+    }
+
+    .lab-section-title h2 span {
+      color: var(--lab-purple);
+    }
+
+    .lab-section-title p {
+      color: var(--lab-muted);
+      line-height: 1.8;
+      max-width: 260px;
+    }
+
+    .lab-progress {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: 17px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .lab-progress-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .lab-progress-top strong {
+      color: var(--lab-purple);
+    }
+
+    .lab-progress-track {
+      background: var(--lab-surface-2);
+      height: 8px;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .lab-progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--lab-pink), var(--lab-purple));
+      transition: width .35s ease;
+    }
+
+    .lab-search {
+      width: 100%;
+      padding: 17px 19px;
+      margin-bottom: 24px;
+      border: 1px solid var(--lab-border);
+      border-radius: 12px;
+      background: var(--lab-surface);
+      color: var(--lab-text);
+      font: inherit;
+      outline: none;
+    }
+
+    .lab-search:focus {
+      border-color: var(--lab-pink);
+    }
+
+    /* LESSON ACCORDIONS */
+
+    .lab-lesson {
+      background: var(--lab-surface);
+      border: 1px solid var(--lab-border);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .lab-lesson[hidden] {
+      display: none;
+    }
+
+    .lab-lesson summary {
+      display: grid;
+      grid-template-columns: 46px 1fr 40px;
+      align-items: center;
+      gap: 20px;
+      padding: 27px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .lab-lesson summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .lab-number {
+      color: var(--lab-pink);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .lab-lesson-name {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700;
+      letter-spacing: -.7px;
+    }
+
+    .lab-lesson-description {
+      display: block;
+      color: var(--lab-muted);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+
+    .lab-expand {
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border: 1px solid var(--lab-border);
+      border-radius: 50%;
+      font-size: 22px;
+      transition: transform .25s;
+    }
+
+    .lab-lesson[open] .lab-expand {
+      transform: rotate(45deg);
+      color: var(--lab-pink);
+    }
+
+    .lab-lesson-body {
+      padding: 12px 32px 35px 93px;
+      border-top: 1px solid var(--lab-border);
+    }
+
+    .lab-lesson-body h3 {
+      margin: 28px 0 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 24px;
+    }
+
+    .lab-lesson-body p,
+    .lab-lesson-body li {
+      color: var(--lab-muted);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .lab-lesson-body p {
+      margin: 10px 0 17px;
+    }
+
+    .lab-lesson-body ul,
+    .lab-lesson-body ol {
+      padding-left: 23px;
+      margin: 12px 0 20px;
+    }
+
+    .lab-lesson-body li {
+      margin-bottom: 7px;
+    }
+
+    .lab-lesson-body strong {
+      color: var(--lab-text);
+    }
+
+    .lab-callout {
+      padding: 19px 22px;
+      margin: 23px 0;
+      border-left: 3px solid var(--lab-orange);
+      border-radius: 0 12px 12px 0;
+      background: var(--lab-surface-2);
+      color: var(--lab-muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .lab-figure {
+      margin: 25px 0;
+      border: 1px solid var(--lab-border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .lab-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .lab-figure figcaption {
+      padding: 13px 16px;
+      background: var(--lab-surface-2);
+      color: var(--lab-muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .lab-code {
+      background: #090613;
+      border: 1px solid rgba(196, 156, 255, .18);
+      color: #e2c8ff;
+      border-radius: 12px;
+      padding: 22px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.65;
+      tab-size: 2;
+    }
+
+    .lab-table-scroll {
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .lab-table {
+      width: 100%;
+      min-width: 450px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .lab-table th,
+    .lab-table td {
+      border: 1px solid var(--lab-border);
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .lab-table th {
+      color: var(--lab-purple);
+      background: var(--lab-surface-2);
+    }
+
+    .lab-table td {
+      color: var(--lab-muted);
+    }
+
+    .lab-complete {
+      margin-top: 28px;
+      padding: 13px 20px;
+      border: 1px solid var(--lab-purple);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--lab-text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lab-complete.done {
+      background: var(--lab-purple);
+      color: #160d25;
+    }
+
+    /* INTERACTIVE LOGIC LAB */
+
+    .logic-playground {
+      margin-top: 25px;
+      padding: 24px;
+      border-radius: 14px;
+      background: var(--lab-surface-2);
+      border: 1px solid var(--lab-border);
+    }
+
+    .logic-playground h4 {
+      margin-bottom: 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 20px;
+    }
+
+    .logic-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .logic-controls label {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      color: var(--lab-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .logic-controls select {
+      padding: 11px 15px;
+      min-width: 100px;
+      background: var(--lab-surface);
+      color: var(--lab-text);
+      border: 1px solid var(--lab-border);
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    .logic-result {
+      display: inline-block;
+      padding: 13px 18px;
+      border-radius: 10px;
+      background: #56304b;
+      color: white;
+      font-weight: 700;
+    }
+
+    .logic-result.on {
+      background: #187b5b;
+    }
+
+    .lab-end {
+      padding: 75px 0 110px;
+      text-align: center;
+      border-top: 1px solid var(--lab-border);
+    }
+
+    .lab-end h2 {
+      margin: 15px 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(36px, 5vw, 62px);
+      letter-spacing: -2px;
+    }
+
+    .lab-end p {
+      color: var(--lab-muted);
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 850px) {
+      .lab-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-art {
+        display: none;
+      }
+
+      .lab-section-title {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .lab-header {
+        padding: 95px 0 70px;
+      }
+
+      .lab-header h1 {
+        letter-spacing: -3px;
+      }
+
+      .lab-lessons {
+        padding: 75px 0;
+      }
+
+      .lab-lesson summary {
+        grid-template-columns: 27px 1fr 32px;
+        gap: 11px;
+        padding: 20px 15px;
+      }
+
+      .lab-lesson-body {
+        padding: 10px 18px 28px;
+      }
+
+      .lab-lesson-name {
+        font-size: 20px;
+      }
+
+      .lab-expand {
+        width: 31px;
+        height: 31px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .lab-btn,
+      .lab-expand,
+      .lab-progress-fill {
+        transition: none;
+      }
+    }
+  </style>
+
+  <script src="scripts/theme.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="nav-shell">
+    <nav class="nav-inner" aria-label="Main navigation">
+
+      <a class="brand" href="index.html">
+        <span class="brand-symbol">c<span>●</span>r</span>
+        <span>
+          cool robotics
+          <span class="brand-small">PROJECTS / BYU–IDAHO</span>
+        </span>
+      </a>
+
+      <div class="nav-links" id="lab-navigation">
+        <a href="index.html">Home</a>
+        <a href="learn-arduino.html" aria-current="page">Learn Arduino</a>
+        <a href="projects.html">Projects</a>
+        <a href="ebadge.html">E-Badge</a>
+        <a href="creators.html">Creators</a>
+      </div>
+
+      <div class="nav-actions">
+        <button
+          type="button"
+          class="icon-button theme-toggle"
+          aria-label="Toggle color theme"
+        >☼</button>
+
+        <a href="projects.html" class="nav-cta">
+          Explore <span>↗</span>
+        </a>
+
+        <button
+          type="button"
+          class="icon-button menu-toggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+        >☰</button>
+      </div>
+
+    </nav>
+  </header>
+
+  <main class="lab-page">
+
+    <!-- HERO -->
+    <section class="lab-header">
+      <div class="lab-container lab-hero-grid">
+
+        <div>
+          <div class="lab-eyebrow">THE LEARNING LAB / BEGINNER SERIES</div>
+
+          <h1>
+            Start with<br>
+            <em>the basics.</em>
+          </h1>
+
+          <p class="lab-intro">
+            Learn how Arduino works, understand electronic circuits,
+            experiment with sensors, and write your first program.
+            Five lessons designed to take you from curious beginner
+            to confident maker.
+          </p>
+
+          <div class="lab-actions">
+            <a href="#lessons" class="lab-btn lab-btn-primary">
+              Explore Lessons ↗
+            </a>
+
+            <a href="projects.html" class="lab-btn lab-btn-outline">
+              Browse Projects →
+            </a>
+          </div>
+        </div>
+
+        <div class="lab-art" aria-hidden="true">
+          <div class="lab-orbit"></div>
+          <div class="lab-orbit second"></div>
+          <div class="lab-chip">A.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LESSON LIBRARY -->
+    <section class="lab-lessons" id="lessons">
+      <div class="lab-container">
+
+        <div class="lab-section-title">
+          <div>
+            <div class="lab-eyebrow">01 / LEARNING PATH</div>
+            <h2>
+              Learn it.<br>
+              <span>Then build it.</span>
+            </h2>
+          </div>
+
+          <p>
+            Open any lesson to explore the material.
+            Mark lessons complete as you progress.
+          </p>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="lab-progress">
+          <div class="lab-progress-top">
+            <span>Your progress</span>
+            <strong id="lab-progress-label">0 / 5 completed</strong>
+          </div>
+
+          <div class="lab-progress-track">
+            <div
+              class="lab-progress-fill"
+              id="lab-progress-fill"
+              role="progressbar"
+              aria-label="Lesson completion"
+              aria-valuemin="0"
+              aria-valuemax="5"
+              aria-valuenow="0"
+            ></div>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <input
+          type="search"
+          class="lab-search"
+          id="lab-search"
+          placeholder="Search lessons, circuits, sensors, programming..."
+          aria-label="Search lessons"
+        >
+
+        <!-- =====================================
+             LESSON 1 — ARDUINO INTRODUCTION
+             ===================================== -->
+        <details class="lab-lesson" data-lesson="1">
+          <summary>
+            <span class="lab-number">01</span>
+
+            <span>
+              <span class="lab-lesson-name">Arduino Introduction</span>
+              <span class="lab-lesson-description">
+                Understand the Arduino Uno, its pins, and what you can build.
+              </span>
+            </span>
+
+            <span class="lab-expand">+</span>
+          </summary>
+
+          <div class="lab-lesson-body">
+
+            <h3>What is an Arduino?</h3>
+
+            <p>
+              An Arduino Uno is a microcontroller development board.
+              It's a small programmable computer that can receive
+              information, process it, and control electronic components.
+            </p>
+
+            <p>
+              These introductory lessons are based on the
+              <strong>Elegoo Uno R3 Basic Starter Kit</strong>.
+            </p>
+
+            <h3>Board anatomy</h3>
+
+            <p>
+              Your Arduino Uno has several groups of pins.
+              Each group has a different purpose.
+            </p>
+
+            <ul>
+              <li>
+                <strong>Digital pins (0–13):</strong>
+                used for digital inputs and outputs.
+              </li>
+              <li>
+                <strong>Analog inputs (A0–A5):</strong>
+                used to read changing analog signals.
+              </li>
+              <li>
+                <strong>5V and 3.3V:</strong>
+                provide regulated voltage for suitable components.
+              </li>
+              <li>
+                <strong>GND:</strong>
+                the electrical ground connection.
+              </li>
+              <li>
+                <strong>RESET:</strong>
+                restarts the program on the Arduino.
+              </li>
+              <li>
+                <strong>USB port:</strong>
+                connects the board to your computer for programming
+                and power.
+              </li>
+            </ul>
+
+            <h3>Digital vs. analog</h3>
+
+            <p>
+              Digital signals represent two logical states:
+              <strong>HIGH</strong> and <strong>LOW</strong>.
+              A push button is an example of an input with two states.
+            </p>
+
+            <p>
+              Analog inputs measure signals across a range.
+              For example, a photoresistor can help the Arduino
+              measure changing light levels.
+            </p>
+
+            <h3>What can you do with Arduino?</h3>
+
+            <ul>
+              <li>Build robots that react to their surroundings.</li>
+              <li>Control LEDs, motors, and other devices.</li>
+              <li>Measure temperature, humidity, and light.</li>
+              <li>Connect programming with physical electronics.</li>
+            </ul>
+
+            <div class="lab-callout">
+              <strong>Key idea:</strong>
+              Arduino is useful because it connects software
+              with the physical world.
+            </div>
+
+            <button class="lab-complete" data-complete="1" type="button">
+              Mark Lesson Complete ✓
+            </button>
+
+          </div>
+        </details>
+
+        <!-- =====================================
+             LESSON 2 — CIRCUITS
+             ===================================== -->
+        <details class="lab-lesson" data-lesson="2">
+          <summary>
+            <span class="lab-number">02</span>
+
+            <span>
+              <span class="lab-lesson-name">Getting to Know Your Arduino</span>
+              <span class="lab-lesson-description">
+                Learn circuits, breadboards, schematics, and LEDs.
+              </span>
+            </span>
+
+            <span class="lab-expand">+</span>
+          </summary>
+
+          <div class="lab-lesson-body">
+
+            <h3>Basic electronics</h3>
+
+            <p>
+              Every circuit needs three things:
+              a power source, electrical connections,
+              and components that do something useful.
+            </p>
+
+            <ul>
+              <li><strong>Power:</strong> Arduino, USB, or a suitable battery supply.</li>
+              <li><strong>Connections:</strong> jumper wires and breadboards.</li>
+              <li><strong>Components:</strong> LEDs, buttons, resistors, and sensors.</li>
+            </ul>
+
+            <h3>Reading circuit schematics</h3>
+
+            <p>
+              A schematic uses electrical symbols and lines
+              to show how components connect.
+            </p>
+
+            <p>
+              A circuit diagram is usually more visual.
+              It shows components and wires in a layout
+              closer to what you'll build on a breadboard.
+            </p>
+
+            <p>
+              Photographs can help you compare your finished circuit
+              with a working example, but diagrams are often
+              easier to follow during assembly.
+            </p>
+
+            <h3>Project 1 — Build a simple LED circuit</h3>
+
+            <p>You'll need:</p>
+
+            <ul>
+              <li>Arduino Uno R3</li>
+              <li>3 jumper wires</li>
+              <li>1 breadboard</li>
+              <li>1 push button</li>
+              <li>1 LED</li>
+              <li>1 resistor (220 Ω)</li>
+            </ul>
+
+            <div class="lab-callout">
+              <strong>Safety and wiring:</strong>
+              Use the circuit diagram from the original lesson
+              to connect the button, resistor, and LED.
+              The LED has polarity, so orientation matters.
+              Disconnect power before rearranging wires.
+            </div>
+
+            <h3>What should happen?</h3>
+
+            <p>
+              After correctly wiring and powering the circuit,
+              the LED should light when you press the button.
+            </p>
+
+            <p>
+              This demonstrates how a basic electrical circuit
+              can respond to a physical action without
+              any custom Arduino program.
+            </p>
+
+            <button class="lab-complete" data-complete="2" type="button">
+              Mark Lesson Complete ✓
+            </button>
+
+          </div>
+        </details>
+
+        <!-- =====================================
+             LESSON 3 — STIMULUS AND RESPONSE
+             ===================================== -->
+        <details class="lab-lesson" data-lesson="3">
+          <summary>
+            <span class="lab-number">03</span>
+
+            <span>
+              <span class="lab-lesson-name">Stimulus &amp; Response</span>
+              <span class="lab-lesson-description">
+                Discover how sensors help robots react to the world.
+              </span>
+            </span>
+
+            <span class="lab-expand">+</span>
+          </summary>
+
+          <div class="lab-lesson-body">
+
+            <h3>Robotic sensing</h3>
+
+            <p>
+              Robots need to recognize changes in their surroundings.
+              These changes are called <strong>stimuli</strong>.
+              Sensors let a robot detect them.
+            </p>
+
+            <p>Examples of things sensors can detect include:</p>
+
+            <ul>
+              <li>Temperature and humidity</li>
+              <li>Light and infrared radiation</li>
+              <li>Sound and ultrasound</li>
+              <li>Movement and acceleration</li>
+              <li>Touch and pressure</li>
+              <li>Orientation and tilt</li>
+            </ul>
+
+            <h3>Input → Processing → Output</h3>
+
+            <p>
+              A robot can receive information from a sensor,
+              interpret that information, and produce a response.
+            </p>
+
+            <div class="lab-callout">
+              <strong>Example:</strong>
+              A light sensor detects darkness →
+              the Arduino processes the reading →
+              a light turns on.
+            </div>
+
+            <h3>Robotic reactions</h3>
+
+            <p>
+              Robots can respond in different ways.
+              Motors create movement, speakers produce sound,
+              and LEDs or screens display information.
+            </p>
+
+            <h3>Experiment 1 — Photoresistor</h3>
+
+            <p>
+              A photoresistor changes resistance depending on
+              how much light reaches it.
+            </p>
+
+            <p>
+              In the original lesson, a photoresistor
+              changes the brightness of an LED.
+              Try moving your hand over the sensor
+              and observe what happens.
+            </p>
+
+            <h3>Experiment 2 — Tilt switch</h3>
+
+            <p>
+              A ball tilt switch contains a conductive ball
+              that moves when the switch changes orientation.
+            </p>
+
+            <p>
+              When the ball closes the internal connection,
+              current can flow and the LED responds.
+            </p>
+
+            <div class="lab-callout">
+              <strong>Lesson takeaway:</strong>
+              Sensors let circuits and robots react to
+              changes in their environment.
+              Follow the original lesson's wiring diagrams
+              for these two experiments.
+            </div>
+
+            <button class="lab-complete" data-complete="3" type="button">
+              Mark Lesson Complete ✓
+            </button>
+
+          </div>
+        </details>
+
+        <!-- =====================================
+             LESSON 4 — PROGRAMMING
+             ===================================== -->
+        <details class="lab-lesson" data-lesson="4">
+          <summary>
+            <span class="lab-number">04</span>
+
+            <span>
+              <span class="lab-lesson-name">Programming Your Arduino</span>
+              <span class="lab-lesson-description">
+                Install Arduino IDE and control four LEDs with one button.
+              </span>
+            </span>
+
+            <span class="lab-expand">+</span>
+          </summary>
+
+          <div class="lab-lesson-body">
+
+            <h3>Why program an Arduino?</h3>
+
+            <p>
+              In the earlier lessons, the Arduino mainly supplied power.
+              Programming lets it read inputs, process information,
+              and control outputs.
+            </p>
+
+            <h3>Set up Arduino IDE</h3>
+
+            <ol>
+              <li>
+                Visit
+                <a href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">
+                  Arduino's official software page
+                </a>.
+              </li>
+              <li>Download an IDE version compatible with your computer and board.</li>
+              <li>Install the software.</li>
+              <li>Connect your Arduino Uno with a suitable USB cable.</li>
+              <li>Select the correct board and serial port in the IDE.</li>
+            </ol>
+
+            <div class="lab-callout">
+              <strong>From the original lesson:</strong>
+              The author used Arduino IDE 1.8.19.
+              The current IDE may look different,
+              but the same basic concepts apply.
+            </div>
+
+            <h3>Project — Light Switcher</h3>
+
+            <p>
+              This project uses one button to control four LEDs.
+              Each time you press and release the button,
+              the active LED moves to the next position.
+            </p>
+
+            <h3>Circuit diagram</h3>
+
+            <p>
+              Follow this reference to connect four LEDs,
+              their resistors, and a push button to the Arduino Uno.
+            </p>
+
+            <figure class="lab-figure">
+              <img
+                src="images/CircuitDiagram.png"
+                alt="Arduino Uno connected to four LEDs with resistors on digital pins 2 through 5 and a push button connected to analog input A0."
+                loading="lazy"
+              >
+              <figcaption>
+                LightSwitcher circuit — provided reference diagram.
+              </figcaption>
+            </figure>
+
+            <h3>Complete LightSwitcher program</h3>
+
+            <p>
+              This is the code from your uploaded
+              <strong>LightSwitcher.ino</strong> file.
+              Copy it into Arduino IDE and save it as
+              <code>LightSwitcher.ino</code>.
+            </p>
+
+<pre class="lab-code"><code>#define LED1 2
+#define LED2 3
+#define LED3 4
+#define LED4 5
+#define P1In A0
+
+int n = 0;
+int benchmark = 690;
+bool wasPressed = false;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(LED4, OUTPUT);
+  pinMode(P1In, INPUT);
+
+  digitalWrite(LED1, HIGH);
+  digitalWrite(LED2, LOW);
+  digitalWrite(LED3, LOW);
+  digitalWrite(LED4, LOW);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  if (analogRead(P1In) &lt;= benchmark &amp;&amp; wasPressed) {
+    n = n + 1;
+    if (n == 4) {
+      n = 0;
+    }
+  }
+
+  if (n == 0) {
+    digitalWrite(LED1, HIGH);
+    digitalWrite(LED4, LOW);
+  }
+  else if (n == 1) {
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, HIGH);
+  }
+  else if (n == 2) {
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, HIGH);
+  }
+  else {
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, HIGH);
+  }
+
+  wasPressed = analogRead(P1In) >= benchmark;
+
+  delay(200);
+}</code></pre>
+
+            <h3>Understanding the code</h3>
+
+            <ul>
+              <li>
+                <strong>#define:</strong>
+                assigns names to the Arduino pin numbers.
+              </li>
+              <li>
+                <strong>setup():</strong>
+                configures pins when the board starts.
+              </li>
+              <li>
+                <strong>loop():</strong>
+                runs repeatedly while the board is powered.
+              </li>
+              <li>
+                <strong>analogRead(P1In):</strong>
+                reads the button input on A0.
+              </li>
+              <li>
+                <strong>benchmark:</strong>
+                sets the threshold used to interpret the button reading.
+              </li>
+              <li>
+                <strong>wasPressed:</strong>
+                remembers the previous button state.
+              </li>
+              <li>
+                <strong>n:</strong>
+                tracks which LED should be active.
+              </li>
+              <li>
+                <strong>digitalWrite():</strong>
+                turns the selected LED on or off.
+              </li>
+              <li>
+                <strong>delay(200):</strong>
+                pauses for 200 milliseconds before the next loop.
+              </li>
+            </ul>
+
+            <h3>How button release detection works</h3>
+
+            <p>
+              The program checks both the current reading
+              and whether the button was previously pressed.
+              This lets it respond to a button release
+              rather than repeatedly changing LEDs
+              while the button remains held.
+            </p>
+
+            <div class="lab-table-scroll">
+              <table class="lab-table">
+                <thead>
+                  <tr>
+                    <th>Button phase</th>
+                    <th>Current state</th>
+                    <th>Previous state</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Not pressed</td><td>OFF</td><td>OFF</td></tr>
+                  <tr><td>Just pressed</td><td>ON</td><td>OFF</td></tr>
+                  <tr><td>Held down</td><td>ON</td><td>ON</td></tr>
+                  <tr><td>Released</td><td>OFF</td><td>ON</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Upload and test</h3>
+
+            <ol>
+              <li>Build the circuit shown in the reference diagram.</li>
+              <li>Open the LightSwitcher sketch in Arduino IDE.</li>
+              <li>Connect your Arduino Uno.</li>
+              <li>Select the correct board and port.</li>
+              <li>Click Upload.</li>
+              <li>Press and release the button to cycle through the LEDs.</li>
+            </ol>
+
+            <div class="lab-callout">
+              <strong>Note:</strong>
+              The threshold value of 690 comes from the supplied code.
+              If your hardware gives different analog readings,
+              you may need to adjust that value.
+            </div>
+
+            <button class="lab-complete" data-complete="4" type="button">
+              Mark Lesson Complete ✓
+            </button>
+
+          </div>
+        </details>
+
+        <!-- =====================================
+             LESSON 5 — LOGIC GATES
+             ===================================== -->
+        <details class="lab-lesson" data-lesson="5">
+          <summary>
+            <span class="lab-number">05</span>
+
+            <span>
+              <span class="lab-lesson-name">Logic Gates</span>
+              <span class="lab-lesson-description">
+                Learn AND, OR, NOT, XOR, NAND, and NOR.
+              </span>
+            </span>
+
+            <span class="lab-expand">+</span>
+          </summary>
+
+          <div class="lab-lesson-body">
+
+            <h3>What are logic gates?</h3>
+
+            <p>
+              Logic gates work with binary values:
+              <strong>TRUE</strong> and <strong>FALSE</strong>.
+              They are fundamental to digital computing
+              and can help programs make decisions.
+            </p>
+
+            <h3>The six logic gates</h3>
+
+            <ul>
+              <li>
+                <strong>NOT:</strong>
+                reverses the input.
+              </li>
+              <li>
+                <strong>AND:</strong>
+                TRUE only when both inputs are TRUE.
+              </li>
+              <li>
+                <strong>OR:</strong>
+                TRUE when at least one input is TRUE.
+              </li>
+              <li>
+                <strong>XOR:</strong>
+                TRUE when exactly one input is TRUE.
+              </li>
+              <li>
+                <strong>NAND:</strong>
+                opposite of AND.
+              </li>
+              <li>
+                <strong>NOR:</strong>
+                opposite of OR.
+              </li>
+            </ul>
+
+            <h3>Truth table</h3>
+
+            <div class="lab-table-scroll">
+              <table class="lab-table">
+                <thead>
+                  <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>AND</th>
+                    <th>OR</th>
+                    <th>XOR</th>
+                    <th>NAND</th>
+                    <th>NOR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+                  <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                  <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+                  <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="lab-callout">
+              <strong>Important clarification:</strong>
+              The uploaded Logic Gates document contains two
+              inconsistent truth-table examples for OR and XOR.
+              The table above uses their standard definitions:
+              OR includes the case where both inputs are TRUE,
+              while XOR excludes it.
+            </div>
+
+            <h3>Try the interactive logic lab</h3>
+
+            <p>
+              Choose a logic gate and change its inputs.
+              The output will update immediately.
+            </p>
+
+            <div class="logic-playground">
+
+              <h4>Logic Gate Simulator</h4>
+
+              <div class="logic-controls">
+
+                <label>
+                  Gate
+                  <select id="gate-type">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="NOT">NOT</option>
+                    <option value="XOR">XOR</option>
+                    <option value="NAND">NAND</option>
+                    <option value="NOR">NOR</option>
+                  </select>
+                </label>
+
+                <label>
+                  Input A
+                  <select id="gate-a">
+                    <option value="0">FALSE (0)</option>
+                    <option value="1">TRUE (1)</option>
+                  </select>
+                </label>
+
+                <label id="gate-b-label">
+                  Input B
+                  <select id="gate-b">
+                    <option value="0">FALSE (0)</option>
+                    <option value="1">TRUE (1)</option>
+                  </select>
+                </label>
+
+              </div>
+
+              <div
+                class="logic-result"
+                id="gate-result"
+                role="status"
+                aria-live="polite"
+              >
+                OUTPUT: FALSE (0)
+              </div>
+
+              <p id="gate-explanation"></p>
+
+            </div>
+
+            <h3>Logic gates in programming</h3>
+
+            <p>
+              Imagine a robot should move only when
+              its power is on <strong>AND</strong>
+              the path ahead is clear.
+            </p>
+
+<pre class="lab-code"><code>if (powerOn &amp;&amp; pathClear) {
+  moveForward();
+}</code></pre>
+
+            <p>
+              The AND operator means both conditions
+              must be TRUE before the action happens.
+            </p>
+
+            <h3>Remembering a state</h3>
+
+            <p>
+              The original lesson also explores how
+              a value can stay TRUE once an event has occurred.
+            </p>
+
+<pre class="lab-code"><code>Q = false;
+
+repeat forever:
+    P = readInput()
+    Q = P OR Q</code></pre>
+
+            <p>
+              Once P becomes TRUE, Q stays TRUE,
+              even if P later becomes FALSE.
+              This demonstrates a basic way to
+              preserve information using logical operations.
+            </p>
+
+            <button class="lab-complete" data-complete="5" type="button">
+              Mark Lesson Complete ✓
+            </button>
+
+          </div>
+        </details>
+
+        <p id="lab-no-results" hidden>
+          No matching lessons. Try another search.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- NEXT STEP -->
+    <section class="lab-end">
+      <div class="lab-container">
+
+        <div class="lab-eyebrow">WHAT'S NEXT?</div>
+
+        <h2>Ready to build something?</h2>
+
+        <p>
+          Put your new Arduino knowledge into practice
+          with a hands-on robotics project.
+        </p>
+
+        <a href="projects.html" class="lab-btn lab-btn-primary">
+          Explore Projects ↗
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <div>
+        <strong>cool robotics.</strong>
+        <p>Arduino and robotics projects by the BYU–Idaho robotics team.</p>
+      </div>
+
+      <div>
+        <a href="index.html">Home</a>
+        <a href="learn-arduino.html">Learn Arduino</a>
+        <a href="projects.html">Projects</a>
+        <a href="ebadge.html">E-Badge</a>
+        <a href="creators.html">Creators</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       ALL PAGE JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* --------------------------------------
+         LESSON SEARCH
+         -------------------------------------- */
+
+      const search = document.getElementById("lab-search");
+      const lessons = Array.from(
+        document.querySelectorAll(".lab-lesson")
+      );
+
+      const noResults = document.getElementById("lab-no-results");
+
+      search.addEventListener("input", function () {
+        const query = search.value.trim().toLowerCase();
+        let matches = 0;
+
+        lessons.forEach(function (lesson) {
+          const text = lesson.textContent.toLowerCase();
+          const visible = text.includes(query);
+
+          lesson.hidden = !visible;
+
+          if (visible) {
+            matches++;
+          }
+        });
+
+        noResults.hidden = matches > 0;
+      });
+
+      /* --------------------------------------
+         PROGRESS TRACKING
+         -------------------------------------- */
+
+      const progressLabel =
+        document.getElementById("lab-progress-label");
+
+      const progressFill =
+        document.getElementById("lab-progress-fill");
+
+      const completeButtons =
+        document.querySelectorAll("[data-complete]");
+
+      const storageKey = "coolrobotics-arduino-progress";
+
+      let completed = [];
+
+      try {
+        const saved = JSON.parse(
+          localStorage.getItem(storageKey) || "[]"
+        );
+
+        if (Array.isArray(saved)) {
+          completed = saved.map(String);
+        }
+      } catch (error) {
+        completed = [];
+      }
+
+      function updateProgress() {
+        completed = completed.filter(function (id) {
+          return ["1", "2", "3", "4", "5"].includes(id);
+        });
+
+        completed = [...new Set(completed)];
+
+        const total = completed.length;
+
+        progressLabel.textContent =
+          total + " / 5 completed";
+
+        progressFill.style.width =
+          (total / 5) * 100 + "%";
+
+        progressFill.setAttribute(
+          "aria-valuenow",
+          String(total)
+        );
+
+        completeButtons.forEach(function (button) {
+          const id = button.dataset.complete;
+          const done = completed.includes(id);
+
+          button.classList.toggle("done", done);
+
+          button.textContent = done
+            ? "✓ Lesson Completed — Undo"
+            : "Mark Lesson Complete ✓";
+
+          button.setAttribute(
+            "aria-pressed",
+            String(done)
+          );
+        });
+      }
+
+      completeButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const id = button.dataset.complete;
+
+          if (completed.includes(id)) {
+            completed = completed.filter(function (item) {
+              return item !== id;
+            });
+          } else {
+            completed.push(id);
+          }
+
+          try {
+            localStorage.setItem(
+              storageKey,
+              JSON.stringify(completed)
+            );
+          } catch (error) {
+            // Progress still works during this visit.
+          }
+
+          updateProgress();
+        });
+      });
+
+      updateProgress();
+
+      /* --------------------------------------
+         LOGIC GATE SIMULATOR
+         -------------------------------------- */
+
+      const gateType =
+        document.getElementById("gate-type");
+
+      const gateA =
+        document.getElementById("gate-a");
+
+      const gateB =
+        document.getElementById("gate-b");
+
+      const gateBLabel =
+        document.getElementById("gate-b-label");
+
+      const gateResult =
+        document.getElementById("gate-result");
+
+      const gateExplanation =
+        document.getElementById("gate-explanation");
+
+      function updateGate() {
+        const type = gateType.value;
+        const a = gateA.value === "1";
+        const b = gateB.value === "1";
+
+        let result = false;
+        let explanation = "";
+
+        gateBLabel.hidden = type === "NOT";
+
+        switch (type) {
+          case "NOT":
+            result = !a;
+            explanation =
+              "NOT reverses the value of input A.";
+            break;
+
+          case "AND":
+            result = a && b;
+            explanation =
+              "AND is TRUE only when both inputs are TRUE.";
+            break;
+
+          case "OR":
+            result = a || b;
+            explanation =
+              "OR is TRUE when at least one input is TRUE.";
+            break;
+
+          case "XOR":
+            result = a !== b;
+            explanation =
+              "XOR is TRUE when exactly one input is TRUE.";
+            break;
+
+          case "NAND":
+            result = !(a && b);
+            explanation =
+              "NAND is the opposite of AND.";
+            break;
+
+          case "NOR":
+            result = !(a || b);
+            explanation =
+              "NOR is the opposite of OR.";
+            break;
+        }
+
+        gateResult.textContent = result
+          ? "OUTPUT: TRUE (1)"
+          : "OUTPUT: FALSE (0)";
+
+        gateResult.classList.toggle("on", result);
+
+        gateExplanation.textContent = explanation;
+      }
+
+      [gateType, gateA, gateB].forEach(function (input) {
+        input.addEventListener("change", updateGate);
+      });
+
+      updateGate();
+
+      /* --------------------------------------
+         MOBILE NAVIGATION
+         -------------------------------------- */
+
+      const menuToggle =
+        document.querySelector(".menu-toggle");
+
+      const navigation =
+        document.getElementById("lab-navigation");
+
+      if (menuToggle && navigation) {
+        menuToggle.addEventListener("click", function () {
+          const expanded =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            String(!expanded)
+          );
+
+          navigation.classList.toggle(
+            "open",
+            !expanded
+          );
+        });
+      }
+
+    });
+  </script>
+
+</body>
+</html>

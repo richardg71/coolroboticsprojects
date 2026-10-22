@@ -1,0 +1,34 @@
+/* Accent-only restyling of the ORIGINAL custom tutorials. Preserve all their layouts. */
+:root{--sky:#20c4cf;--sky-dark:#0d9da9;--sky-glow:rgba(32,196,207,.12);--navy:#0d0b20;--navy-mid:#1b1834;--navy-light:#2a2446;--text:#f8f6ff;--text-muted:#b2aacd;--green:#20c4cf;--amber:#f16b18;--red:#ed36cf;--accent:#ed36cf;--accent-glow:rgba(237,54,207,.12);--card-border:rgba(183,142,220,.19)}
+body{background:var(--navy);color:var(--text);font-family:Inter,'Segoe UI',Arial,sans-serif}
+.topbar{background:rgba(13,11,32,.93)!important;border-bottom-color:rgba(183,142,220,.18)!important}
+.hero-badge{color:#ed36cf!important;border-color:rgba(237,54,207,.26)!important;background:rgba(237,54,207,.1)!important}
+.hero-badge .dot{background:#f16b18!important}
+h1{background:linear-gradient(110deg,#fff 50%,#ed36cf)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+.section-num,.step.active .step-dot{background:#ed36cf!important;border-color:#ed36cf!important;color:white!important}
+.step.done .step-dot{border-color:#ed36cf!important;color:#ed36cf!important}
+.step.active .step-label,.topbar .back{color:#ed36cf!important}
+.card,.next-card,.dial-card,.terminal-group,.jd-card{background:#1b1834;border-color:rgba(183,142,220,.19)}
+.code-wrap{background:#090c1a;border-color:#37304e}.code-header{background:#241f3b}.copy-btn{cursor:pointer}
+.code-wrap pre{white-space:pre;overflow:auto;tab-size:4}
+.content .section{scroll-margin-top:90px}
+.step{cursor:pointer}.step:focus-visible{outline:2px solid #ed36cf;outline-offset:5px}
+.hero-image-box,.img-box{background:#f7f6fa}.hero-image-box img,.img-box img{object-fit:contain}
+.note{border-left-color:#ed36cf}
+.download-note{margin-top:25px;color:#b2aacd}.download-note a{color:#ed36cf}
+/* Simon Says shares the original component system */
+.simon-project .topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:16px;padding:0 40px;height:56px}
+.simon-project .topbar a{text-decoration:none}.simon-project .topbar .crumb,.simon-project .topbar .sep{color:#b2aacd}
+.simon-project .hero{padding:80px 40px 60px;max-width:1100px;margin:auto}.simon-project .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.simon-project .hero-badge{display:inline-flex;border:1px solid;padding:6px 12px;border-radius:99px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.simon-project h1{font-size:48px;line-height:1.1;margin:0 0 20px}.simon-project .hero-desc{color:#b2aacd;font-size:17px;line-height:1.8;margin-bottom:20px}.simon-project .hero-stats{display:flex;gap:20px;flex-wrap:wrap;color:#b2aacd;font-size:13px}
+.simon-project .hero-image-box{aspect-ratio:4/3;border-radius:20px;overflow:hidden}.simon-project .hero-image-box img{width:100%;height:100%;object-fit:contain}
+.simon-project .progress-bar{max-width:1100px;margin:auto;padding:0 40px 40px}.simon-project .steps{display:flex;position:relative;gap:5px}.simon-project .step{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.simon-project .step-dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1b1834;border:2px solid #39304c;color:#b2aacd;font-size:12px}.simon-project .step-label{font-size:11px;color:#b2aacd;text-align:center}
+.simon-project .content{max-width:1100px;margin:auto;padding:0 40px 80px}.simon-project .section{margin-bottom:64px}.simon-project .section-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.simon-project .section-num{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:13px}.simon-project h2{font-size:26px;margin:0}
+.simon-project .card-grid,.simon-project .next-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.simon-project .card,.simon-project .next-card{border:1px solid #39304c;border-radius:14px;padding:20px}.simon-project .card h3,.simon-project .next-card h3{font-size:15px;margin:0}.simon-project .card p{font-size:13px;color:#b2aacd;margin:6px 0 0}
+.simon-project .learn-list{list-style:none;padding:0;display:grid;gap:12px}.simon-project .learn-list li{color:#b2aacd}.simon-project .learn-list li:before{content:'✓';color:#20c4cf;margin-right:12px}
+.simon-project .code-wrap{border:1px solid #39304c;border-radius:12px;overflow:hidden}.simon-project .code-header{padding:10px 16px;display:flex;justify-content:space-between;color:#b2aacd;font-size:12px}.simon-project .copy-btn{background:#312948;color:#fff;border:1px solid #524166;border-radius:6px;padding:4px 12px}
+.simon-project pre{padding:20px;overflow:auto;font:13px/1.7 Consolas,monospace;color:#b9dbe9;margin:0}.simon-project .note{margin:0 0 20px;padding:16px;background:#2c2342;color:#dfd2eb;border-left:3px solid #ed36cf;border-radius:6px}
+@media(max-width:768px){.simon-project .topbar,.simon-project .hero,.simon-project .progress-bar,.simon-project .content{padding-left:20px;padding-right:20px}.simon-project .hero-grid{grid-template-columns:1fr}.simon-project h1{font-size:36px}.simon-project .steps{overflow:auto;padding-bottom:10px}.simon-project .step{min-width:90px}}

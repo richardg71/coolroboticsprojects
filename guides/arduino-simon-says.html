@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Arduino Simon Says – Cool Robotics Projects</title><link href="../styles/original-projects.css" rel="stylesheet"/><script defer="" src="../scripts/original-projects.js"></script></head><body class="original-project simon-project">
+<nav class="topbar"><a class="back" href="../projects.html">← Back</a><span class="sep">/</span><span class="crumb">Projects</span><span class="sep">/</span><span class="title-crumb">Arduino Simon Says</span></nav>
+<section class="hero"><div class="hero-grid"><div><div class="hero-badge"><span class="dot"></span>Memory game · Arduino</div><h1>Arduino Simon Says</h1><p class="hero-desc">Build a memory game with an Arduino, LEDs, buttons, resistors, and a speaker. Watch the pattern, then repeat it correctly.</p><div class="hero-stats"><div class="stat-pill">● 4 LEDs</div><div class="stat-pill">● 4 buttons</div><div class="stat-pill">● 1 speaker or buzzer</div></div></div><div class="hero-image-box"><img alt="Illustration from the original Arduino Simon Says project document" src="arduino-simon-says/figure-01.png"/></div></div></section>
+<div class="progress-bar"><div class="steps"><div class="step" data-target="section-1" role="link" tabindex="0"><div class="step-dot">1</div><div class="step-label">What you will learn</div></div><div class="step" data-target="section-2" role="link" tabindex="0"><div class="step-dot">2</div><div class="step-label">Hardware needed</div></div><div class="step" data-target="section-3" role="link" tabindex="0"><div class="step-dot">3</div><div class="step-label">How the game works</div></div><div class="step" data-target="section-4" role="link" tabindex="0"><div class="step-dot">4</div><div class="step-label">Pin setup</div></div><div class="step" data-target="section-5" role="link" tabindex="0"><div class="step-dot">5</div><div class="step-label">Starter code</div></div><div class="step" data-target="section-6" role="link" tabindex="0"><div class="step-dot">6</div><div class="step-label">Next steps</div></div></div></div><main class="content">
+<section class="section" id="section-1"><div class="section-header"><div class="section-num">01</div><h2>What you will learn</h2></div><ul class="learn-list"><li>Use buttons as Arduino inputs</li><li>Control multiple LEDs</li><li>Play tones using a buzzer or speaker</li><li>Use arrays and game logic in Arduino code</li></ul></section>
+<section class="section" id="section-2"><div class="section-header"><div class="section-num">02</div><h2>Hardware needed</h2></div><div class="card-grid"><div class="card"><h3>Arduino UNO</h3></div><div class="card"><h3>4 buttons</h3></div><div class="card"><h3>4 LEDs (different colors preferred)</h3></div><div class="card"><h3>4 × 220-ohm resistors</h3></div><div class="card"><h3>1 × 200-ohm resistor</h3></div><div class="card"><h3>1 speaker or buzzer</h3></div><div class="card"><h3>Jumper wires</h3></div><div class="card"><h3>Breadboard</h3></div></div></section><section class="section" id="section-3"><div class="section-header"><div class="section-num">03</div><h2>How the game works</h2></div><p>The Arduino turns on LEDs in a pattern. The player watches the pattern, then presses the matching buttons in the same order. Each round adds one more step to the sequence. If the player presses the wrong button or takes too long, the game ends.</p></section>
+<section class="section" id="section-4"><div class="section-header"><div class="section-num">04</div><h2>Pin setup</h2></div><div class="card-grid"><div class="card"><h3>Red LED</h3><p>Pin 10</p></div><div class="card"><h3>Green LED</h3><p>Pin 3</p></div><div class="card"><h3>Blue LED</h3><p>Pin 13</p></div><div class="card"><h3>Yellow LED</h3><p>Pin 5</p></div><div class="card"><h3>Red button</h3><p>Pin 9</p></div><div class="card"><h3>Green button</h3><p>Pin 2</p></div><div class="card"><h3>Blue button</h3><p>Pin 12</p></div><div class="card"><h3>Yellow button</h3><p>Pin 6</p></div><div class="card"><h3>Buzzer</h3><p>Pin 4 and 7</p></div></div></section><section class="section" id="section-5"><div class="section-header"><div class="section-num">05</div><h2>Starter code</h2></div><div class="note"><span class="note-icon">ⓘ</span><span>This is starter code from the original Simon Says HTML. The full game logic is not included in this snippet.</span></div><div class="code-wrap"><div class="code-header"><span class="lang">Arduino / C++</span><button class="copy-btn" data-copy="simon-code" type="button">Copy</button></div><pre id="simon-code"><code>#define CHOICE_OFF      0
+#define CHOICE_NONE     0
+#define CHOICE_RED      (1 &lt;&lt; 0)
+#define CHOICE_GREEN    (1 &lt;&lt; 1)
+#define CHOICE_BLUE     (1 &lt;&lt; 2)
+#define CHOICE_YELLOW   (1 &lt;&lt; 3)
+
+#define LED_RED     10
+#define LED_GREEN   3
+#define LED_BLUE    13
+#define LED_YELLOW  5
+
+#define BUTTON_RED    9
+#define BUTTON_GREEN  2
+#define BUTTON_BLUE   12
+#define BUTTON_YELLOW 6
+
+#define BUZZER1  4
+#define BUZZER2  7
+
+#define ROUNDS_TO_WIN      13
+#define ENTRY_TIME_LIMIT   3000
+
+byte gameBoard[32];
+byte gameRound = 0;
+
+void setup() {
+    Serial.begin(9600);
+
+    pinMode(BUTTON_RED, INPUT_PULLUP);
+    pinMode(BUTTON_GREEN, INPUT_PULLUP);
+    pinMode(BUTTON_BLUE, INPUT_PULLUP);
+    pinMode(BUTTON_YELLOW, INPUT_PULLUP);
+
+    pinMode(LED_RED, OUTPUT);
+    pinMode(LED_GREEN, OUTPUT);
+    pinMode(LED_BLUE, OUTPUT);
+    pinMode(LED_YELLOW, OUTPUT);
+
+    pinMode(BUZZER1, OUTPUT);
+    pinMode(BUZZER2, OUTPUT);
+}
+
+void loop() {
+    // Full game code goes here.
+}</code></pre></div><p>The full version uses functions to add random moves, check button input, play sounds, and decide whether the player wins or loses.</p></section>
+<section class="section" id="section-6"><div class="section-header"><div class="section-num">06</div><h2>Next steps</h2></div><div class="next-grid"><div class="next-card"><h3>Add the full SparkFun Simon Says game code</h3></div><div class="next-card"><h3>Test the LEDs one at a time</h3></div><div class="next-card"><h3>Test each button input</h3></div><div class="next-card"><h3>Add sounds for correct and incorrect answers</h3></div><div class="next-card"><h3>Change the number of rounds needed to win</h3></div></div><p class="download-note">The original supplied project document is also available: <a download="" href="../resources/Arduino%20Simon%20Says%20Tinkercad-1.docx">Download Word guide ↗</a></p></section></main></body></html>

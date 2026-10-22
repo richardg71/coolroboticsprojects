@@ -1,91 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Cool Robotics Projects</title>
-    <link rel="stylesheet" href="homepage.css">
-    <link rel="stylesheet" href="styles/chat.css">
-    <link rel="stylesheet" href="styles/theme.css">
-</head>
-<body>
-
-    <header class="header loading">
-        <a href="homepage.html" class="logo-section">
-            <div class="logo">
-                <img src="logo.png" alt="Cool Robotics Projects Logo">
-            </div>
-            <div class="logo-text">Cool<br>Robotics<br>Projects</div>
-        </a>
-
-        <nav class="nav-links">
-            <a href="projects.html">Projects</a>
-            <a href="creators.html">Creators</a>
-            <button class="theme-toggle" aria-label="Toggle Theme">🌙 <span>Dark Mode</span></button>
-        </nav>
-    </header>
-
-    <div class="animated-bg"></div>
-
-    <section class="projects-section loading">
-
-        <div class="section-title">Basic Projects - Kit Parts</div>
-    
-        <div class="project-grid">
-    
-            <a href="projectspage2/weather-station.html" class="project-card">
-                <img src="imagesproject/weather-station.png" alt="Weather Station Project">
-                <div class="project-card-content">
-                    <h3>Weather Station</h3>
-                    <p>Use the DHT11 sensor to measure temperature and humidity.</p>
-                </div>
-            </a>
-    
-            <a href="projectspage2/motion-sensor.html" class="project-card">
-                <img src="imagesproject/motion-sensor.png" alt="Motion Sensor Project">
-                <div class="project-card-content">
-                    <h3>Motion Sensor</h3>
-                    <p>Use the HC-SR501 PIR sensor to detect movement.</p>
-                </div>
-            </a>
-    
-            <a href="projectspage2/relay-project.html" class="project-card">
-                <img src="imagesproject/relay-project.png" alt="Relay Project">
-                <div class="project-card-content">
-                    <h3>Home Automation with Relays</h3>
-                    <p>Control larger loads using a 2-channel relay module.</p>
-                </div>
-            </a>
-    
-            <a href="projectspage2/simon-says.html" class="project-card">
-                <img src="imagesproject/simon-says.png" alt="Simon Says Project">
-                <div class="project-card-content">
-                    <h3>Simon Says Game</h3>
-                    <p>Build a memory game using LEDs, buttons, and a buzzer.</p>
-                </div>
-            </a>
-    
-        </div>
-    
-    </section>
-
-    <footer class="footer loading">
-        <a href="homepage.html" class="footer-logo-section">
-            <div class="footer-logo">
-                <img src="logo.png" alt="Cool Robotics Projects Logo">
-            </div>
-            <div class="footer-text">Cool<br>Robotics<br>Projects</div>
-        </a>
-
-        <div style="font-size: 14px; opacity: 0.8;">© 2024 BYU-Idaho Robotics Team</div>
-
-        <nav class="footer-nav">
-            <a href="projects.html">Projects</a>
-            <a href="creators.html">Creators</a>
-        </nav>
-    </footer>
-
-    <script src="scripts/chat.js"></script>
-    <script src="scripts/theme.js"></script>
-</body>
-</html>
+<html data-theme="dark" lang="en"><head><title>Projects | Cool Robotics Projects</title><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Arduino and robotics projects and learning resources from the BYU–Idaho robotics team." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="homepage.css" rel="stylesheet"/><link href="styles/chat.css" rel="stylesheet"/><script defer="" src="scripts/theme.js"></script><script defer="" src="scripts/chat.js"></script><script defer="" src="scripts/projects-data.js"></script><script defer="" src="scripts/site.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav-shell"><nav aria-label="Main navigation" class="nav-inner"><a class="brand" href="index.html"><span class="brand-symbol">c<span>●</span>r</span><span>cool robotics<span class="brand-small">PROJECTS / BYU–IDAHO</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge</a><a href="creators.html">Creators</a></div><div class="nav-actions"><button aria-label="Search projects" class="icon-button search-trigger" type="button">⌕</button><button aria-label="Toggle color theme" class="icon-button theme-toggle" type="button">☼</button><a class="nav-cta" href="projects.html">Explore <span>↗</span></a><button aria-expanded="false" aria-label="Open navigation" class="icon-button menu-toggle">☰</button></div></nav></header><main id="main"><section class="page-hero page-hero-projects"><div class="container reveal"><span class="eyebrow">PROJECT LIBRARY</span><h1>Build something <em>real.</em></h1><p>Four starter kit builds. More projects will be added as they become available.</p></div></section><section class="projects-section section-pad"><div class="container"><div class="library-toolbar"><label class="project-search"><span aria-hidden="true">⌕</span><span class="sr-only">Search projects</span><input id="project-search" placeholder="Search projects and sensors..." type="search"/><kbd>/</kbd></label><div aria-label="Difficulty" class="filters" role="group"><button aria-pressed="true" class="filter active" data-filter="all">All <span>04</span></button><button aria-pressed="false" class="filter" data-filter="beginner">Beginner</button><button aria-pressed="false" class="filter" data-filter="intermediate">Intermediate</button><button aria-pressed="false" class="filter" data-filter="advanced">Advanced</button></div></div><div class="section-heading reveal"><div><div class="eyebrow light-eyebrow">BASIC PROJECTS · KIT PARTS</div><h2>Start with a build.</h2></div></div><div class="library-grid"><a class="library-card reveal" data-level="beginner" data-search="weather station use the dht11 sensor with arduino to measure temperature and humidity while learning about sensor communication and environmental monitoring. weather temperature humidity dht11 sensor arduino" href="guides/weather-station.html" id="weather-station"><div class="library-visual"><img alt="" loading="lazy" src="images/weather.svg"/><span class="library-type">KIT PROJECT / 01</span></div><div class="library-card-body"><span class="level level-beginner">BEGINNER</span><h3>Weather Station</h3><p>Use the DHT11 sensor with Arduino to measure temperature and humidity while learning about sensor communication and environmental monitoring.</p><span class="library-link">Open guide <span aria-hidden="true">↗</span></span></div></a><a class="library-card reveal" data-level="intermediate" data-search="motion detection system build a motion detection system using the hc-sr501 pir sensor and arduino to detect movement and trigger automated responses. motion pir hc-sr501 proximity movement sensor arduino" href="guides/motion-detection.html" id="motion-detection"><div class="library-visual"><img alt="" loading="lazy" src="images/motion.svg"/><span class="library-type">KIT PROJECT / 02</span></div><div class="library-card-body"><span class="level level-intermediate">INTERMEDIATE</span><h3>Motion Detection System</h3><p>Build a motion detection system using the HC-SR501 PIR sensor and Arduino to detect movement and trigger automated responses.</p><span class="library-link">Open guide <span aria-hidden="true">↗</span></span></div></a><a class="library-card reveal" data-level="intermediate" data-search="controlling systems with relays learn how to control a relay module with a microcontroller. relay relay control esp32 microcontroller" href="guides/relay-control.html" id="relay-control"><div class="library-visual"><img alt="" loading="lazy" src="images/automation.svg"/><span class="library-type">KIT PROJECT / 03</span></div><div class="library-card-body"><span class="level level-intermediate">INTERMEDIATE</span><h3>Controlling Systems with Relays</h3><p>Learn how to control a relay module with a microcontroller.</p><span class="library-link">Open guide <span aria-hidden="true">↗</span></span></div></a><a class="library-card reveal" data-level="beginner" data-search="arduino simon says build a simon says game with an arduino uno, buttons, leds, and a speaker. simon says tinkercad buttons leds speaker arduino uno game" href="guides/arduino-simon-says.html" id="arduino-simon-says"><div class="library-visual"><img alt="" loading="lazy" src="images/motion.svg"/><span class="library-type">KIT PROJECT / 04</span></div><div class="library-card-body"><span class="level level-beginner">BEGINNER</span><h3>Arduino Simon Says</h3><p>Build a Simon Says game with an Arduino Uno, buttons, LEDs, and a speaker.</p><span class="library-link">Open guide <span aria-hidden="true">↗</span></span></div></a></div><p class="source-note">This library will grow as new project guides are provided.</p><p class="empty-state" hidden="">No projects match your search.</p></div></section></main><footer class="site-footer"><div class="container footer-inner"><div><strong>cool robotics.</strong><p>Arduino and robotics projects by the BYU–Idaho robotics team.</p></div><div><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge</a><a href="creators.html">Creators</a></div></div></footer><div class="search-modal" hidden="" id="search-modal">
+<div class="search-backdrop" data-close-search="">
+</div>
+<div aria-label="Search projects" aria-modal="true" class="search-dialog" role="dialog">
+<div class="search-dialog-top">
+<span>
+    ⌕
+   </span>
+<input aria-label="Search robotics projects" id="modal-search" placeholder="Search robotics projects..." type="search">
+<button aria-label="Close search" class="search-dismiss" data-close-search="" type="button">
+    ESC ×
+   </button>
+</input></div>
+<div class="search-results" id="search-results">
+</div>
+<p class="search-tip">
+   Type to find projects • Enter to open project library
+  </p>
+</div>
+</div>
+<div class="chat-container">
+<button aria-expanded="false" aria-label="Open robotics assistant" class="chat-toggle" type="button">
+  ✳
+  <span>
+   Ask a maker
+  </span>
+</button>
+<section aria-label="Robotics assistant" class="chat-window" hidden="">
+<div class="chat-header">
+<div>
+<span class="chat-status">
+     ● HERE TO HELP
+    </span>
+<h3>
+     Maker assistant
+    </h3>
+</div>
+<button aria-label="Close chat" class="chat-close">
+    ×
+   </button>
+</div>
+<div aria-live="polite" class="chat-messages">
+</div>
+<div class="typing-indicator" hidden="">
+   Thinking
+   <span class="dots">
+    ...
+   </span>
+</div>
+<div class="quick-replies">
+</div>
+<form class="chat-input-area">
+<input aria-label="Your message" class="chat-input" placeholder="Ask about Arduino..."/>
+<button aria-label="Send message" class="chat-send" type="submit">
+    ↗
+   </button>
+</form>
+</section>
+</div>
+</body></html>

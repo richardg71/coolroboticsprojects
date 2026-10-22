@@ -438,8 +438,7 @@
     display: block;
 }
 
-.logo,
-.footer-logo {
+.logo, .footer-logo img {
     width: 72px;
     height: 72px;
     border-radius: 50%;
@@ -456,9 +455,4 @@
         0 0 20px rgba(59,130,246,0.25);
 
     border: 2px solid rgba(255,255,255,0.08);
-}
-.logo-section,
-.footer-logo-section {
-    text-decoration: none;
-    color: white;
 }

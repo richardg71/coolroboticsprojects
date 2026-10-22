@@ -1,178 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Robotics Projects - Creators</title>
-    <link rel="stylesheet" href="creators.css">
-    <link rel="stylesheet" href="styles/chat.css">
-    <link rel="stylesheet" href="styles/theme.css">
-</head>
-<body>
-    <header class="header loading">
-
-        <a href="homepage.html" class="logo-section">
-            <div class="logo">
-                <img src="logo.png" alt="Cool Robotics Projects Logo">
-            </div>
-    
-            <div class="logo-text">
-                Cool<br>Robotics<br>Projects
-            </div>
-        </a>
-    
-        <nav class="nav-links">
-            <a href="projects.html">Projects</a>
-            <a href="creators.html">Creators</a>
-    
-            <button class="theme-toggle" aria-label="Toggle Theme">
-                🌙 <span>Dark Mode</span>
-            </button>
-        </nav>
-    
-    </header>
-
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-
-    <section class="about-section loading">
-        <div class="about-title">ABOUT US</div>
-        <p class="about-text">
-            This entire project was put together by BYU-Idaho students under the supervision of one of its amazing professors, Richard Grimmet! 
-            We're passionate about robotics, innovation, and sharing knowledge with the world through creative projects and collaborative learning.
-        </p>
-    </section>
-
-    <section class="contributors-section loading">
-        <div class="section-header">Producers & Contributors</div>
-        <div class="contributors-grid">
-            <div class="contributor-card">
-                <div class="avatar">👨‍🏫</div>
-                <div class="contributor-name">Richard Grimmet</div>
-                <div class="contributor-role">Professor & Supervisor</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎬</div>
-                <div class="contributor-name">Leul Eshetu</div>
-                <div class="contributor-role">Asst. Supervisor</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎥</div>
-                <div class="contributor-name">Chase Whittaker</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">✂️</div>
-                <div class="contributor-name">Daniel Cross</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎵</div>
-                <div class="contributor-name">Ethan Schoening</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎨</div>
-                <div class="contributor-name">Hannah Buckley</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">📝</div>
-                <div class="contributor-name">Jalen Anderson</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎭</div>
-                <div class="contributor-name">Kiera Anderson</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🔧</div>
-                <div class="contributor-name">Lidya Langana</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🌟</div>
-                <div class="contributor-name">Angelina Orwin</div>
-                <div class="contributor-role">Video Producer</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contributors-section loading">
-        <div class="section-header">Contributors - Website Team</div>
-        <div class="contributors-grid">
-            <div class="contributor-card">
-                <div class="avatar">💻</div>
-                <div class="contributor-name">Emily Gunn</div>
-                <div class="contributor-role">Web Developer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">⚡</div>
-                <div class="contributor-name">Leul Eshetu</div>
-                <div class="contributor-role">Web Developer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎨</div>
-                <div class="contributor-name">Kelly Manheimer</div>
-                <div class="contributor-role">Web Developer</div>
-            </div>
-            <div class="contributor-card">
-                <div class="avatar">🎨</div>
-                <div class="contributor-name">Michael Ballantyne</div>
-                <div class="contributor-role">Web Developer</div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer loading">
-
-        <a href="homepage.html" class="footer-logo-section">
-            <div class="footer-logo">
-                <img src="logo.png" alt="Cool Robotics Projects Logo">
-            </div>
-    
-            <div class="footer-text">
-                Cool<br>Robotics<br>Projects
-            </div>
-        </a>
-    
-        <div style="font-size: 14px; opacity: 0.8;">
-            © 2024 BYU-Idaho Robotics Team
-        </div>
-    
-        <nav class="footer-nav">
-            <a href="projects.html">Projects</a>
-            <a href="creators.html">Creators</a>
-        </nav>
-    
-    </footer>
-
-    <!-- AI Chat Box -->
-    <div class="chat-container">
-        <button class="chat-toggle" aria-label="Open Chat">💬</button>
-        <div class="chat-window">
-            <div class="chat-header">
-                <h3>🤖 Robotics Assistant</h3>
-                <button class="chat-close" aria-label="Close Chat">×</button>
-            </div>
-            <div class="chat-messages"></div>
-            <div class="typing-indicator">
-                <div class="typing-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="quick-replies"></div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" placeholder="Ask about Arduino..." />
-                <button class="chat-send" aria-label="Send">➤</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="scripts/chat.js"></script>
-    <script src="scripts/theme.js"></script>
-</body>
-</html>
+<!doctype html><html lang="en" data-theme="dark"><head><title>Creators | Cool Robotics Projects</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Arduino and robotics projects and learning resources from the BYU–Idaho robotics team."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="homepage.css"><link rel="stylesheet" href="styles/chat.css"><script defer src="scripts/theme.js"></script><script defer src="scripts/chat.js"></script><script defer src="scripts/projects-data.js"></script><script defer src="scripts/site.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav-shell"><nav class="nav-inner" aria-label="Main navigation"><a class="brand" href="index.html"><span class="brand-symbol">c<span>●</span>r</span><span>cool robotics<span class="brand-small">PROJECTS / BYU–IDAHO</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge resources</a><a href="creators.html">Creators</a></div><div class="nav-actions"><button class="icon-button search-trigger" aria-label="Search projects" type="button">⌕</button><button class="icon-button theme-toggle" aria-label="Toggle color theme" type="button">☼</button><a class="nav-cta" href="projects.html">Explore <span>↗</span></a><button class="icon-button menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button></div></nav></header><main id="main"><section class="page-hero"><div class="container reveal"><span class="eyebrow">THE PEOPLE BEHIND THE PROJECT</span><h1>Meet the <em>creators.</em></h1><p>This project was put together by BYU–Idaho students under the supervision of professor Richard Grimmet.</p></div></section><section class="projects-section section-pad"><div class="container"><div class="team-section reveal"><div class="section-heading"><div><span class="eyebrow light-eyebrow">THE TEAM</span><h2>Video Making<span>.</span></h2></div></div><div class="team-grid"><article class="team-card"><span class="team-avatar">RG</span><h3>Richard Grimmet</h3><p>Professor &amp; Supervisor</p></article><article class="team-card"><span class="team-avatar">AO</span><h3>Angelina Orwin</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">CW</span><h3>Chase Whittaker</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">DC</span><h3>Daniel Cross</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">ES</span><h3>Ethan Schoening</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">HB</span><h3>Hannah Buckley</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">JA</span><h3>Jalen Anderson</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">KA</span><h3>Kiera Anderson</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">LL</span><h3>Lidya Langana</h3><p>Video Producer</p></article><article class="team-card"><span class="team-avatar">MC</span><h3>Markalanna Crank</h3><p>Video Producer</p></article></div></div><div class="team-section reveal"><div class="section-heading"><div><span class="eyebrow light-eyebrow">THE TEAM</span><h2>Website Team<span>.</span></h2></div></div><div class="team-grid"><article class="team-card"><span class="team-avatar">EG</span><h3>Emily Gunn</h3><p>Web Developer</p></article><article class="team-card"><span class="team-avatar">LE</span><h3>Leul Eshetu</h3><p>Web Developer</p></article><article class="team-card"><span class="team-avatar">KM</span><h3>Kelly Manheimer</h3><p>Web Developer</p></article></div></div></div></section></main><footer class="site-footer"><div class="container footer-inner"><div><strong>cool robotics.</strong><p>Arduino and robotics projects by the BYU–Idaho robotics team.</p></div><div><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge</a><a href="creators.html">Creators</a></div></div></footer><div class="search-modal" hidden="" id="search-modal">
+ <div class="search-backdrop" data-close-search="">
+ </div>
+ <div aria-label="Search projects" aria-modal="true" class="search-dialog" role="dialog">
+  <div class="search-dialog-top">
+   <span>
+    ⌕
+   </span>
+   <input aria-label="Search robotics projects" id="modal-search" placeholder="Search robotics projects..." type="search"/>
+   <button aria-label="Close search" class="search-dismiss" data-close-search="" type="button">
+    ESC ×
+   </button>
+  </div>
+  <div class="search-results" id="search-results">
+  </div>
+  <p class="search-tip">
+   Type to find projects • Enter to open project library
+  </p>
+ </div>
+</div>
+<div class="chat-container">
+ <button aria-expanded="false" aria-label="Open robotics assistant" class="chat-toggle" type="button">
+  ✳
+  <span>
+   Ask a maker
+  </span>
+ </button>
+ <section aria-label="Robotics assistant" class="chat-window" hidden="">
+  <div class="chat-header">
+   <div>
+    <span class="chat-status">
+     ● HERE TO HELP
+    </span>
+    <h3>
+     Maker assistant
+    </h3>
+   </div>
+   <button aria-label="Close chat" class="chat-close">
+    ×
+   </button>
+  </div>
+  <div aria-live="polite" class="chat-messages">
+  </div>
+  <div class="typing-indicator" hidden="">
+   Thinking
+   <span class="dots">
+    ...
+   </span>
+  </div>
+  <div class="quick-replies">
+  </div>
+  <form class="chat-input-area">
+   <input aria-label="Your message" class="chat-input" placeholder="Ask about Arduino..."/>
+   <button aria-label="Send message" class="chat-send" type="submit">
+    ↗
+   </button>
+  </form>
+ </section>
+</div>
+</body></html>

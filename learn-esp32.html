@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn ESP32 | Cool Robotics Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepage.css">
+
+  <style>
+    :root {
+      --path-bg: #0d081b;
+      --path-card: #1d142e;
+      --path-text: #fff;
+      --path-muted: #c5b7d7;
+      --path-border: rgba(196,156,255,.2);
+    }
+
+    html[data-theme="light"] {
+      --path-bg: #f7f3fb;
+      --path-card: #fff;
+      --path-text: #281b35;
+      --path-muted: #6b5e79;
+      --path-border: #ddd1e9;
+    }
+
+    body {
+      background: var(--path-bg);
+      color: var(--path-text);
+    }
+
+    .path-main {
+      min-height: 100vh;
+      background: var(--path-bg);
+      color: var(--path-text);
+    }
+
+    .path-wrap {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .path-hero {
+      padding: 150px 0 90px;
+      background: radial-gradient(ellipse at 80% 40%,rgba(217,48,194,.19),transparent 55%);
+    }
+
+    .path-kicker {
+      color: #ed4ed0;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .path-hero h1 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: clamp(56px,8vw,105px);
+      line-height: 1;
+      letter-spacing: -5px;
+      margin: 24px 0;
+    }
+
+    .path-hero h1 span {
+      color: #e92bc5;
+    }
+
+    .path-hero p {
+      max-width: 680px;
+      color: var(--path-muted);
+      line-height: 1.85;
+      font-size: 17px;
+    }
+
+    .path-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .path-button {
+      display: inline-block;
+      padding: 15px 23px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: #e92bc5;
+      color: #fff;
+    }
+
+    .path-button.secondary {
+      background: var(--path-card);
+      color: var(--path-text);
+      border: 1px solid var(--path-border);
+    }
+
+    .path-section {
+      padding: 65px 0;
+    }
+
+    .path-section h2 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: clamp(32px,5vw,53px);
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .path-section > .path-wrap > p {
+      color: var(--path-muted);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .path-card {
+      padding: 25px;
+      background: var(--path-card);
+      border: 1px solid var(--path-border);
+      border-radius: 18px;
+    }
+
+    .path-card small {
+      color: #ed4ed0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .path-card h3 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: 23px;
+      margin: 14px 0;
+    }
+
+    .path-card p,
+    .path-card li {
+      color: var(--path-muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .path-card ul {
+      padding-left: 20px;
+    }
+
+    .path-card a {
+      color: #ed4ed0;
+    }
+
+    .path-lesson {
+      border: 1px solid var(--path-border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--path-card);
+      overflow: hidden;
+    }
+
+    .path-lesson summary {
+      padding: 23px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 19px;
+    }
+
+    .path-lesson-body {
+      padding: 0 24px 25px;
+      color: var(--path-muted);
+      line-height: 1.85;
+    }
+
+    .path-lesson-body strong {
+      color: var(--path-text);
+    }
+
+    .path-lesson-body ul,
+    .path-lesson-body ol {
+      padding-left: 23px;
+    }
+
+    .path-note {
+      background: var(--path-card);
+      border-left: 3px solid #e92bc5;
+      padding: 20px;
+      border-radius: 0 12px 12px 0;
+      color: var(--path-muted);
+      line-height: 1.8;
+      margin-top: 25px;
+    }
+
+    @media(max-width:800px) {
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+      .path-hero {
+        padding-top: 120px;
+      }
+      .path-hero h1 {
+        letter-spacing: -3px;
+      }
+    }
+  </style>
+
+  <script src="scripts/theme.js" defer></script>
+</head>
+
+<body>
+  <header class="nav-shell">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-symbol">c<span>●</span>r</span>
+        <span>cool robotics<span class="brand-small">PROJECTS / BYU–IDAHO</span></span>
+      </a>
+
+     
+<div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="learn-arduino.html">Learn Arduino</a>
+    <a href="learn-esp32.html">Learn ESP32</a>
+    <a href="learn-dev-board.html">Learn Dev Board</a>
+    <a href="ebadge.html">E-Badge</a>
+    <a href="creators.html">Creators</a>
+  </div>
+      
+
+      <div class="nav-actions">
+        <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme">☼</button>
+        <a class="nav-cta" href="index.html#project-finder">Find Projects ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="path-main">
+
+    <section class="path-hero">
+      <div class="path-wrap">
+        <div class="path-kicker">LEARNING PATH 02 / LAFVIN STARTER KIT</div>
+        <h1>Learn <span>ESP32.</span></h1>
+        <p>
+          Discover microcontrollers, sensors, displays, and connectivity
+          using the LAFVIN ESP32 Basic Starter Kit. Learn what your
+          components do before building your first ESP32 project.
+        </p>
+
+        <div class="path-actions">
+          <a href="#lessons" class="path-button">Start Learning ↗</a>
+          <a href="#projects" class="path-button secondary">View Projects ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="path-section" id="hardware">
+      <div class="path-wrap">
+        <div class="path-kicker">YOUR HARDWARE</div>
+        <h2>What's in your kit?</h2>
+        <p>These components are shown on the kit inventory in your reference photo.</p>
+
+        <div class="path-grid">
+          <article class="path-card">
+            <small>THE CONTROLLER</small>
+            <h3>ESP32 Development Board</h3>
+            <p>
+              A programmable microcontroller board with wireless
+              capabilities. It reads inputs and controls outputs.
+            </p>
+          </article>
+
+          <article class="path-card">
+            <small>INPUTS</small>
+            <h3>Sensors & Controls</h3>
+            <ul>
+              <li>DHT11 temperature/humidity sensor</li>
+              <li>PIR motion sensor</li>
+              <li>Obstacle avoidance sensor</li>
+              <li>Photoresistor module</li>
+              <li>Buttons and potentiometer</li>
+            </ul>
+          </article>
+
+          <article class="path-card">
+            <small>OUTPUTS</small>
+            <h3>Displays & Actuators</h3>
+            <ul>
+              <li>0.96-inch OLED display</li>
+              <li>Relay module</li>
+              <li>LEDs and RGB LED</li>
+              <li>Passive buzzer</li>
+            </ul>
+          </article>
+
+          <article class="path-card">
+            <small>BUILDING MATERIALS</small>
+            <h3>Circuit Components</h3>
+            <p>
+              Breadboard, resistors, jumper wires,
+              and USB cable for connecting and powering circuits.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="path-section" id="lessons">
+      <div class="path-wrap">
+        <div class="path-kicker">BEGINNER LESSONS</div>
+        <h2>Learn the essentials.</h2>
+
+        <details class="path-lesson" open>
+          <summary>01 — What is an ESP32?</summary>
+          <div class="path-lesson-body">
+            <p>
+              The ESP32 is a family of microcontrollers used in
+              electronics and connected devices. Your development
+              board lets you program the chip and connect components.
+            </p>
+            <p>
+              Unlike a basic Arduino Uno, many ESP32 boards include
+              Wi-Fi and Bluetooth capabilities.
+            </p>
+            <p>
+              <strong>Important:</strong> ESP32 GPIO uses 3.3 V logic.
+              Do not assume every 5 V Arduino sensor or module can
+              connect directly to an ESP32 pin.
+            </p>
+          </div>
+        </details>
+
+        <details class="path-lesson">
+          <summary>02 — Set up your programming environment</summary>
+          <div class="path-lesson-body">
+            <ol>
+              <li>Install Arduino IDE from the official Arduino website.</li>
+              <li>Connect the ESP32 development board using its USB cable.</li>
+              <li>Install the appropriate ESP32 board support package.</li>
+              <li>Select the exact board model and available serial port.</li>
+              <li>Upload a basic test sketch supported by your board.</li>
+            </ol>
+            <p>
+              Confirm the board's exact model before choosing pin
+              numbers or a board profile.
+            </p>
+          </div>
+        </details>
+
+        <details class="path-lesson">
+          <summary>03 — Understand breadboards and GPIO</summary>
+          <div class="path-lesson-body">
+            <p>
+              A breadboard lets you make temporary electrical
+              connections without soldering. GPIO pins are
+              programmable connections used for digital input
+              and output.
+            </p>
+            <p>
+              Learn to identify power rails, connected rows,
+              ground, resistors, and component polarity.
+            </p>
+            <p>
+              Always check the ESP32 board's pinout and
+              voltage requirements before wiring a component.
+            </p>
+          </div>
+        </details>
+
+        <details class="path-lesson">
+          <summary>04 — Understand your sensors</summary>
+          <div class="path-lesson-body">
+            <p>
+              The DHT11 measures temperature and humidity.
+              A PIR sensor detects changes in infrared radiation
+              associated with movement. A photoresistor changes
+              resistance in response to light.
+            </p>
+            <p>
+              Each component has its own pinout, voltage requirements,
+              and programming interface. Those details must be
+              checked before building a circuit.
+            </p>
+          </div>
+        </details>
+
+        <details class="path-lesson">
+          <summary>05 — Outputs, displays, and relays</summary>
+          <div class="path-lesson-body">
+            <p>
+              LEDs provide simple visual output. A buzzer can
+              produce sound. An OLED can show readings and text.
+              A relay allows a low-power control circuit to
+              switch a separate load.
+            </p>
+            <p>
+              For beginner activities, use suitable low-voltage
+              circuits. Do not connect household mains electricity
+              to a student breadboard project.
+            </p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="path-section" id="projects">
+      <div class="path-wrap">
+        <div class="path-kicker">ESP32 PROJECT LIBRARY</div>
+        <h2>Projects for your kit.</h2>
+        <p>
+          These are suggested activities based on the visible kit
+          components. ESP32-specific tutorials still need wiring,
+          code, and testing before publication.
+        </p>
+
+        <div class="path-grid">
+          <article class="path-card">
+            <small>PLANNED / BEGINNER</small>
+            <h3>LED Blink</h3>
+            <p>Control an LED from an ESP32 GPIO pin.</p>
+            <p><strong>Required:</strong> ESP32 board, LED, resistor, breadboard, jumper wires.</p>
+            <p><strong>Kit:</strong> LAFVIN ESP32 Basic Starter Kit.</p>
+          </article>
+
+          <article class="path-card">
+            <small>PLANNED / SENSORS</small>
+            <h3>Temperature Monitor</h3>
+            <p>Read temperature and humidity with a DHT11.</p>
+            <p><strong>Required:</strong> ESP32 board, DHT11 module, jumper wires.</p>
+            <p><strong>Kit:</strong> LAFVIN ESP32 Basic Starter Kit.</p>
+          </article>
+
+          <article class="path-card">
+            <small>PLANNED / DISPLAY</small>
+            <h3>OLED Data Display</h3>
+            <p>Display text or sensor readings on an OLED.</p>
+            <p><strong>Required:</strong> ESP32 board, 0.96-inch OLED, jumper wires.</p>
+            <p><strong>Kit:</strong> LAFVIN ESP32 Basic Starter Kit.</p>
+          </article>
+        </div>
+
+        <div class="path-note">
+          These project concepts are not yet finished tutorials.
+          Verify each module's voltage, pinout, and software
+          library before publishing build instructions.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>cool robotics.</strong>
+        <p>Learn electronics with the hardware you own.</p>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="learn-arduino.html">Arduino</a>
+        <a href="learn-esp32.html">ESP32</a>
+        <a href="learn-dev-board.html">Dev Board</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

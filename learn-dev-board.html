@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn Dev Board | Cool Robotics Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepage.css">
+
+  <style>
+    :root {
+      --dev-bg: #0d081b;
+      --dev-card: #1c142d;
+      --dev-text: #fff;
+      --dev-muted: #c7bbd8;
+      --dev-border: rgba(196,156,255,.2);
+    }
+
+    html[data-theme="light"] {
+      --dev-bg: #f8f5fc;
+      --dev-card: #fff;
+      --dev-text: #251931;
+      --dev-muted: #6d617b;
+      --dev-border: #ded3e9;
+    }
+
+    body, .dev-main {
+      background: var(--dev-bg);
+      color: var(--dev-text);
+    }
+
+    .dev-wrap {
+      width: min(1100px,90%);
+      margin: auto;
+    }
+
+    .dev-hero {
+      padding: 150px 0 90px;
+      background: radial-gradient(circle at 75% 35%,rgba(233,43,197,.18),transparent 50%);
+    }
+
+    .dev-eyebrow {
+      color: #ed4ed0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .dev-hero h1 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: clamp(54px,8vw,100px);
+      letter-spacing: -5px;
+      line-height: 1.04;
+      margin: 25px 0;
+    }
+
+    .dev-hero h1 span {
+      color: #e92bc5;
+    }
+
+    .dev-hero p {
+      max-width: 680px;
+      font-size: 17px;
+      color: var(--dev-muted);
+      line-height: 1.85;
+    }
+
+    .dev-button {
+      display: inline-block;
+      margin-top: 27px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      background: #e92bc5;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .dev-section {
+      padding: 65px 0;
+    }
+
+    .dev-section h2 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: clamp(34px,5vw,55px);
+      letter-spacing: -2px;
+      margin: 15px 0 25px;
+    }
+
+    .dev-grid {
+      display: grid;
+      grid-template-columns: repeat(3,minmax(0,1fr));
+      gap: 18px;
+    }
+
+    .dev-card {
+      padding: 25px;
+      border: 1px solid var(--dev-border);
+      background: var(--dev-card);
+      border-radius: 18px;
+    }
+
+    .dev-card small {
+      color: #ed4ed0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .dev-card h3 {
+      font-family: "Space Grotesk",sans-serif;
+      font-size: 23px;
+      margin: 14px 0;
+    }
+
+    .dev-card p,
+    .dev-card li,
+    .dev-section > .dev-wrap > p {
+      color: var(--dev-muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .dev-card ul {
+      padding-left: 20px;
+    }
+
+    .dev-card a {
+      color: #ed4ed0;
+      font-weight: 700;
+    }
+
+    .dev-lesson {
+      margin-bottom: 13px;
+      border: 1px solid var(--dev-border);
+      background: var(--dev-card);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .dev-lesson summary {
+      padding: 23px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .dev-lesson-content {
+      padding: 0 23px 25px;
+      color: var(--dev-muted);
+      line-height: 1.85;
+    }
+
+    .dev-notice {
+      margin-top: 25px;
+      padding: 22px;
+      border-left: 3px solid #e92bc5;
+      background: var(--dev-card);
+      color: var(--dev-muted);
+      line-height: 1.8;
+    }
+
+    @media(max-width:800px) {
+      .dev-grid {
+        grid-template-columns: 1fr;
+      }
+      .dev-hero {
+        padding-top: 120px;
+      }
+      .dev-hero h1 {
+        letter-spacing: -3px;
+      }
+    }
+  </style>
+
+  <script src="scripts/theme.js" defer></script>
+</head>
+
+<body>
+  <header class="nav-shell">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a class="brand" href="index.html">
+        <span class="brand-symbol">c<span>●</span>r</span>
+        <span>cool robotics<span class="brand-small">PROJECTS / BYU–IDAHO</span></span>
+      </a>
+
+      
+<div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="learn-arduino.html">Learn Arduino</a>
+    <a href="learn-esp32.html">Learn ESP32</a>
+    <a href="learn-dev-board.html">Learn Dev Board</a>
+    <a href="ebadge.html">E-Badge</a>
+    <a href="creators.html">Creators</a>
+  </div>
+  
+
+      <div class="nav-actions">
+        <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme">☼</button>
+        <a class="nav-cta" href="#resources">Resources ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="dev-main">
+
+    <section class="dev-hero">
+      <div class="dev-wrap">
+        <div class="dev-eyebrow">LEARNING PATH 03 / BYU–IDAHO</div>
+        <h1>Learn <span>Dev Board.</span></h1>
+
+        <p>
+          Explore the BYU–Idaho ESP32-S3 development board.
+          Learn how to work with its onboard screen,
+          joystick, buttons, and embedded hardware,
+          then move into example programs and C lessons.
+        </p>
+
+        <a href="#lessons" class="dev-button">Start Learning ↗</a>
+      </div>
+    </section>
+
+    <section class="dev-section" id="hardware">
+      <div class="dev-wrap">
+        <div class="dev-eyebrow">MEET THE BOARD</div>
+        <h2>Everything in one place.</h2>
+
+        <div class="dev-grid">
+          <article class="dev-card">
+            <small>PROCESSOR</small>
+            <h3>ESP32-S3 Module</h3>
+            <p>
+              The programmable controller at the heart
+              of the development board.
+            </p>
+          </article>
+
+          <article class="dev-card">
+            <small>DISPLAY</small>
+            <h3>Built-in Screen</h3>
+            <p>
+              Display graphics, information, menus,
+              and program output.
+            </p>
+          </article>
+
+          <article class="dev-card">
+            <small>CONTROLS</small>
+            <h3>Joystick & Buttons</h3>
+            <p>
+              Explore physical inputs using the
+              onboard joystick and push buttons.
+            </p>
+          </article>
+
+          <article class="dev-card">
+            <small>CONNECTIONS</small>
+            <h3>Expansion Headers</h3>
+            <p>
+              Connect compatible external modules
+              after checking the board's pinout.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dev-section" id="lessons">
+      <div class="dev-wrap">
+        <div class="dev-eyebrow">GETTING STARTED</div>
+        <h2>Learn your board.</h2>
+
+        <details class="dev-lesson" open>
+          <summary>01 — Introduction to the Development Board</summary>
+          <div class="dev-lesson-content">
+            <p>
+              Identify the ESP32-S3 module, screen, joystick,
+              buttons, USB connectors, and expansion headers.
+              Learn what each component does before writing code.
+            </p>
+          </div>
+        </details>
+
+        <details class="dev-lesson">
+          <summary>02 — Understand Inputs and Outputs</summary>
+          <div class="dev-lesson-content">
+            <p>
+              Inputs include buttons and joystick movement.
+              Outputs include the display and other supported
+              peripherals. A program reads inputs and updates
+              outputs based on its logic.
+            </p>
+          </div>
+        </details>
+
+        <details class="dev-lesson">
+          <summary>03 — Introduction to C Programming</summary>
+          <div class="dev-lesson-content">
+            <p>
+              Learn about variables, conditions, loops,
+              and functions before working through
+              the board's provided C lessons.
+            </p>
+          </div>
+        </details>
+
+        <details class="dev-lesson">
+          <summary>04 — Understand Example Programs</summary>
+          <div class="dev-lesson-content">
+            <p>
+              Example programs demonstrate individual
+              board features. Read the setup instructions,
+              check the required toolchain, and run the
+              examples supplied for your board version.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="dev-section" id="resources">
+      <div class="dev-wrap">
+        <div class="dev-eyebrow">BOARD RESOURCES</div>
+        <h2>Learn by experimenting.</h2>
+
+        <div class="dev-grid">
+
+          <article class="dev-card">
+            <small>DOCUMENTATION</small>
+            <h3>Board Information</h3>
+            <p>
+              Read the board documentation before
+              using specific pins or peripherals.
+            </p>
+            <a href="ebadge.html">View E-Badge resources ↗</a>
+          </article>
+
+          <article class="dev-card">
+            <small>PROGRAMMING</small>
+            <h3>C Lessons</h3>
+            <p>
+              Work through the available programming
+              lessons for the development board.
+            </p>
+            <a href="ebadge.html">Browse C lessons ↗</a>
+          </article>
+
+          <article class="dev-card">
+            <small>EXAMPLES</small>
+            <h3>Demo Programs</h3>
+            <p>
+              Explore board-specific example programs
+              once their setup requirements are confirmed.
+            </p>
+            <a href="ebadge.html">Browse examples ↗</a>
+          </article>
+
+        </div>
+
+        <div class="dev-notice">
+          <strong>About the projects:</strong>
+          This board is not interchangeable with the
+          LAFVIN ESP32 starter kit. Both use ESP32-family
+          technology, but the board layout, available
+          peripherals, pins, and example software differ.
+          We'll add tested board-specific project tutorials here.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>cool robotics.</strong>
+        <p>BYU–Idaho robotics and embedded systems learning.</p>
+      </div>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="learn-arduino.html">Arduino</a>
+        <a href="learn-esp32.html">ESP32</a>
+        <a href="learn-dev-board.html">Dev Board</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

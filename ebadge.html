@@ -1,62 +1,936 @@
-<!DOCTYPE html>
 
-<html data-theme="dark" lang="en"><head><title>E-Badge Resources | Cool Robotics Projects</title><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Arduino and robotics projects and learning resources from the BYU–Idaho robotics team." name="description"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="homepage.css" rel="stylesheet"/><link href="styles/chat.css" rel="stylesheet"/><script defer="" src="scripts/theme.js"></script><script defer="" src="scripts/chat.js"></script><script defer="" src="scripts/projects-data.js"></script><script defer="" src="scripts/site.js"></script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav-shell"><nav aria-label="Main navigation" class="nav-inner"><a class="brand" href="index.html"><span class="brand-symbol">c<span>●</span>r</span><span>cool robotics<span class="brand-small">PROJECTS / BYU–IDAHO</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge</a><a href="creators.html">Creators</a></div><div class="nav-actions"><button aria-label="Search projects" class="icon-button search-trigger" type="button">⌕</button><button aria-label="Toggle color theme" class="icon-button theme-toggle" type="button">☼</button><a class="nav-cta" href="projects.html">Explore <span>↗</span></a><button aria-expanded="false" aria-label="Open navigation" class="icon-button menu-toggle">☰</button></div></nav></header><main id="main"><section class="page-hero"><div class="container reveal"><span class="eyebrow">BYU–IDAHO / E-BADGE</span><h1>E-Badge <em>resources.</em></h1><p>Example programs, C lessons, and board documentation for your e-badge.</p></div></section><section class="projects-section section-pad"><div class="container"><section class="eb-group reveal"><div class="eb-group-head"><span class="eyebrow light-eyebrow">01 / E-BADGE DEMOS</span><h2>Explore the board.</h2><p>11 small examples for e-badge hardware features.</p></div><div class="eb-grid"><article class="eb-card"><span class="eb-number">DEMO 01</span><h3>Turn an LED on/off</h3><p>Control an LED with a simple Arduino program.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/blink_led/blink_led.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 02</span><h3>Print text to the LCD</h3><p>Display text on the e-badge screen.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/print_text/print_text.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 03</span><h3>Control LCD pixels and regions</h3><p>Change colors on parts of the LCD.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/screen_pixels/screen_pixels.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 04</span><h3>Read button status</h3><p>Read the built-in button inputs.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buttons/buttons.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 05</span><h3>Change RGB LED colors</h3><p>Set the color of LED1.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/rgb_led/rgb_led.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 06</span><h3>Addressable LED strip</h3><p>Control the on-board LED strip.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/addressable_leds/addressable_leds.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 07</span><h3>Read the joystick</h3><p>Get joystick movement and status.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/joystick/joystick.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 08</span><h3>Play sounds with the buzzer</h3><p>Use the built-in buzzer.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buzzer/buzzer.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 09</span><h3>Serial communication</h3><p>Send and receive USB serial messages.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/serial/serial.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 10</span><h3>Control a servo motor</h3><p>Drive a servo with example code.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/servo/servo.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article><article class="eb-card"><span class="eb-number">DEMO 11</span><h3>Use the accelerometer</h3><p>Read movement and orientation.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/accelerometer/accelerometer.ino" rel="noopener noreferrer" target="_blank">View example code ↗</a></article></div></section><section class="eb-group reveal"><div class="eb-group-head"><span class="eyebrow light-eyebrow">02 / C PROGRAMMING</span><h2>Learn the code.</h2><p>Six lessons referenced by your professor.</p></div><div class="eb-grid"><article class="eb-card"><span class="eb-number">LESSON 01</span><h3>Variables and types</h3><p>01_variables_and_types.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/01_variables_and_types/01_variables_and_types.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article><article class="eb-card"><span class="eb-number">LESSON 02</span><h3>Conditionals</h3><p>02_conditionals.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/02_conditionals/02_conditionals.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article><article class="eb-card"><span class="eb-number">LESSON 03</span><h3>If/else chains</h3><p>03_if_else_chain.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/03_if_else_chain/03_if_else_chain.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article><article class="eb-card"><span class="eb-number">LESSON 04</span><h3>Loops</h3><p>04_loops.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/04_loops/04_loops.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article><article class="eb-card"><span class="eb-number">LESSON 05</span><h3>Functions</h3><p>05_functions.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/05_functions/05_functions.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article><article class="eb-card"><span class="eb-number">LESSON 06</span><h3>Arrays</h3><p>06_arrays.ino</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/06_arrays/06_arrays.ino" rel="noopener noreferrer" target="_blank">View lesson code ↗</a></article></div></section><section class="eb-group reveal"><div class="eb-group-head"><span class="eyebrow light-eyebrow">03 / DOCUMENTATION</span><h2>Know your board.</h2><p>The two board reference formats mentioned in the email.</p></div><div class="eb-grid"><article class="eb-card"><span class="eb-number">FILE 01</span><h3>Board information · Markdown</h3><p>board_info.md — useful when providing board context to an AI coding assistant.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.md" rel="noopener noreferrer" target="_blank">View documentation ↗</a></article><article class="eb-card"><span class="eb-number">FILE 02</span><h3>Board information · HTML</h3><p>board_info.html — browser-friendly board documentation.</p><a class="eb-resource-link" href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.html" rel="noopener noreferrer" target="_blank">View documentation ↗</a></article></div></section><p class="eb-file-note">Example Codes for BYUI e-badge.</p></div></section></main><footer class="site-footer"><div class="container footer-inner"><div><strong>cool robotics.</strong><p>Arduino and robotics projects by the BYU–Idaho robotics team.</p></div><div><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="ebadge.html">E-Badge</a><a href="creators.html">Creators</a></div></div></footer><div class="search-modal" hidden="" id="search-modal">
-<div class="search-backdrop" data-close-search="">
-</div>
-<div aria-label="Search projects" aria-modal="true" class="search-dialog" role="dialog">
-<div class="search-dialog-top">
-<span>
-    ⌕
-   </span>
-<input aria-label="Search robotics projects" id="modal-search" placeholder="Search robotics projects..." type="search"/>
-<button aria-label="Close search" class="search-dismiss" data-close-search="" type="button">
-    ESC ×
-   </button>
-</div>
-<div class="search-results" id="search-results">
-</div>
-<p class="search-tip">
-   Type to find projects • Enter to open project library
-  </p>
-</div>
-</div>
-<div class="chat-container">
-<button aria-expanded="false" aria-label="Open robotics assistant" class="chat-toggle" type="button">
-  ✳
-  <span>
-   Ask a maker
-  </span>
-</button>
-<section aria-label="Robotics assistant" class="chat-window" hidden="">
-<div class="chat-header">
-<div>
-<span class="chat-status">
-     ● HERE TO HELP
-    </span>
-<h3>
-     Maker assistant
-    </h3>
-</div>
-<button aria-label="Close chat" class="chat-close">
-    ×
-   </button>
-</div>
-<div aria-live="polite" class="chat-messages">
-</div>
-<div class="typing-indicator" hidden="">
-   Thinking
-   <span class="dots">
-    ...
-   </span>
-</div>
-<div class="quick-replies">
-</div>
-<form class="chat-input-area">
-<input aria-label="Your message" class="chat-input" placeholder="Ask about Arduino..."/>
-<button aria-label="Send message" class="chat-send" type="submit">
-    ↗
-   </button>
-</form>
-</section>
-</div>
-</body></html>
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="BYU-Idaho E-Badge demo programs, C programming lessons, and board documentation."
+    >
+
+    <title>E-Badge Resources | Cool Robotics Projects</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Existing Styles -->
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="styles/chat.css">
+
+    <!-- Existing Scripts -->
+    <script src="scripts/theme.js" defer></script>
+    <script src="scripts/chat.js" defer></script>
+    <script src="scripts/projects-data.js" defer></script>
+    <script src="scripts/site.js" defer></script>
+
+    <!-- Page-specific styles -->
+    <style>
+        .eb-quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .eb-quick-nav a {
+            padding: 12px 18px;
+            border: 1px solid rgba(180, 145, 220, 0.35);
+            border-radius: 12px;
+            color: inherit;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .eb-quick-nav a:hover {
+            background: #e92bc5;
+            color: white;
+            border-color: #e92bc5;
+        }
+
+        .eb-group {
+            scroll-margin-top: 120px;
+            margin-bottom: 75px;
+        }
+
+        .eb-group-head {
+            margin-bottom: 28px;
+        }
+
+        .eb-group-head h2 {
+            margin: 12px 0;
+        }
+
+        .eb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .eb-card {
+            display: flex;
+            flex-direction: column;
+            padding: 26px;
+            border: 1px solid rgba(160, 125, 200, 0.2);
+            border-radius: 18px;
+            background: rgba(135, 100, 175, 0.07);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .eb-card:hover {
+            transform: translateY(-4px);
+            border-color: #e92bc5;
+        }
+
+        .eb-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #e92bc5;
+        }
+
+        .eb-card h3 {
+            margin: 15px 0 10px;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 21px;
+        }
+
+        .eb-card p {
+            margin: 0 0 20px;
+            line-height: 1.7;
+            opacity: 0.75;
+        }
+
+        .eb-resource-link {
+            display: inline-block;
+            margin-top: auto;
+            padding-top: 12px;
+            color: #e92bc5;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .eb-resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .eb-file-note {
+            opacity: 0.65;
+            font-size: 13px;
+        }
+
+        @media (max-width: 950px) {
+            .eb-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 650px) {
+            .eb-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Accessibility -->
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ========================================= -->
+    <!-- NAVIGATION -->
+    <!-- ========================================= -->
+
+    <header class="nav-shell">
+        <nav class="nav-inner" aria-label="Main navigation">
+
+            <!-- Logo -->
+            <a class="brand" href="index.html">
+                <span class="brand-symbol">
+                    c<span>●</span>r
+                </span>
+
+                <span>
+                    cool robotics
+                    <span class="brand-small">
+                        PROJECTS / BYU–IDAHO
+                    </span>
+                </span>
+            </a>
+
+            <!-- Main Navigation -->
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="learn-arduino.html">Learn Arduino</a>
+                <a href="learn-esp32.html">Learn ESP32</a>
+                <a href="learn-dev-board.html">Learn Dev Board</a>
+                <a href="ebadge.html" aria-current="page">E-Badge</a>
+                <a href="creators.html">Creators</a>
+            </div>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+
+                <button
+                    class="icon-button search-trigger"
+                    type="button"
+                    aria-label="Search projects"
+                >
+                    ⌕
+                </button>
+
+                <button
+                    class="icon-button theme-toggle"
+                    type="button"
+                    aria-label="Toggle color theme"
+                >
+                    ☼
+                </button>
+
+                <a class="nav-cta" href="learn-dev-board.html">
+                    Learn Dev Board <span>↗</span>
+                </a>
+
+                <button
+                    class="icon-button menu-toggle"
+                    type="button"
+                    aria-label="Open navigation"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- ========================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================= -->
+
+    <main id="main">
+
+        <!-- PAGE INTRODUCTION -->
+        <section class="page-hero">
+
+            <div class="container reveal">
+
+                <span class="eyebrow">
+                    BYU–IDAHO / E-BADGE
+                </span>
+
+                <h1>
+                    E-Badge <em>resources.</em>
+                </h1>
+
+                <p>
+                    Explore example programs, learn C programming,
+                    and find documentation for your BYU–Idaho E-Badge.
+                </p>
+
+                <!-- Jump to Resource Category -->
+                <div class="eb-quick-nav">
+                    <a href="#demos">Demo Programs ↓</a>
+                    <a href="#c-lessons">C Programming ↓</a>
+                    <a href="#documentation">Documentation ↓</a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESOURCE LIBRARY -->
+        <section class="projects-section section-pad">
+
+            <div class="container">
+
+
+                <!-- ================================= -->
+                <!-- SECTION 1: E-BADGE DEMOS -->
+                <!-- ================================= -->
+
+                <section class="eb-group reveal" id="demos">
+
+                    <div class="eb-group-head">
+
+                        <span class="eyebrow light-eyebrow">
+                            01 / E-BADGE DEMOS
+                        </span>
+
+                        <h2>Explore the board.</h2>
+
+                        <p>
+                            11 example programs demonstrating
+                            different hardware features.
+                        </p>
+
+                    </div>
+
+
+                    <div class="eb-grid">
+
+                        <!-- Demo 01 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 01</span>
+
+                            <h3>Turn an LED On/Off</h3>
+
+                            <p>
+                                Learn to control an LED using
+                                a simple program.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/blink_led/blink_led.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 02 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 02</span>
+
+                            <h3>Print Text to the LCD</h3>
+
+                            <p>
+                                Display text on the E-Badge screen.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/print_text/print_text.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 03 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 03</span>
+
+                            <h3>Control LCD Pixels and Regions</h3>
+
+                            <p>
+                                Change colors in specific areas
+                                of the LCD screen.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/screen_pixels/screen_pixels.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 04 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 04</span>
+
+                            <h3>Read Button Status</h3>
+
+                            <p>
+                                Detect input from the
+                                built-in buttons.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buttons/buttons.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 05 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 05</span>
+
+                            <h3>Change RGB LED Colors</h3>
+
+                            <p>
+                                Control the colors of LED1.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/rgb_led/rgb_led.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 06 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 06</span>
+
+                            <h3>Addressable LED Strip</h3>
+
+                            <p>
+                                Control the onboard
+                                addressable LED strip.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/addressable_leds/addressable_leds.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 07 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 07</span>
+
+                            <h3>Read the Joystick</h3>
+
+                            <p>
+                                Read joystick movement and status.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/joystick/joystick.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 08 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 08</span>
+
+                            <h3>Play Sounds with the Buzzer</h3>
+
+                            <p>
+                                Generate sounds using
+                                the built-in buzzer.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/buzzer/buzzer.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 09 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 09</span>
+
+                            <h3>Serial Communication</h3>
+
+                            <p>
+                                Send and receive messages
+                                through USB serial communication.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/serial/serial.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 10 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 10</span>
+
+                            <h3>Control a Servo Motor</h3>
+
+                            <p>
+                                Learn how to drive a servo motor
+                                using example code.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/servo/servo.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Demo 11 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DEMO 11</span>
+
+                            <h3>Use the Accelerometer</h3>
+
+                            <p>
+                                Read movement and orientation
+                                using an accelerometer.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/small_demos/accelerometer/accelerometer.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Example Code ↗
+                            </a>
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ================================= -->
+                <!-- SECTION 2: C PROGRAMMING -->
+                <!-- ================================= -->
+
+                <section class="eb-group reveal" id="c-lessons">
+
+                    <div class="eb-group-head">
+
+                        <span class="eyebrow light-eyebrow">
+                            02 / C PROGRAMMING
+                        </span>
+
+                        <h2>Learn the code.</h2>
+
+                        <p>
+                            Six programming lessons covering
+                            foundational C concepts.
+                        </p>
+
+                    </div>
+
+
+                    <div class="eb-grid">
+
+                        <!-- Lesson 01 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 01</span>
+
+                            <h3>Variables and Types</h3>
+
+                            <p>
+                                Understand variables
+                                and basic data types.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/01_variables_and_types/01_variables_and_types.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Lesson 02 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 02</span>
+
+                            <h3>Conditionals</h3>
+
+                            <p>
+                                Use conditional statements
+                                to control program behavior.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/02_conditionals/02_conditionals.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Lesson 03 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 03</span>
+
+                            <h3>If/Else Chains</h3>
+
+                            <p>
+                                Make decisions using multiple
+                                conditional branches.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/03_if_else_chain/03_if_else_chain.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Lesson 04 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 04</span>
+
+                            <h3>Loops</h3>
+
+                            <p>
+                                Repeat instructions using
+                                loops and iteration.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/04_loops/04_loops.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Lesson 05 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 05</span>
+
+                            <h3>Functions</h3>
+
+                            <p>
+                                Organize code into
+                                reusable functions.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/05_functions/05_functions.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Lesson 06 -->
+                        <article class="eb-card">
+                            <span class="eb-number">LESSON 06</span>
+
+                            <h3>Arrays</h3>
+
+                            <p>
+                                Store and work with
+                                collections of values.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/learning_C/06_arrays/06_arrays.ino"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Lesson Code ↗
+                            </a>
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ================================= -->
+                <!-- SECTION 3: DOCUMENTATION -->
+                <!-- ================================= -->
+
+                <section class="eb-group reveal" id="documentation">
+
+                    <div class="eb-group-head">
+
+                        <span class="eyebrow light-eyebrow">
+                            03 / DOCUMENTATION
+                        </span>
+
+                        <h2>Know your board.</h2>
+
+                        <p>
+                            Reference materials for understanding
+                            and programming the BYU–Idaho E-Badge.
+                        </p>
+
+                    </div>
+
+
+                    <div class="eb-grid">
+
+                        <!-- Documentation 01 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DOCUMENT 01</span>
+
+                            <h3>Board Information — Markdown</h3>
+
+                            <p>
+                                board_info.md provides technical
+                                board information in Markdown format.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.md"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Documentation ↗
+                            </a>
+                        </article>
+
+
+                        <!-- Documentation 02 -->
+                        <article class="eb-card">
+                            <span class="eb-number">DOCUMENT 02</span>
+
+                            <h3>Board Information — HTML</h3>
+
+                            <p>
+                                board_info.html is a browser-friendly
+                                version of the board documentation.
+                            </p>
+
+                            <a
+                                class="eb-resource-link"
+                                href="https://content.byui.edu/file/b9add89f-5cb9-4f0c-8b34-e5cea72f8896/1/ExampleCode/board_info.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View Documentation ↗
+                            </a>
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+                <p class="eb-file-note">
+                    Example code and documentation for the BYU–Idaho E-Badge.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div>
+                <strong>cool robotics.</strong>
+
+                <p>
+                    Arduino and robotics projects
+                    by the BYU–Idaho robotics team.
+                </p>
+            </div>
+
+            <div>
+                <a href="index.html">Home</a>
+                <a href="learn-arduino.html">Learn Arduino</a>
+                <a href="learn-esp32.html">Learn ESP32</a>
+                <a href="learn-dev-board.html">Learn Dev Board</a>
+                <a href="ebadge.html">E-Badge</a>
+                <a href="creators.html">Creators</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================= -->
+    <!-- SEARCH MODAL -->
+    <!-- ========================================= -->
+
+    <div class="search-modal" id="search-modal" hidden>
+
+        <div
+            class="search-backdrop"
+            data-close-search
+        ></div>
+
+        <div
+            class="search-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search projects"
+        >
+
+            <div class="search-dialog-top">
+
+                <span>⌕</span>
+
+                <input
+                    id="modal-search"
+                    type="search"
+                    aria-label="Search robotics projects"
+                    placeholder="Search robotics projects..."
+                >
+
+                <button
+                    class="search-dismiss"
+                    type="button"
+                    data-close-search
+                    aria-label="Close search"
+                >
+                    ESC ×
+                </button>
+
+            </div>
+
+            <div
+                class="search-results"
+                id="search-results"
+            ></div>
+
+            <p class="search-tip">
+                Type to find projects.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- CHAT ASSISTANT -->
+    <!-- ========================================= -->
+
+    <div class="chat-container">
+
+        <button
+            class="chat-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Open robotics assistant"
+        >
+            ✳ <span>Ask a maker</span>
+        </button>
+
+        <section
+            class="chat-window"
+            aria-label="Robotics assistant"
+            hidden
+        >
+
+            <div class="chat-header">
+
+                <div>
+                    <span class="chat-status">
+                        ● HERE TO HELP
+                    </span>
+
+                    <h3>Maker assistant</h3>
+                </div>
+
+                <button
+                    class="chat-close"
+                    type="button"
+                    aria-label="Close chat"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                class="chat-messages"
+                aria-live="polite"
+            ></div>
+
+            <div class="typing-indicator" hidden>
+                Thinking <span class="dots">...</span>
+            </div>
+
+            <div class="quick-replies"></div>
+
+            <form class="chat-input-area">
+
+                <input
+                    class="chat-input"
+                    aria-label="Your message"
+                    placeholder="Ask about robotics..."
+                >
+
+                <button
+                    class="chat-send"
+                    type="submit"
+                    aria-label="Send message"
+                >
+                    ↗
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

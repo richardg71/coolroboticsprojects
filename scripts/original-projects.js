@@ -1,0 +1,6 @@
+document.addEventListener('DOMContentLoaded',()=>{
+ const steps=[...document.querySelectorAll('.progress-bar .step')];const sections=[...document.querySelectorAll('main.content > section.section')];
+ steps.forEach((step,i)=>{const section=sections[i];if(!section)return;const jump=()=>section.scrollIntoView({behavior:'smooth',block:'start'});step.addEventListener('click',jump);step.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();jump()}})});
+ function update(){let current=0;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.38)current=i});steps.forEach((s,i)=>{s.classList.toggle('active',i===current);s.classList.toggle('done',i<current)})}addEventListener('scroll',update,{passive:true});update();
+ document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const el=document.getElementById(btn.dataset.copy);if(!el)return;try{await navigator.clipboard.writeText(el.innerText);btn.textContent='Copied!'}catch{btn.textContent='Select text to copy'}setTimeout(()=>btn.textContent='Copy',1700)}));
+});

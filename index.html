@@ -1,11 +1,473 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=homepage.html">
-    <title>Cool Robotics Projects</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find robotics lessons and projects for your Arduino, ESP32, or BYU-Idaho development board.">
+  <title>Cool Robotics Projects | Find Your Kit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="styles/chat.css">
+
+  <script src="scripts/theme.js" defer></script>
+  <script src="scripts/chat.js" defer></script>
 </head>
+
 <body>
-    <p>Redirecting to homepage...</p>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav-shell">
+    <nav class="nav-inner" aria-label="Main navigation">
+
+      <a class="brand" href="index.html">
+        <span class="brand-symbol">c<span>●</span>r</span>
+        <span>
+          cool robotics
+          <span class="brand-small">PROJECTS / BYU–IDAHO</span>
+        </span>
+      </a>
+
+      
+<div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="learn-arduino.html">Learn Arduino</a>
+    <a href="learn-esp32.html">Learn ESP32</a>
+    <a href="learn-dev-board.html">Learn Dev Board</a>
+    <a href="ebadge.html">E-Badge</a>
+    <a href="creators.html">Creators</a>
+  </div>
+  
+
+      <div class="nav-actions">
+        <button class="icon-button search-trigger" type="button" aria-label="Search projects">⌕</button>
+        <button class="icon-button theme-toggle" type="button" aria-label="Toggle theme">☼</button>
+        <a class="nav-cta" href="#choose-kit">Start Learning ↗</a>
+        <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero kit-hero">
+      <div class="hero-mesh" aria-hidden="true"></div>
+
+      <div class="container kit-hero-content">
+        <div class="eyebrow">
+          <span class="live-dot"></span>
+          BYU–IDAHO ROBOTICS LEARNING HUB
+        </div>
+
+        <h1 class="kit-hero-title">
+          Build<br>
+          <em>cool</em><br>
+          Robotics<span class="kit-period">.</span>
+        </h1>
+
+        <p class="kit-hero-description">
+          Have a robotics kit but don't know where to start?
+          Find your hardware, learn the basics, and build
+          projects using the components you already own.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#choose-kit">
+            Start Learning ↗
+          </a>
+          <a class="text-link" href="#project-finder">
+            Find a project ↓
+          </a>
+        </div>
+      </div>
+
+      <a class="scroll-hint" href="#choose-kit">
+        FIND YOUR HARDWARE ↓
+      </a>
+    </section>
+
+    <!-- HARDWARE SELECTION -->
+    <section class="kit-section section-pad" id="choose-kit">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow light-eyebrow">CHOOSE YOUR LEARNING PATH</div>
+            <h2>What kit<br><span>do you have?</span></h2>
+          </div>
+
+          <p>
+            Pick your hardware to see lessons,
+            compatible projects, and the parts you'll need.
+          </p>
+        </div>
+
+        <div class="kit-grid">
+
+          <a href="learn-arduino.html" class="kit-card">
+            <div class="kit-card-top">
+              <span class="kit-number">01 / ARDUINO</span>
+              <span class="kit-arrow">↗</span>
+            </div>
+
+            <div class="kit-art kit-art-arduino">
+              <span class="kit-art-label">UNO</span>
+              <span class="kit-art-icon">◈</span>
+            </div>
+
+            <div class="kit-card-body">
+              <span class="kit-tag">BEGINNER FRIENDLY</span>
+              <h3>Learn Arduino</h3>
+              <p>
+                Start with the Arduino Uno, circuits,
+                LEDs, buttons, sensors, and coding.
+              </p>
+
+              <div class="kit-spec">
+                <strong>Hardware:</strong> Arduino Uno Basic Starter Kit
+              </div>
+
+              <span class="kit-card-link">Explore Arduino →</span>
+            </div>
+          </a>
+
+          <a href="learn-esp32.html" class="kit-card">
+            <div class="kit-card-top">
+              <span class="kit-number">02 / ESP32</span>
+              <span class="kit-arrow">↗</span>
+            </div>
+
+            <div class="kit-art kit-art-esp32">
+              <span class="kit-art-label">ESP32</span>
+              <span class="kit-art-icon">⌁</span>
+            </div>
+
+            <div class="kit-card-body">
+              <span class="kit-tag">SENSORS + CONNECTIVITY</span>
+              <h3>Learn ESP32</h3>
+              <p>
+                Explore the ESP32 with a breadboard,
+                sensors, displays, and connected projects.
+              </p>
+
+              <div class="kit-spec">
+                <strong>Hardware:</strong> LAFVIN ESP32 Basic Starter Kit
+              </div>
+
+              <span class="kit-card-link">Explore ESP32 →</span>
+            </div>
+          </a>
+
+          <a href="learn-dev-board.html" class="kit-card">
+            <div class="kit-card-top">
+              <span class="kit-number">03 / DEVELOPMENT BOARD</span>
+              <span class="kit-arrow">↗</span>
+            </div>
+
+            <div class="kit-art kit-art-dev">
+              <span class="kit-art-label">BYU–IDAHO</span>
+              <span class="kit-art-icon">▣</span>
+            </div>
+
+            <div class="kit-card-body">
+              <span class="kit-tag">ESP32-S3 PLATFORM</span>
+              <h3>Learn Dev Board</h3>
+              <p>
+                Learn the BYU–Idaho board with its
+                built-in screen, joystick, and controls.
+              </p>
+
+              <div class="kit-spec">
+                <strong>Hardware:</strong> BYU–Idaho ESP32-S3 Board
+              </div>
+
+              <span class="kit-card-link">Explore Dev Board →</span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="kit-help">
+          <strong>Not sure which one you have?</strong>
+          <p>
+            Arduino Uno boards usually say UNO.
+            The LAFVIN kit contains a separate ESP32 module
+            and breadboard components. The BYU–Idaho
+            development board has a built-in screen and joystick.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT FINDER -->
+    <section class="finder-section section-pad" id="project-finder">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow light-eyebrow">PROJECT FINDER</div>
+            <h2>Find your<br><span>next build.</span></h2>
+          </div>
+          <p>Search projects by name, component, or required kit.</p>
+        </div>
+
+        <div class="finder-controls">
+          <label class="finder-search-label">
+            <span>⌕</span>
+            <input
+              type="search"
+              id="finder-search"
+              placeholder="Try: DHT11, relay, Arduino..."
+              aria-label="Search projects"
+            >
+          </label>
+
+          <div class="finder-filters" aria-label="Filter by kit">
+            <button type="button" class="finder-filter active" data-kit="all">All</button>
+            <button type="button" class="finder-filter" data-kit="arduino">Arduino</button>
+            <button type="button" class="finder-filter" data-kit="esp32">ESP32</button>
+            <button type="button" class="finder-filter" data-kit="dev">Dev Board</button>
+          </div>
+        </div>
+
+        <div class="finder-grid" id="finder-results">
+
+          <article class="finder-card" data-kit="arduino" data-search="arduino uno weather station dht11 temperature humidity sensor jumper wires">
+            <span class="finder-badge">ARDUINO UNO</span>
+            <h3>Weather Station</h3>
+            <p>Read temperature and humidity using a DHT11 sensor.</p>
+            <div class="finder-parts">
+              <strong>Required:</strong>
+              Arduino Uno, DHT11 sensor, jumper wires.
+            </div>
+            <div class="finder-kit">
+              <strong>Kit:</strong> Arduino Uno starter kit — verify included DHT11.
+            </div>
+            <a href="projectspage2/weather-station.html">Open tutorial ↗</a>
+          </article>
+
+          <article class="finder-card" data-kit="arduino" data-search="arduino uno motion sensor pir hc-sr501 movement">
+            <span class="finder-badge">ARDUINO UNO</span>
+            <h3>Motion Sensor</h3>
+            <p>Detect movement with a PIR motion sensor.</p>
+            <div class="finder-parts">
+              <strong>Required:</strong>
+              Arduino Uno, HC-SR501 PIR sensor, jumper wires.
+            </div>
+            <div class="finder-kit">
+              <strong>Kit:</strong> Arduino Uno starter kit — check sensor availability.
+            </div>
+            <a href="projectspage2/motion-sensor.html">Open tutorial ↗</a>
+          </article>
+
+          <article class="finder-card" data-kit="arduino" data-search="arduino uno relay home automation 2 channel">
+            <span class="finder-badge">ARDUINO UNO</span>
+            <h3>Home Automation with Relays</h3>
+            <p>Control a low-voltage load using a relay module.</p>
+            <div class="finder-parts">
+              <strong>Required:</strong>
+              Arduino Uno, two-channel relay module, wires,
+              suitable low-voltage load.
+            </div>
+            <div class="finder-kit">
+              <strong>Kit:</strong> Arduino kit plus a compatible relay module.
+            </div>
+            <a href="projectspage2/relay-project.html">Open tutorial ↗</a>
+          </article>
+
+          <article class="finder-card" data-kit="arduino" data-search="arduino uno simon says game leds buttons buzzer resistors">
+            <span class="finder-badge">ARDUINO UNO</span>
+            <h3>Simon Says Game</h3>
+            <p>Make a memory game with LEDs, buttons, and sound.</p>
+            <div class="finder-parts">
+              <strong>Required:</strong>
+              Arduino Uno, LEDs, buttons, resistors,
+              buzzer, breadboard, wires.
+            </div>
+            <div class="finder-kit">
+              <strong>Kit:</strong> Arduino starter kit — verify quantities.
+            </div>
+            <a href="projectspage2/simon-says.html">Open tutorial ↗</a>
+          </article>
+
+        </div>
+
+        <p id="finder-empty" class="finder-empty" hidden>
+          No matching published projects yet. Try another search or kit.
+        </p>
+
+        <p class="finder-note">
+          ESP32 and Dev Board projects will appear here as their
+          tutorials are added and tested. The hardware may support
+          similar projects, but Arduino wiring and code cannot
+          automatically be assumed compatible.
+        </p>
+      </div>
+    </section>
+
+    <!-- LEARNING FLOW -->
+    <section class="story-section section-pad" id="how-it-works">
+      <div class="container story-layout">
+
+        <div class="story-heading">
+          <div class="eyebrow">HOW IT WORKS</div>
+          <h2>Choose. <em>Learn.</em> Build.</h2>
+          <p>
+            Your hardware determines the learning path.
+            Every project explains what you need before you start.
+          </p>
+          <a class="button button-light" href="#choose-kit">
+            Choose your kit ↗
+          </a>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <span>01</span>
+            <div>
+              <h3>Identify your hardware</h3>
+              <p>Find the board or kit you own.</p>
+            </div>
+            <span>↗</span>
+          </div>
+
+          <div class="step">
+            <span>02</span>
+            <div>
+              <h3>Learn the essentials</h3>
+              <p>Follow lessons made for that platform.</p>
+            </div>
+            <span>↗</span>
+          </div>
+
+          <div class="step">
+            <span>03</span>
+            <div>
+              <h3>Build a project</h3>
+              <p>Check the parts list and follow a tutorial.</p>
+            </div>
+            <span>↗</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>cool robotics.</strong>
+        <p>Hands-on electronics and robotics learning at BYU–Idaho.</p>
+      </div>
+
+      <div>
+        <a href="index.html">Home</a>
+        <a href="learn-arduino.html">Arduino</a>
+        <a href="learn-esp32.html">ESP32</a>
+        <a href="learn-dev-board.html">Dev Board</a>
+        <a href="creators.html">Creators</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Existing chat UI -->
+  <div class="chat-container">
+    <button class="chat-toggle" type="button" aria-expanded="false" aria-label="Open robotics assistant">
+      ✳ <span>Ask a maker</span>
+    </button>
+
+    <section class="chat-window" hidden aria-label="Robotics assistant">
+      <div class="chat-header">
+        <div>
+          <span class="chat-status">● HERE TO HELP</span>
+          <h3>Maker assistant</h3>
+        </div>
+        <button class="chat-close" type="button" aria-label="Close chat">×</button>
+      </div>
+
+      <div class="chat-messages" aria-live="polite"></div>
+      <div class="typing-indicator" hidden>Thinking...</div>
+      <div class="quick-replies"></div>
+
+      <form class="chat-input-area">
+        <input class="chat-input" aria-label="Your message" placeholder="Ask about robotics...">
+        <button class="chat-send" type="submit" aria-label="Send message">↗</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const search = document.getElementById("finder-search");
+      const cards = Array.from(document.querySelectorAll(".finder-card"));
+      const filters = Array.from(document.querySelectorAll(".finder-filter"));
+      const empty = document.getElementById("finder-empty");
+
+      let activeKit = "all";
+
+      function updateFinder() {
+        const query = search.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const matchesKit = activeKit === "all" || card.dataset.kit === activeKit;
+          const matchesSearch =
+            (card.dataset.search + " " + card.textContent)
+              .toLowerCase()
+              .includes(query);
+
+          const visible = matchesKit && matchesSearch;
+          card.hidden = !visible;
+
+          if (visible) visibleCount++;
+        });
+
+        empty.hidden = visibleCount !== 0;
+      }
+
+      search.addEventListener("input", updateFinder);
+
+      filters.forEach(button => {
+        button.addEventListener("click", () => {
+          activeKit = button.dataset.kit;
+
+          filters.forEach(item => {
+            const active = item === button;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+
+          updateFinder();
+        });
+      });
+
+      const searchTrigger = document.querySelector(".search-trigger");
+
+      searchTrigger.addEventListener("click", () => {
+        document.getElementById("project-finder").scrollIntoView({
+          behavior: "smooth"
+        });
+        search.focus({ preventScroll: true });
+      });
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!expanded));
+        navLinks.classList.toggle("kit-nav-open", !expanded);
+      });
+
+      updateFinder();
+    });
+  </script>
+
 </body>
 </html>
